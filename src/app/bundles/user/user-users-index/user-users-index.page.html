@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Annuaire</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh()">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-searchbar #searchbar showCancelButton="true" cancelButtonText="annuler" [debounce]="700"
+                   (ionChange)="getUserByName($event)" placeholder="Rechercher une personne"></ion-searchbar>
+
+    <div class="users-list">
+        <div class="users-list-item" *ngFor="let user of users"
+             (click)="showUserViewModal(user.id)">
+            <img appMecImageCache [type]="(user.sex == 'f' ? 'woman' : 'man')"
+                 [url]="environment.resizer_url + 'user/' + user.id + '/square/' + user.picture" alt="">
+            <h2>{{user.fullname}}</h2>
+        </div>
+    </div>
+
+
+    <ion-infinite-scroll (ionInfinite)="getUsers()">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

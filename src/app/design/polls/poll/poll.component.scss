@@ -1,0 +1,148 @@
+:host(mec-poll) {
+  display: block;
+
+  .mec-poll {
+    padding: 15px;
+
+    .mec-poll-header {
+      margin-bottom: 15px;
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      h2 {
+        margin: 0;
+        padding: 0;
+        font-size: var(--mec-poll-title-size);
+        color: var(--mec-poll-title-color);
+        margin-bottom: 5px;
+      }
+
+      ion-icon {
+        width: var(--mec-publication-header-icon-width);
+        height: var(--mec-publication-header-icon-height);
+        margin-left: 10px;
+        color: var(--mec-poll-header-icon-color);
+        flex-shrink: 0;
+      }
+
+    }
+
+    .question {
+      background: var(--mec-poll-question-background);
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      text-align: center;
+
+      .status {
+        padding: 5px 7px;
+        font-size: var(--mec-poll-status-size);
+        font-weight: 500;
+        color: var(--mec-poll-status-color);
+        border-radius: 8px;
+        display: inline-block;
+
+        &.inprogress {
+          background: var(--mec-poll-status-background-inprogress);
+        }
+
+        &.ended {
+          background: var(--mec-poll-status-background-ended);
+        }
+
+        &.voted {
+          background: var(--mec-poll-status-background-voted);
+        }
+      }
+
+      p {
+        display: block;
+        text-align: center;
+        margin-top: 7px;
+        margin-bottom: 0;
+        font-size: var(--mec-poll-question-size);
+        color: var(--mec-poll-question-color);
+        line-height: var(--mec-poll-question-line-height);
+      }
+    }
+
+    .description {
+      margin-bottom: 15px;
+
+      h2 {
+        margin: 0;
+        padding: 0;
+        font-weight: 500;
+        padding-bottom: 5px;
+        font-size: var(--mec-poll-description-title-size);
+        color: var(--mec-poll-description-title-color);
+      }
+
+      p {
+        font-size: var(--mec-poll-description-size);
+        color: var(--mec-poll-description-color);
+        line-height: var(--mec-poll-description-line-height);
+        margin: 0;
+        text-align: justify;
+
+        strong {
+          width: 130px;
+          display: inline-block;
+          font-weight: 500;
+        }
+      }
+    }
+
+    h2.propositions {
+      font-size: var(--mec-poll-proposition-title-size);
+      color: var(--mec-poll-proposition-title-color);
+      text-align: center;
+    }
+
+    .proposals {
+      animation: fade 1s;
+
+      .proposal {
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 10px;
+
+        ion-icon {
+          width: var(--mec-poll-proposal-icon-size);
+          height: var(--mec-poll-proposal-icon-size);
+          align-self: center;
+          flex-shrink: 0;
+          color: var(--mec-poll-proposal-icon-color);
+
+        }
+
+        span {
+          font-size: var(--mec-poll-proposal-size);
+          color: var(--mec-poll-proposal-color);
+          align-self: center;
+          padding-left: 7px;
+          text-align: justify;
+
+        }
+      }
+    }
+
+    .answers {
+      animation: fade 1s;
+
+      .answer {
+        margin-bottom: 10px;
+
+        p {
+          padding: 0;
+          margin: 0;
+          padding-bottom: 5px;
+          font-size: var(--mec-poll-answer-size);
+          color: var(--mec-poll-answer-color);
+        }
+      }
+    }
+  }
+}

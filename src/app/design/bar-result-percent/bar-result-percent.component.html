@@ -1,0 +1,6 @@
+<div class="bar-wrap">
+    <div [ngStyle]="{'width':(score/(total == 0 ? 1: total ))*100 +'%'}" class="progression"></div>
+    <div class="result">
+        {{(score / (total == 0 ? 1 : total)) * 100 | number:'1.0-2'}}%
+    </div>
+</div>

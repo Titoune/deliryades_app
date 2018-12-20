@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Paramètres
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+    <div (click)="showUserUpdateFormModal()">Mon profil</div>
+    <div (click)="showPasswordUpdateFormModal()">Mon mot de passe</div>
+    <div (click)="showAppAuthorizationsModal()">Autorisations application</div>
+    <div (click)="showBugReportCreateFormModal()">Signaler un bug</div>
+</ion-content>

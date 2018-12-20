@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Chat</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content padding>
+
+    <ion-infinite-scroll position="top" threshold="1200px" (ionInfinite)="getChatComments()">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+
+    <div style="height:60px;" *ngFor="let chat_comment of chat_comments">
+
+        <img appMecImageCache
+             [type]="(chat_comment.user.sex === 'f' ? 'man' : 'woman')"
+             [url]="environment.resizer_url + 'user/' + chat_comment.user.id + '/square/' + chat_comment.user.picture"/>
+
+        {{chat_comment.created | date: 'dd/MM/yyyy à HH:mm'}}
+        {{chat_comment.content}}
+        <a (click)="loadChatCommentActionSheet(chat_comment)">options</a>
+    </div>
+
+    <form *ngIf="create_form" [formGroup]="create_form" #ngForm="ngForm" (ngSubmit)="submit()">
+        <ion-item>
+            <ion-label>Contenu</ion-label>
+            <ion-textarea formControlName="content" placeholder=""></ion-textarea>
+            <small *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
+                'content')}}
+            </small>
+        </ion-item>
+        <ion-button type="submit" size="large" expand="block">envoyer</ion-button>
+    </form>
+
+</ion-content>

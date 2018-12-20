@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancelForm()" icon-only>
+        <ion-icon icon="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Modifier un sondage</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+
+
+  <form *ngIf="update_form" [formGroup]="update_form" #ngForm="ngForm" (ngSubmit)="submit()">
+    <ion-item>
+      <ion-label position="stacked">Titre</ion-label>
+      <ion-input formControlName="title" placeholder=""></ion-input>
+      <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+              'title')}}
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Question</ion-label>
+      <ion-input formControlName="question" placeholder=""></ion-input>
+      <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+              'question')}}
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Description</ion-label>
+      <ion-textarea formControlName="description" placeholder=""></ion-textarea>
+      <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+              'description')}}
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Expiration</ion-label>
+      <ion-datetime formControlName="expiration" placeholder="" displayFormat="DD MMMM YYYY"
+                    pickerFormat="DD MMMM YYYY">
+      </ion-datetime>
+      <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+              'expiration')}}
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Mettre en ligne</ion-label>
+      <ion-toggle formControlName="activated"></ion-toggle>
+      <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+              'activated')}}
+      </p>
+    </ion-item>
+
+    <ion-button type="submit" size="large" expand="block">Enregistrer</ion-button>
+  </form>
+</ion-content>

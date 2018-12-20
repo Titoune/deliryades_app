@@ -1,0 +1,9 @@
+<ion-app>
+    <ion-menu>
+        <app-public-menu *ngIf="toolsService.menu_type == 'public'"></app-public-menu>
+        <app-shared-menu *ngIf="toolsService.menu_type == 'shared'"></app-shared-menu>
+        <app-user-menu *ngIf="toolsService.menu_type == 'user'"></app-user-menu>
+        <app-administrator-menu *ngIf="toolsService.menu_type == 'administrator'"></app-administrator-menu>
+    </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+</ion-app>

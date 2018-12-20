@@ -1,0 +1,38 @@
+:host(mec-publication-social-bar) {
+  display: block;
+  border-top: 1px solid var(--mec-border-color);
+
+  .social-bar-content {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: var(--mec-social-bar-padding);
+
+    .likes, .comments, .share {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 5px;
+
+      ion-icon {
+        align-self: center;
+        color: var(--mec-social-bar-icon-color);
+        width: var(--mec-social-bar-icon-size);
+        height: var(--mec-social-bar-icon-size);
+
+        &.red {
+          color: var(--color-red);
+        }
+      }
+
+      span {
+        align-self: center;
+        color: var(--mec-social-bar-counter-color);
+        font-size: var(--mec-social-bar-counter-size);
+      }
+    }
+
+    .share {
+      width: 85px;
+    }
+  }
+}

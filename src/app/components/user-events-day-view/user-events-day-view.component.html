@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="modal.dismiss()" icon-only>Fermer</ion-button>
+    </ion-buttons>
+    <ion-title>{{date | date: 'dd/MM/yyyy'}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <h1>{{date | date: 'dd/MM/yyyy'}}</h1>
+  <ion-button (click)="showEventCreateFormModal()">Créer un évènement</ion-button>
+
+
+  <div *ngFor="let event of events">
+    {{event.start | date: 'dd/MM à H:mm'}} : {{event.title}}
+    Durée : {{event.duration}}
+    {{event.content}}
+    <a (click)="loadEventActionSheet(event)">options</a>
+  </div>
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancelForm()" icon-only>
+        <ion-icon icon="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Modifier un évènement</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+
+
+  <form *ngIf="update_form" [formGroup]="update_form" #ngForm="ngForm" (ngSubmit)="submit()">
+    <ion-item>
+      <ion-label position="stacked">Titre</ion-label>
+      <ion-input formControlName="title" placeholder=""></ion-input>
+      <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+              'title')}}
+      </p>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Contenu</ion-label>
+      <ion-textarea formControlName="content" placeholder=""></ion-textarea>
+      <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+              'content')}}
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Début</ion-label>
+      <ion-datetime formControlName="start" placeholder="" displayFormat="DD MMMM YYYY"
+                    pickerFormat="DD MMMM YYYY">
+      </ion-datetime>
+      <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+              'start')}}
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Fin</ion-label>
+      <ion-datetime formControlName="end" placeholder="" displayFormat="DD MMMM YYYY"
+                    pickerFormat="DD MMMM YYYY">
+      </ion-datetime>
+      <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+              'end')}}
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Mettre en ligne</ion-label>
+      <ion-toggle formControlName="activated"></ion-toggle>
+      <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+              'activated')}}
+      </p>
+    </ion-item>
+
+    <ion-button type="submit" size="large" expand="block">Enregistrer</ion-button>
+  </form>
+</ion-content>

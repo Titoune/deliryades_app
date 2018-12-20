@@ -1,0 +1,20 @@
+ion-menu {
+  --width: 350px;
+  --width-small: 100%;
+
+  ion-title {
+    padding: 0;
+  }
+}
+
+
+ion-title {
+  background: var(--color-blue);
+  color: #fff;
+  font-weight: 500;
+}
+
+ion-menu-button {
+  --color: #fff;
+  color: #fff;
+}

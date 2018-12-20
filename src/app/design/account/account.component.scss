@@ -1,0 +1,43 @@
+:host(mec-account) {
+  .mec-account {
+    max-width: 350px;
+    margin-bottom: 15px;
+
+    .user-picture {
+
+      img {
+        border: 2px solid #fff;
+        border-radius: 50%;
+
+      }
+    }
+
+    .account-infos {
+
+      width: 100%;
+      position: relative;
+
+      h2,
+      h3 {
+        margin: 0;
+        padding: 0;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+        font-weight: 500;
+      }
+
+      h3 {
+        font-size: 1.1rem;
+        font-weight: 500;
+      }
+
+      p.notification {
+        color: red;
+        margin: 0;
+
+      }
+    }
+  }
+}

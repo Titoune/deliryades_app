@@ -1,0 +1,88 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <ion-button (click)="modalCtrl.dismiss()" icon-only>
+                <ion-icon icon="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Autorisations de l'application</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <div>
+        <h2>Notifications</h2>
+        <p>
+            Permet la réception de notifications directement sur cet appareil.
+        </p>
+        <p>
+            <span *ngIf="toolsService.authorization_notification == true">Autorisation accordée</span>
+            <span *ngIf="toolsService.authorization_notification != true">Autorisation refusée</span>
+        </p>
+        <button (click)="authorizationsService.requestNotificationAuthorization()"
+                *ngIf="toolsService.authorization_notification != true">Activer
+        </button>
+    </div>
+
+
+    <div>
+        <h2>Selectionner des photos et vidéos</h2>
+        <p>
+            Permet d'accéder à vos photos afin d'envoyer des clichés dans l'application, par exemple pour votre photo de
+            profil.
+        </p>
+        <p>
+            <span *ngIf="toolsService.authorization_external_storage == true">Autorisation accordée</span>
+            <span *ngIf="toolsService.authorization_external_storage != true">Autorisation refusée</span>
+        </p>
+        <button (click)="authorizationsService.requestExternalStorageAuthorization()"
+                *ngIf="toolsService.authorization_external_storage != true">Activer
+        </button>
+    </div>
+
+
+    <div>
+        <h2>Appareil photo</h2>
+        <p>
+            Permet d'accéder à l'appareil photo pour envoyer des photos dans l'application
+        </p>
+        <p>
+            <span *ngIf="toolsService.authorization_camera == true">Autorisation accordée</span>
+            <span *ngIf="toolsService.authorization_camera != true">Autorisation refusée</span>
+        </p>
+        <button (click)="authorizationsService.requestCameraAuthorization()"
+                *ngIf="toolsService.authorization_camera != true">Activer
+        </button>
+    </div>
+
+
+    <div>
+        <h2>Microphone</h2>
+        <p>
+            Permet d'accéder au micro de la caméra lors de l'enregistrement de vidéo
+        </p>
+        <p>
+            <span *ngIf="toolsService.authorization_microphone == true">Autorisation accordée</span>
+            <span *ngIf="toolsService.authorization_microphone != true">Autorisation refusée</span>
+        </p>
+        <button (click)="authorizationsService.requestMicrophoneAuthorization()"
+                *ngIf="toolsService.authorization_microphone != true">Activer
+        </button>
+    </div>
+
+
+    <div>
+        <h2>Géolocalisation</h2>
+        <p>
+            Permet de vous localiser lors de la création d'un signalement ou de la saisie de votre adresse
+        </p>
+        <p>
+            <span *ngIf="toolsService.authorization_location == true">Autorisation accordée</span>
+            <span *ngIf="toolsService.authorization_location != true">Autorisation refusée</span>
+        </p>
+        <button (click)="authorizationsService.requestLocationAuthorization()"
+                *ngIf="toolsService.authorization_location != true">Activer
+        </button>
+    </div>
+</ion-content>

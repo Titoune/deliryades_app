@@ -1,0 +1,11 @@
+<div class="menu-wrap">
+    <ion-menu-toggle *ngFor="let menu of footerMenus" auto-hide="false" class="menu-item">
+        <div [routerLink]="menu.url" class="menu-item-content" routerDirection="root">
+            <ion-icon [class]="menu.class" [icon]="menu.icon" slot="start"></ion-icon>
+            <span>
+        {{menu.title}}
+      </span>
+            <div *ngIf="menu.notification_count > 0" class="notification">{{menu.notification_count}}</div>
+        </div>
+    </ion-menu-toggle>
+</div>

@@ -1,0 +1,24 @@
+<div class="mec-account">
+
+    <div class="user-picture">
+        <img appMecImageCache *ngIf="['citizen', 'administrator'].indexOf(type) !== -1" [type]="(account.user.sex == 'f' ? 'woman' : 'man')" [url]="environment.resizer_url + 'user/' + account.user_id + '/square/' + account.user.picture"/>
+
+        <img appMecImageCache *ngIf="['mayor', 'mandatary'].indexOf(type) !== -1 && account.city.user" [url]="environment.resizer_url + 'user/' + account.city.user_id + '/square/' + account.user.picture"
+             type="mayor"/>
+        <img appMecImageCache *ngIf="['mayor', 'mandatary'].indexOf(type) !== -1 && !account.city.user" [url]="environment.resizer_url + 'supposed-mayor/' + account.city.city_supposed_mayor.id + '/square/' + account.city.city_supposed_mayor.picture" type="mayor"/>
+
+    </div>
+
+    <div class="account-infos">
+        <h2 *ngIf="type == 'administrator' || type == 'mandatary' || type == 'mayor' " class="user-name">
+            {{account.user.fullname}}</h2>
+        <h2 *ngIf="account.city?.user && type == 'citizen'" class="user-name">{{account.city.user.fullname}}</h2>
+        <h3 *ngIf="type == 'administrator'" class="city-name">MairesetCitoyens</h3>
+        <h3 *ngIf="type == 'mandatary' || type == 'citizen'" class="city-name">{{account.city.name}}</h3>
+        <p *ngIf="account.unread_notification_count > 0" class="notification">
+            {{account.unread_notification_count}} nouvelle<span *ngIf="account.unread_notification_count > 1">s</span>
+            notification<span *ngIf="account.unread_notification_count > 1">s</span>
+        </p>
+    </div>
+
+</div>

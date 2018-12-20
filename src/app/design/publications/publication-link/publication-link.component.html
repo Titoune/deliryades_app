@@ -1,0 +1,13 @@
+<div (click)="browser.open({url:publication.website_url})" class="publication-link-content">
+    <img [url]="publication.website_picture" alt="" appMecImageCache type="website"/>
+    <div class="link-details">
+        <h2>{{publication.website_title}}</h2>
+        <p>
+            {{publication.website_description}}
+        </p>
+    </div>
+</div>
+
+<p>
+    {{publication.content}}
+</p>

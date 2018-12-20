@@ -1,0 +1,108 @@
+:host(mec-widget) {
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .12);
+  margin-bottom: 30px;
+  background: #fff;
+
+  .mec-widget-header {
+    display: grid;
+    grid-template-columns: var(--mec-widget-icon-size) 1fr;
+    grid-column-gap: 10px;
+    background: #aaa;
+    padding: 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+
+    ion-icon {
+      color: #fff;
+      align-self: center;
+      width: var(--mec-widget-icon-size);
+      height: var(--mec-widget-icon-size);
+    }
+
+    h2 {
+      color: #fff;
+      align-self: center;
+      margin: 0;
+      font-size: var(--mec-widget-title-size);
+      font-weight: 500;
+    }
+
+    &.polls {
+      background: var(--color-polls);
+    }
+
+    &.suggestions {
+      background: var(--color-suggestions);
+    }
+
+    &.links {
+      background: var(--color-links);
+    }
+
+    &.discussions {
+      background: var(--color-discussions);
+    }
+
+    &.administres {
+      background: var(--color-administres);
+    }
+  }
+
+  .content {
+    padding: 10px;
+
+    p {
+      color: var(--mec-widget-list-content-color);
+      text-align: justify;
+      margin: 0;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+
+      li {
+        list-style-type: none;
+        padding: 7px 0;
+        border-bottom: 1px solid var(--mec-border-color);
+
+        &:first-child {
+          padding-top: 0;
+        }
+
+        &:last-child {
+          border-bottom: 0;
+          padding-bottom: 0;
+        }
+
+        h2 {
+          font-size: var(--mec-widget-list-title-size);
+          font-weight: 500;
+          color: var(--mec-widget-list-title-color);
+          margin: 0;
+          padding-bottom: 3px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+
+        p {
+          margin: 0;
+          font-size: var(--mec-widget-list-content-size);
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+
+          a {
+            color: var(--mec-widget-list-content-color);
+            text-decoration: none;
+            margin: 0;
+          }
+        }
+
+      }
+    }
+  }
+}

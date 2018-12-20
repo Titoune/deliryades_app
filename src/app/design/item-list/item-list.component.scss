@@ -1,0 +1,201 @@
+:host(mec-item-list) {
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .12);
+  display: block;
+  animation: fade 1s;
+  border: 1px solid #ececec;
+  max-width: 100%;
+
+  .body {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    padding: 10px;
+
+    .visuel {
+      align-self: center;
+
+      img {
+        width: 70px;
+        height: 70px;
+        max-width: 100%;
+      }
+
+      ion-icon {
+        width: 50px;
+        height: 50px;
+        max-width: 100%;
+        padding: 10px;
+        background: #333;
+        color: #fff;
+
+        &.icon-amenagement-urbain {
+          background: var(--color-purple);
+        }
+
+        &.icon-autres {
+          background: var(--color-darkblue);
+        }
+
+        &.icon-circulation {
+          background: var(--color-bluegrey);
+        }
+
+        &.icon-culture {
+          background: var(--color-orange);
+        }
+
+        &.icon-degradation {
+          background: var(--color-dark);
+        }
+
+        &.icon-eclairage {
+          background: var(--color-orange);
+        }
+
+        &.icon-ecologie {
+          background: var(--color-green);
+        }
+
+        &.icon-economie {
+          background: var(--color-bluesky);
+        }
+
+        &.icon-education {
+          background: var(--color-aero);
+        }
+
+        &.icon-emploi {
+          background: var(--color-yellow);
+        }
+
+        &.icon-espaces-verts {
+          background: var(--color-aero);
+        }
+
+        &.icon-famille {
+          background: var(--color-grey);
+        }
+
+        &.icon-incivilite {
+          background: var(--color-bluesky);
+        }
+
+        &.icon-logement {
+          background: var(--color-brown);
+        }
+
+        &.icon-numerique {
+          background: var(--color-blue);
+        }
+
+        &.icon-ordures {
+          background: var(--color-purple);
+        }
+
+        &.icon-sport {
+          background: var(--color-red);
+        }
+
+        &.icon-transport {
+          background: var(--color-violet);
+        }
+
+        &.icon-vehicule {
+          background: var(--color-green);
+        }
+
+        &.icon-voirie {
+          background: var(--color-pink);
+        }
+
+        &.icon-securite {
+          background: var(--color-orange);
+        }
+      }
+
+      img {
+      }
+    }
+
+    .main {
+      align-self: center;
+
+      .header {
+        display: grid;
+        grid-template-columns: 1fr 50px;
+
+        .header-title {
+          color: var(--mec-list-item-header-title-color);
+          font-weight: 500;
+          font-size: var(--mec-list-item-header-title-size);
+          padding-bottom: 5px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
+          .badge {
+            background: var(--color-red);
+            display: inline-block;
+            font-size: 0.8rem;
+            color: #fff;
+            padding: 3px 5px;
+            border-radius: 8px;
+          }
+        }
+
+        .header-icons {
+          flex-shrink: 0;
+
+          ion-icon {
+            color: var(--mec-list-item-header-icon-color);
+            width: var(--mec-list-item-header-icon-size);
+            height: var(--mec-list-item-header-icon-size);
+            padding-left: 5px;
+          }
+        }
+      }
+
+      .content {
+        .content-text {
+          font-size: var(--mec-list-item-content-text-size);
+          color: var(--mec-list-item-content-text-color);
+          padding-bottom: 5px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .content-more {
+          font-size: var(--mec-list-item-content-more-size);
+          color: var(--mec-list-item-content-more-color);
+        }
+      }
+    }
+  }
+
+  .footer {
+    border-top: 1px solid #ececec;
+    padding: 5px 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+    .footer-left {
+      font-size: var(--mec-list-item-footer-size);
+      color: var(--mec-list-item-footer-color);
+    }
+
+    .footer-right {
+      font-size: var(--mec-list-item-footer-size);
+      color: var(--mec-list-item-footer-color);
+      align-self: center;
+
+      ion-icon {
+        width: var(--mec-list-item-footer-icon-size);
+        height: var(--mec-list-item-footer-icon-size);
+        padding-left: 5px;
+        color: var(--mec-list-item-footer-icon-color);
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+:host(mec-publication-text) {
+  display: block;
+
+  p {
+    font-size: var(--mec-publication-content-size);
+    padding: var(--mec-publication-content-padding);
+    margin: 0;
+    text-align: justify;
+    color: var(--mec-publication-content-color);
+    line-height: var(--mec-publication-content-line-height);
+  }
+}

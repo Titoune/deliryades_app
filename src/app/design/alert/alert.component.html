@@ -1,0 +1,16 @@
+<div class="alert">
+    <div *ngIf="new == true" class="new-alert">
+        <div class="new-alert-content">
+            <ion-icon class="add" ios="md-add-circle" md="md-add-circle"></ion-icon>
+            <h3>Nouvelle alerte</h3>
+        </div>
+    </div>
+    <div class="alert-header">
+        <ng-content select="h2"></ng-content>
+        <ng-content select=".action"></ng-content>
+    </div>
+    <div class="alert-content">
+        <ng-content select=".created"></ng-content>
+        <ng-content select=".content"></ng-content>
+    </div>
+</div>

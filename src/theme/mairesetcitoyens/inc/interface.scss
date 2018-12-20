@@ -1,0 +1,54 @@
+ion-content {
+  --ion-background-color: #e8edf3;
+}
+
+#mec-content-with-widget {
+  max-width: 1200px;
+  padding: 10px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  grid-column-gap: 20px;
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+    grid-column-gap: 0;
+    .mec-widgets {
+      display: none;
+    }
+  }
+
+  .mec-content {
+    .add-button {
+      width: 100%;
+      max-width: var(--mec-card-max-width);
+      margin: auto;
+
+      button {
+        display: block;
+        width: 100%;
+        background: var(--color-green);
+        color: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        border: 0;
+        font-size: 1.1rem;
+        font-weight: 500;
+        outline: 0;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, .12);
+      }
+    }
+  }
+
+  .mec-widgets {
+
+  }
+}
+
+ion-modal {
+  ion-toolbar {
+    ion-button {
+      color: #fff;
+      font-size: 25px !important;
+    }
+  }
+}

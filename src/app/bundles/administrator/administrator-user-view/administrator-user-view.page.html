@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Utilisateur</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    {{user.id}}
+    {{user.mayor_count}}
+    {{user.citizen_count}}
+    {{user.mandatary_count}}
+    {{user.administrator_count}}
+    {{user.picture}}
+    {{user.firstname}}
+    {{user.lastname}}
+    {{user.sex}}
+    {{user.age}}
+    {{user.email}}
+    {{user.email_notification}}
+    {{user.birth | date: 'dd/MM/yyyy'}}
+    {{user.phone}}
+    {{user.cellphone}}
+    {{user.registered}}
+    {{user.activated}}
+    {{user.newsletter}}
+    {{user.notification_email}}
+    {{user.created | date: 'dd/MM/yyyy'}}
+    {{user.logged | date: 'dd/MM/yyyy'}}
+    <button (click)="showUserUpdateFormModal(user)">modifier</button>
+    <button (click)="deleteUser(user)">supprimer</button>
+</ion-content>

@@ -1,0 +1,58 @@
+:host(mec-publication-comment) {
+  display: block;
+
+  .comment-wrap {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    grid-column-gap: 10px;
+    border-top: 1px solid var(--mec-border-color);
+
+    .comment-picture {
+      img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+      }
+    }
+
+    .comment-detail {
+      .comment-header {
+        display: grid;
+        grid-template-columns: 1fr 30px;
+        grid-column-gap: 10px;
+
+        p.user {
+          margin: 0;
+          color: var(--mec-comment-user-color);
+          font-size: var(--mec-comment-user-size);
+          font-weight: 500;
+        }
+
+        ion-icon {
+          color: var(--mec-comment-icon-color);
+          width: var(--mec-comment-icon-size);
+          height: var(--mec-comment-icon-size);
+          text-align: right;
+
+        }
+      }
+
+      p.date {
+        margin: 0;
+        color: var(--mec-comment-date-color);
+        font-size: var(--mec-comment-date-size);
+        padding-bottom: 5px;
+      }
+
+      p.comment {
+        margin: 0;
+        color: var(--mec-comment-comment-color);
+        font-size: var(--mec-comment-comment-size);
+        text-align: justify;
+
+      }
+
+    }
+  }
+}

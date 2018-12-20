@@ -1,0 +1,121 @@
+@import "mec-colors.scss";
+@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:400,500,700');
+
+* {
+  font-family: Ubuntu, 'PT Sans', Roboto, sans-serif;
+}
+
+
+:root {
+  --content-max-width: 1200px;
+}
+
+/*****************************
+            MENUS
+*******************************/
+:root {
+  --mec-menu-icon-width: 25px;
+  --mec-menu-icon-height: 25px;
+  --mec-notification-size: 25px;
+  --mec-notification-font-size: 0.9rem;
+}
+
+/*****************************
+        MENU MAYOR HEADER
+*******************************/
+:root {
+  --mec-menu-header-mayor-size: 1.3rem;
+  --mec-menu-header-city-size: 1.1rem;
+  --mec-menu-header-followers-size: 0.9rem;
+}
+
+/*****************************
+            WIDGETS
+*******************************/
+:root {
+  --mec-widget-title-size: 1.1rem;
+  --mec-widget-icon-size: 30px;
+  --mec-widget-list-title-size: 1rem;
+  --mec-widget-list-content-size: 0.9rem;
+}
+
+/*****************************
+            CARDS
+*******************************/
+:root {
+  --mec-card-max-width: 800px;
+}
+
+/*****************************
+        MEC LIST ITEM
+*******************************/
+:root {
+  --mec-list-item-header-title-size: 1.1rem;
+  --mec-list-item-header-icon-size: 20px;
+  --mec-list-item-content-text-size: 1rem;
+  --mec-list-item-content-more-size: 0.9rem;
+  --mec-list-item-footer-size: 0.9rem;
+  --mec-list-item-footer-icon-size: 17px;
+}
+
+/*****************************
+            PUBLICATION
+*******************************/
+:root {
+  --mec-publication-title-size: 1.3rem;
+  --mec-publication-content-size: 1rem;
+  //header
+  --mec-publication-header-date-padding-top: 5px;
+  --mec-publication-header-date-size: 0.9rem;
+  --mec-publication-header-icon-width: 20px;
+  --mec-publication-header-icon-height: 20px;
+  --mec-publication-diffusion-size: 1rem;
+  //text
+  --mec-publication-content-line-height: 1.4rem;
+  --mec-publication-content-padding: 10px 15px;
+  //link
+  --mec-publication-link-title-size: 1rem;
+  --mec-publication-link-description-size: 0.9rem;
+  //video
+  --mec-publication-video-video-height: 400px;
+  --mec-publication-video-video-width: 100%;
+  //social bar
+  --mec-social-bar-padding: 10px;
+  --mec-social-bar-icon-size: 20px;
+  --mec-social-bar-counter-size: 0.9rem;
+  //comments
+  --mec-comment-user-size: 1.1rem;
+  --mec-comment-icon-size: 25px;
+  --mec-comment-date-size: 0.9rem;
+  --mec-comment-comment-size: 1rem;
+}
+
+/*****************************
+        PROGRESS BAR RESULT
+*******************************/
+:root {
+  --mec-bar-result-percent-height: 25px;
+  --mec-bar-result-percent-score-size: 1rem;
+}
+
+/*****************************
+            POLLS
+*******************************/
+:root {
+  --mec-poll-title-size: 1.3rem;
+  --mec-poll-status-size: 0.8rem;
+  --mec-poll-header-icon-width: 20px;
+  --mec-poll-header-icon-height: 20px;
+  //Question & description
+  --mec-poll-question-title-size: 1.1rem;
+  --mec-poll-question-size: 1rem;
+  --mec-poll-question-line-height: 1.3rem;
+  --mec-poll-description-title-size: 1.1rem;
+  --mec-poll-description-size: 0.9rem;
+  --mec-poll-description-line-height: 1.3rem;
+  --mec-poll-proposition-title-size: 1.3rem;
+  --mec-poll-proposal-size: 1rem;
+  --mec-poll-proposal-icon-size: 25px;
+  --mec-poll-answer-size: 1rem;
+}

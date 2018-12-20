@@ -1,0 +1,36 @@
+<ion-content padding>
+    <ion-grid>
+        <ion-row justify-content-center>
+            <ion-col align-self-center size-lg="5" size-md="6" size-xs="12">
+                <div text-center>
+                    <h4>Maires et citoyens</h4>
+                </div>
+                <form #ngForm="ngForm" (ngSubmit)="submit()" *ngIf="create_form" [formGroup]="create_form">
+                    <ion-item>
+                        <ion-input formControlName="email" placeholder="Email" type="text"></ion-input>
+                        <p *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
+                            'email')}}
+                        </p>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-input formControlName="password" placeholder="Mot de passe"
+                                   type="password"></ion-input>
+                        <p *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
+                            'password')}}
+                        </p>
+                    </ion-item>
+
+                    <ion-button expand="block" size="large" type="submit">connexion</ion-button>
+                </form>
+                <div text-center>
+                    <a routerDirection="forward" routerLink="/mot-de-passe-perdu">Mot de passe perdu ?</a>
+                </div>
+                <div text-center>
+                    <ion-button href="/inscription" routerDirection="root">Créer un compte</ion-button>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</ion-content>

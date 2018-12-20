@@ -1,0 +1,101 @@
+:root {
+  --color-blue: #0B6BA8;
+  --color-bluesky: #50C1CF;
+  --color-bluegrey: #318194;
+  --color-darkblue: #1d375e;
+  --color-aero: #9CC2CB;
+  --color-red: #E74C3C;
+  --color-pink: #da8a8a;
+  --color-green: #1ABB9C;
+  --color-purple: #9B59B6;
+  --color-violet: #9588dd;
+  --color-yellow: #d1ca69;
+  --color-orange: #F39C12;
+  --color-brown: #ab814e;
+  --color-grey: #ececec;
+  --color-text-color: #666;
+  --color-dark: #444;
+  --mec-color-text: #444;
+
+  //menus
+  --color-news: #50C1CF;
+  --color-polls: #318194;
+  --color-suggestions: #da8a8a;
+  --color-signalings: #F39C12;
+  --color-alerts: #E74C3C;
+  --color-discussions: #1ABB9C;
+  --color-mayor: #9B59B6;
+  --color-calendar: #d1ca69;
+  --color-classified-ads: #9CC2CB;
+  --color-partners: #ab814e;
+  --color-ads: #50C1CF;
+  --color-city-negociations: #318194;
+  --color-users: #9588dd;
+  --color-statistics: #da8a8a;
+  --color-city: #1ABB9C;
+  --color-notifications: #E74C3C;
+  --color-messages: #9CC2CB;
+  --color-swap: #da8a8a;
+  --color-links: #F39C12;
+  --color-administres: #9588dd;
+  --color-sms: #F39C12;
+  --color-devis: #1d375e;
+  --color-publicites: #50C1CF;
+
+  //interface
+  --mec-border-color: #ececec;
+  --mec-notification-bg: #E74C3C;
+  --mec-notification-color: #fff;
+
+  //widget
+  --mec-widget-list-title-color: #666;
+  --mec-widget-list-content-color: #999;
+
+  //publications
+  --mec-publication-title-color: #318194;
+  --mec-publication-header-icon-color: #318194;
+  --mec-publication-header-date-color: #666;
+  --mec-publication-diffusion-background: #318194;
+  --mec-publication-diffusion-color: #fff;
+  --mec-publication-link-title-color: #ab814e;
+  --mec-publication-link-description-color: #666;
+  --mec-publication-content-color: #444;
+  --mec-social-bar-icon-color: #318194;
+  --mec-social-bar-counter-color: #444;
+  --mec-comment-user-color: #318194;
+  --mec-comment-icon-color: #318194;
+  --mec-comment-date-color: #999;
+  --mec-comment-comment-color: #444;
+
+
+  //sondages
+  --mec-poll-title-color: #318194;
+  --mec-poll-header-icon-color: #318194;
+  --mec-poll-status-color: #fff;
+  --mec-poll-status-background-voted: #1ABB9C;
+  --mec-poll-status-background-inprogress: #318194;
+  --mec-poll-status-background-ended: #E74C3C;
+  --mec-poll-question-background: #eef4f9;
+  --mec-poll-question-title-color: #ab814e;
+  --mec-poll-question-color: #444;
+  --mec-poll-description-title-color: #318194;
+  --mec-poll-description-color: #444;
+  --mec-poll-proposition-title-color: #E74C3C;
+  --mec-poll-proposal-color: #444;
+  --mec-poll-proposal-icon-color: #444;
+  --mec-poll-answer-color: #444;
+
+  //component bar-result-progress
+  --mec-bar-result-percent-background: #ccc;
+  --mec-bar-result-percent-result-background: #1ABB9C;
+  --mec-bar-result-percent-score-color: #fff;
+
+  //component mec-item-list
+  --mec-list-item-header-title-color: #318194;
+  --mec-list-item-header-icon-color: #318194;
+  --mec-list-item-content-text-color: #444;
+  --mec-list-item-content-more-color: #999;
+  --mec-list-item-footer-color: #999;
+  --mec-list-item-footer-icon-color: #318194;
+
+}

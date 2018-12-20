@@ -1,0 +1,11 @@
+{
+  "appId": "com.meridia.mairesetcitoyens",
+  "appName": "MairesEtCitoyens",
+  "bundledWebRuntime": false,
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 15000
+    }
+  }
+}

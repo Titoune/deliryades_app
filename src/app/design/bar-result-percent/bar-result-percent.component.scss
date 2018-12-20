@@ -1,0 +1,31 @@
+@import "../../../theme/mairesetcitoyens/animations";
+
+:host(mec-bar-result-percent) {
+  display: block;
+
+  .bar-wrap {
+    height: var(--mec-bar-result-percent-height);
+    width: 100%;
+    background: var(--mec-bar-result-percent-background);
+    position: relative;
+    border-radius: 8px;
+
+    .progression {
+      height: var(--mec-bar-result-percent-height);
+      background: var(--mec-bar-result-percent-result-background);
+      animation: bar-progression 2s;
+      border-radius: 8px;
+    }
+
+    .result {
+      position: absolute;
+      left: 0;
+      top: 0;
+      padding-left: 5px;
+      color: var(--mec-bar-result-percent-score-color);
+      font-size: var(--mec-bar-result-percent-score-size);
+      line-height: var(--mec-bar-result-percent-height);
+    }
+  }
+}
+

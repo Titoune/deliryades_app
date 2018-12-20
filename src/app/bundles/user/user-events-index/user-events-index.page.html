@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Evenements</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <ion-button (click)="showEventCreateFormModal()">Créer un évènement</ion-button>
+
+  <button mwlCalendarPreviousView view="month" [(viewDate)]="date" (click)="getMonthEvents()">
+    Précédent
+  </button>
+  <button mwlCalendarToday [(viewDate)]="date" (click)="getMonthEvents()">
+    Aujourd'hui
+  </button>
+  <button mwlCalendarNextView view="month" [(viewDate)]="date" (click)="getMonthEvents()">
+    Suivant
+  </button>
+
+  <h3>{{ date | date: 'MM yyyy'}}</h3>
+
+  <mwl-calendar-month-view
+          [cellTemplate]="customTemplate"
+          [viewDate]="date"
+          [events]="month_events"
+          [activeDayIsOpen]="false"
+          (dayClicked)="showEventsDayViewModal($event.day)">
+  </mwl-calendar-month-view>
+
+
+  <ng-template
+          #customTemplate
+          let-day="day"
+          let-openDay="openDay"
+          let-locale="locale"
+          let-tooltipPlacement="tooltipPlacement"
+          let-highlightDay="highlightDay"
+          let-unhighlightDay="unhighlightDay"
+          let-eventClicked="eventClicked"
+          let-tooltipTemplate="tooltipTemplate"
+          let-tooltipAppendToBody="tooltipAppendToBody">
+    <div class="cal-cell-top">
+      <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span>
+      <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
+    </div>
+    <div class="cal-events">
+      <!--<small>coucou</small>-->
+    </div>
+  </ng-template>
+</ion-content>

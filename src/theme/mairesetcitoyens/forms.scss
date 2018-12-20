@@ -1,0 +1,11 @@
+form {
+  ion-item {
+    --inner-padding-start: 0;
+    --padding-start: 0;
+  }
+
+  .item .sc-ion-label-ios-h {
+    --color: #eee;
+    color: blue;
+  }
+}

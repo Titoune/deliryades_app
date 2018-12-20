@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Sondages</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh()">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-button (click)="showPollCreateFormModal()">Créer un sondage</ion-button>
+
+  <ion-segment (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="progress" [checked]="(segment == 'progress')">
+      <ion-icon icon="play"></ion-icon>
+      En cours
+    </ion-segment-button>
+    <ion-segment-button value="finished" [checked]="(segment == 'finished')">
+      <ion-icon icon="square"></ion-icon>
+      Terminés
+    </ion-segment-button>
+  </ion-segment>
+
+  <mec-card *ngFor="let poll of polls; let poll_index = index">
+    <mec-poll [poll]="poll">
+      <div class="mec-poll-header">
+        <h2>{{poll.title}}</h2>
+
+        <a (click)="loadPollActionSheet(poll)">options</a>
+      </div>
+    </mec-poll>
+  </mec-card>
+
+
+  <ion-infinite-scroll (ionInfinite)="getPolls()">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

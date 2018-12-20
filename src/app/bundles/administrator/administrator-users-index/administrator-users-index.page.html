@@ -1,0 +1,116 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Utilisateurs</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh()">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                Nom
+            </ion-col>
+            <ion-col>
+                Prénom
+            </ion-col>
+            <ion-col>
+                Sexe
+            </ion-col>
+            <ion-col>
+                Age
+            </ion-col>
+            <ion-col>
+                Email
+            </ion-col>
+            <ion-col>
+                Création
+            </ion-col>
+            <ion-col>
+                Connexion
+            </ion-col>
+            <ion-col>
+                Email validé
+            </ion-col>
+            <ion-col>
+                Compte actif
+            </ion-col>
+            <ion-col>
+                Citoyen
+            </ion-col>
+            <ion-col>
+                Maire
+            </ion-col>
+            <ion-col>
+                Mandataire
+            </ion-col>
+            <ion-col>
+                Administrateur
+            </ion-col>
+            <ion-col>
+                Login fails
+            </ion-col>
+            <ion-col>
+                Actions
+            </ion-col>
+        </ion-row>
+        <ion-row *ngFor="let user of users">
+            <ion-col routerDirection="forward" routerLink="/admin/utilisateurs/voir/{{user.id}}">
+                {{user.lastname}}
+            </ion-col>
+            <ion-col routerDirection="forward" routerLink="/admin/utilisateurs/voir/{{user.id}}">
+                {{user.firstname}}
+            </ion-col>
+            <ion-col>
+                {{user.sex_to_text}}
+            </ion-col>
+            <ion-col>
+                {{user.age}} ans
+            </ion-col>
+            <ion-col>
+                {{user.email}}
+            </ion-col>
+            <ion-col>
+                {{user.created | date: 'dd/MM/yyyy'}}
+            </ion-col>
+            <ion-col>
+                {{user.logged | date: 'dd/MM/yyyy'}}
+            </ion-col>
+            <ion-col>
+                {{user.registered}}
+            </ion-col>
+            <ion-col>
+                {{user.activated}}
+            </ion-col>
+            <ion-col>
+                {{user.citizen_count}}
+            </ion-col>
+            <ion-col>
+                {{user.mayor_count}}
+            </ion-col>
+            <ion-col>
+                {{user.mandatary_count}}
+            </ion-col>
+            <ion-col>
+                {{user.administrator_count}}
+            </ion-col>
+            <ion-col>
+                {{user.login_attempt_count}}
+            </ion-col>
+            <ion-col>
+                <button routerDirection="forward" routerLink="/admin/utilisateurs/voir/{{user.id}}">Voir</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-infinite-scroll (ionInfinite)="getUsers()">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,16 @@
+<div *ngIf="publication.hosted_video">
+    <iframe [src]="domSanitizer.bypassSecurityTrustResourceUrl(publication.hosted_video)"
+            allow="autoplay; encrypted-media"
+            allowfullscreen frameborder="0"></iframe>
+</div>
+
+<div *ngIf="publication.video" class="publication-video">
+    <video preload="none" controls [poster]="publication.video_picture_sizes['default']">
+        <source [src]="publication.video_url">
+        Votre navigateur ne supporte pas la video.
+    </video>
+</div>
+
+<p>
+    {{publication.content}}
+</p>

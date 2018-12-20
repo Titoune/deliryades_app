@@ -1,0 +1,9 @@
+:host(mec-card) {
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .12);
+  margin: 30px auto;
+  max-width: var(--mec-card-max-width);
+  display: block;
+  animation: fade 1s;
+  background: #fff;
+}

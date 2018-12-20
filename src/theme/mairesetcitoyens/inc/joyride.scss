@@ -1,0 +1,32 @@
+.joyride-step__holder {
+  joyride-arrow {
+    display: none;
+
+  }
+
+  .joyride-step__container {
+    background: none;
+    box-shadow: none;
+  }
+
+  joy-close-button {
+    // display: none;
+  }
+
+  .joyride-step__header {
+    padding: 0;
+  }
+
+  .joyride-step__body {
+    padding: 0;
+    margin-top: -25px;
+
+    img {
+      width: 120px;
+    }
+  }
+
+  .joyride-step__footer {
+    display: none;
+  }
+}

@@ -1,0 +1,70 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <ion-button (click)="modal.dismiss()" icon-only>
+                <ion-icon icon="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title *ngIf="!toolsService.isEmpty(user)">{{user.fullname}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <div *ngIf="!toolsService.isEmpty(user)">
+
+        <img appMecImageCache
+             [type]="(user.sex == 'f' ? 'woman' : 'man')"
+             [url]="environment.resizer_url + 'user/' + user.id + '/square/' + user.picture"/>
+
+        <ion-button (click)="showDiscussionCommentCreateFormModal()">Envoyer un message</ion-button>
+
+        <ul>
+            <li class="header-list">
+                Informations sur le compte
+            </li>
+            <li>
+                <label>Dernière connexion</label>
+                <span>{{user.logged | date: 'dd/MM/yyyy'}}</span>
+            </li>
+            <li>
+                <label>Civilité</label>
+                <span>{{user.sex_to_text}}</span>
+            </li>
+            <li class="long-text">
+                <label>Présentation</label>
+                <span> {{ user.presentation}} </span>
+            </li>
+            <li *ngIf="user.birth">
+                <label>Date de naissance</label>
+                <span>{{user.birth | date: 'dd/MM/yyyy'}}</span>
+            </li>
+
+            <li class="header-list">
+                Informations de contact
+            </li>
+            <li>
+                <label>Email</label>
+                <span>{{user.email}}</span>
+            </li>
+            <li *ngIf="user.phone">
+                <label>Téléphone fixe</label>
+                <span>{{user.phone}}</span>
+            </li>
+
+            <li *ngIf="user.cellphone">
+                <label>Téléphone mobile</label>
+                <span>{{user.cellphone}}</span>
+            </li>
+            <li *ngIf="user.route">
+                <label>Adresse</label>
+                <span>{{ user.street_number}} {{ user.route}}<br>
+                    {{ user.postal_code}} - {{ user.locality}}</span>
+            </li>
+
+
+        </ul>
+
+
+    </div>
+</ion-content>

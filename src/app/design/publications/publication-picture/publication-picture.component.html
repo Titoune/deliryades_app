@@ -1,0 +1,15 @@
+<!-- <ion-slides>
+    <ion-slide *ngFor="let picture of publication.pictures">
+        <img appMecImageCache type="publication" [url]="picture.picture_sizes.md" alt="">
+    </ion-slide>
+
+</ion-slides> -->
+<div [class.single]="publication.pictures.length == 1" class="pictures-preview">
+    <div *ngFor="let pic of publication.pictures" class="item">
+        <img [url]="environment.resizer_url + 'publication/' + publication.id + '/sm/' + pic.filename" alt=""
+             appMecImageCache type="publication">
+    </div>
+</div>
+<p>
+    {{publication.content}}
+</p>

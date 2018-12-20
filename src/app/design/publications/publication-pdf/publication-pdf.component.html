@@ -1,0 +1,13 @@
+<div class="publication-pdf-content">
+    <img [url]="environment.resizer_url + 'publication/' + publication.id + '/default/' + publication.pdf_picture" alt=""
+         appMecImageCache
+         type="pdf">
+    <div class="download">
+        <p>Télécharger le document PDF</p>
+        <ion-icon icon="cloud-download"></ion-icon>
+    </div>
+</div>
+
+<p>
+    {{publication.content}}
+</p>

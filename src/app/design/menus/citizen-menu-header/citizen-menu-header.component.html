@@ -1,0 +1,9 @@
+<div class="city-name">{{city.name}}</div>
+<img appMecImageCache type="mayor" class="mayor-picture"
+     [url]="environment.resizer_url + 'user/' + city.user_id + '/square/' + city.user.picture" alt="">
+<img appMecImageCache type="city" class="city-picture"
+     [url]="environment.resizer_url + 'city/' + city.id + '/lg/' + city.picture" alt="">
+<div class="mayor-infos">
+    <h2>{{city.user.fullname}}</h2>
+    <p>Suivi par {{city.citizen_validated_count}} administrés</p>
+</div>

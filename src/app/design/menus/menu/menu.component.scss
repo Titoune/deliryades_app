@@ -1,0 +1,116 @@
+@import "../../../../theme/mairesetcitoyens/animations";
+
+.menu-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+  padding: 10px;
+  padding-top: 15px;
+
+  .menu-item {
+    animation: fade 0.7s;
+    text-align: center;
+    position: relative;
+
+    ion-icon {
+      background: #bbb;
+      color: #fff;
+      border-radius: 50%;
+      display: block;
+      margin: auto;
+      margin-bottom: 7px;
+      width: var(--mec-menu-icon-width);
+      height: var(--mec-menu-icon-height);
+      padding: 10px;
+
+      &.news {
+        background: var(--color-bluesky);
+      }
+
+      &.alerts {
+        background: var(--color-alerts);
+      }
+
+      &.signalings {
+        background: var(--color-signalings);
+      }
+
+      &.suggestions {
+        background: var(--color-suggestions);
+      }
+
+      &.polls {
+        background: var(--color-polls);
+      }
+
+      &.discussions {
+        background: var(--color-discussions);
+      }
+
+      &.messages {
+        background: var(--color-messages);
+      }
+
+      &.mayor {
+        background: var(--color-mayor);
+      }
+
+      &.calendar {
+        background: var(--color-calendar);
+      }
+
+      &.city {
+        background: var(--color-city);
+      }
+
+      &.sms {
+        background: var(--color-sms);
+      }
+
+      &.administres {
+        background: var(--color-administres);
+      }
+
+      &.statistics {
+        background: var(--color-statistics);
+      }
+
+      &.publicites {
+        background: var(--color-publicites);
+      }
+
+      &.partners {
+        background: var(--color-partners);
+      }
+
+      &.devis {
+        background: var(--color-devis);
+      }
+
+    }
+
+    span {
+      font-size: 0.9rem;
+      color: var(--color-text-color);
+    }
+
+    .notification {
+      width: var(--mec-notification-size);
+      height: var(--mec-notification-size);
+      border-radius: 50%;
+      text-align: center;
+      background: var(--mec-notification-bg);
+      color: var(--mec-notification-color);
+      font-size: var(--mec-notification-font-size);
+      font-weight: 500;
+      line-height: var(--mec-notification-size);
+      position: absolute;
+      top: 0;
+      right: 15%;
+    }
+
+    .menu-item-content {
+      outline: 0 !important;
+    }
+  }
+}

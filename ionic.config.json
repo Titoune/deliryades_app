@@ -1,0 +1,7 @@
+{
+  "name": "mairesetcitoyens",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

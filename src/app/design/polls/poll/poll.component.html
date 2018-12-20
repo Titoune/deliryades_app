@@ -1,0 +1,55 @@
+<div class="mec-poll">
+    <ng-content select=".mec-poll-header"></ng-content>
+
+    <div class="question">
+        <span *ngIf="moment(poll.expiration).format('YYYY-MM-DD HH:mm:ss') > moment().format('YYYY-MM-DD HH:mm:ss') && !poll.poll_answer"
+              class="status inprogress">Vote en cours</span>
+        <span *ngIf="poll.poll_answer" class="status voted">Vous avez voté</span>
+        <span *ngIf="moment(poll.expiration).format('YYYY-MM-DD HH:mm:ss') < moment().format('YYYY-MM-DD HH:mm:ss') && !poll.poll_answer"
+              class="status ended">Terminé</span>
+
+        <p>
+            {{poll.question}}
+        </p>
+    </div>
+
+    <div class="description">
+        <h2>Informations complémentaires</h2>
+        <p>
+            <strong>Début du sondage</strong> {{poll.created | date: 'dd/MM/yyyy à HH:mm'}}
+        </p>
+        <p>
+            <strong>Fin du sondage</strong> {{poll.expiration | date: 'dd/MM/yyyy à HH:mm'}}
+        </p>
+        <p *ngIf="poll.description">
+            <strong>Précision du maire</strong><br>
+            {{poll.description}}
+        </p>
+    </div>
+    <h2 *ngIf="['mayor', 'mandatary'].indexOf(toolsService.payloads.user_type) !== -1 || poll.poll_answer || moment(poll.expiration).format('YYYY-MM-DD HH:mm:ss') < moment().format('YYYY-MM-DD HH:mm:ss')"
+        class="propositions">
+        Résultats du sondage <br>
+        <em>{{poll.answer_count}} vote<span *ngIf="poll.answer_count >1">s</span></em>
+    </h2>
+
+    <h2 *ngIf="['citizen'].indexOf(toolsService.payloads.user_type) !== -1 && !poll.poll_answer && moment(poll.expiration).format('YYYY-MM-DD HH:mm:ss') > moment().format('YYYY-MM-DD HH:mm:ss')"
+        class="propositions">
+        Donnez votre avis
+    </h2>
+
+    <ng-content
+            *ngIf="!poll.poll_answer && moment(poll.expiration).format('YYYY-MM-DD HH:mm:ss') > moment().format('YYYY-MM-DD HH:mm:ss')"
+            select=".proposals"></ng-content>
+
+    <div *ngIf="['mayor', 'mandatary'].indexOf(toolsService.payloads.user_type) !== -1 || poll.poll_answer || moment(poll.expiration).format('YYYY-MM-DD HH:mm:ss') < moment().format('YYYY-MM-DD HH:mm:ss')"
+         class="answers">
+        <div *ngFor="let answer of poll.poll_proposals" class="answer">
+            <p>
+
+                {{answer.content}}
+            </p>
+            <mec-bar-result-percent [score]="answer.answer_count" [total]="poll.answer_count"></mec-bar-result-percent>
+        </div>
+
+    </div>
+</div>

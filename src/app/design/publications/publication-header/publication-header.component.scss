@@ -1,0 +1,38 @@
+:host(mec-publication-header) {
+  padding: 15px;
+  display: block;
+
+  .publication-header-content {
+
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    h2 {
+      margin: 0;
+      padding: 0;
+      font-size: var(--mec-publication-title-size);
+      font-weight: 500;
+      color: var(--mec-publication-title-color);
+    }
+
+    ion-icon {
+      width: var(--mec-publication-header-icon-width);
+      height: var(--mec-publication-header-icon-height);
+      margin-left: 10px;
+      color: var(--mec-publication-header-icon-color);
+      flex-shrink: 0;
+    }
+  }
+
+  .publication-header-date {
+    h3 {
+      padding: 0;
+      margin: 0;
+      padding-top: var(--mec-publication-header-date-padding-top);
+      font-size: var(--mec-publication-header-date-size);
+      color: var(--mec-publication-header-date-color);
+    }
+  }
+}

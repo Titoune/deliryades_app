@@ -1,0 +1,35 @@
+:host(mec-publication-picture) {
+  display: block;
+
+  .pictures-preview {
+    display: grid;
+    grid-template-rows: 1fr 100px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 3px;
+
+    &.single {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+    }
+
+    .item {
+      &:first-child {
+        grid-column-start: 1;
+        grid-column-end: 5;
+      }
+
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+
+  p {
+    font-size: var(--mec-publication-content-size);
+    padding: var(--mec-publication-content-padding);
+    margin: 0;
+    text-align: justify;
+    color: var(--mec-publication-content-color);
+    line-height: var(--mec-publication-content-line-height);
+  }
+}

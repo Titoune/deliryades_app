@@ -1,0 +1,16 @@
+<div *ngIf="cityWithUser" class="wrap">
+    <div [ngStyle]="{'background-image': 'url('+ environment.resizer_url + 'city/' + cityWithUser.id + '/lg/' + cityWithUser.picture +')'}"
+         class="city-picture-wrap">
+    </div>
+    <div class="mayor-wrap">
+        <div class="picture">
+            <img appMecImageCache [url]="environment.resizer_url + 'user/' + cityWithUser.user_id + '/square/' + cityWithUser.user.picture" alt=""
+                 type="mayor"/>
+        </div>
+        <div class="mayor-infos">
+            <h2>{{cityWithUser.user.fullname}}</h2>
+            <h3>Suivi par {{cityWithUser.citizen_validated_count}} administrés</h3>
+        </div>
+
+    </div>
+</div>

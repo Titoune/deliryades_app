@@ -1,0 +1,42 @@
+:host(mec-menu-footer) {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fafafa;
+
+}
+
+.menu-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+  padding: 5px 0;
+  border-top: 1px solid var(--color-grey);
+
+  ion-menu-toggle {
+    &:nth-child(2) {
+      border-left: 1px solid var(--color-grey);
+      border-right: 1px solid var(--color-grey);
+    }
+  }
+
+  .menu-item-content {
+    text-align: center;
+    outline: 0 !important;
+
+    ion-icon {
+      display: block;
+      color: #999;
+      width: var(--mec-menu-icon-width);
+      height: var(--mec-menu-icon-height);
+      margin: auto;
+      padding-bottom: 5px;
+    }
+
+    span {
+      font-size: 0.8rem;
+      color: var(--color-text-color);
+    }
+  }
+}
