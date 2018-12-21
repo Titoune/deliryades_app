@@ -43,7 +43,7 @@ export class UserDiscussionViewPage implements OnInit {
     buildForm() {
         this.create_form = this.formBuilder.group({
             content: [null, [requiredValidator, lengthBetweenValidator(2, 10000)]],
-            user_id: [this.route.snapshot.paramMap.get('user_id'), [requiredValidator]],
+            receiver_id: [this.route.snapshot.paramMap.get('user_id'), [requiredValidator]],
         }, {updateOn: 'submit'});
     }
 
@@ -74,7 +74,7 @@ export class UserDiscussionViewPage implements OnInit {
 
             if (request.code === 200) {
                 this.create_form.reset();
-                this.create_form.patchValue({user_id: this.route.snapshot.paramMap.get('user_id')});
+                this.create_form.patchValue({receiver_id: this.route.snapshot.paramMap.get('user_id')});
                 this.create_form.get('content').setErrors({'error': null});
             } else {
                 ToolsService.generateServerValidationErrors(this.create_form, request);

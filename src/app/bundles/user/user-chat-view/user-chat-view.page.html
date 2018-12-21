@@ -14,12 +14,12 @@
     </ion-infinite-scroll>
 
 
-    <div style="height:60px;" *ngFor="let chat_comment of chat_comments">
+    <div *ngFor="let chat_comment of chat_comments">
 
         <img appMecImageCache
              [type]="(chat_comment.user.sex === 'f' ? 'man' : 'woman')"
              [url]="environment.resizer_url + 'user/' + chat_comment.user.id + '/square/' + chat_comment.user.picture"/>
-
+        {{chat_comment.user.fullname}}
         {{chat_comment.created | date: 'dd/MM/yyyy à HH:mm'}}
         {{chat_comment.content}}
         <a (click)="loadChatCommentActionSheet(chat_comment)">options</a>

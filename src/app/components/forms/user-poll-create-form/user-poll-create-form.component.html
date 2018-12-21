@@ -1,119 +1,69 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="end">
-      <ion-button (click)="cancelForm()" icon-only>
-        <ion-icon icon="close"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>Créer un sondage</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <ion-button (click)="cancelForm()" icon-only>
+                <ion-icon icon="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Créer un sondage</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 
 <ion-content padding>
 
-  <div [hidden]="current_step != 'primary'">
-    <form [hidden]="!create_form" [formGroup]="create_form" #ngForm="ngForm" (ngSubmit)="loadPreviewStep()">
-      <ion-item>
-        <ion-label position="stacked">Titre</ion-label>
-        <ion-input formControlName="title" placeholder=""></ion-input>
-        <p *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
-                'title')}}
-        </p>
-      </ion-item>
+    <form *ngIf="create_form" [formGroup]="create_form" #ngForm="ngForm" (ngSubmit)="submit()">
 
-      <ion-item>
-        <ion-label position="stacked">Question</ion-label>
-        <ion-input formControlName="question" placeholder=""></ion-input>
-        <p *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
-                'question')}}
-        </p>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="stacked">Description</ion-label>
-        <ion-textarea formControlName="description" placeholder=""></ion-textarea>
-        <p *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
-                'description')}}
-        </p>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="stacked">Expiration</ion-label>
-        <ion-datetime formControlName="expiration"
-                      [monthNames]="environment.month_names"
-                      [monthShortNames]="environment.month_short_names"
-                      [dayNames]="environment.day_names"
-                      [dayShortNames]="environment.day_short_names"
-                      cancelText="Annuler"
-                      doneText="Terminer"
-                      [min]="moment().year()" [max]="moment().year() + 2"
-                      displayFormat="DD MMMM YYYY HH:mm"
-                      pickerFormat="DD MMMM YYYY HH:mm">
-        </ion-datetime>
-
-        <p *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
-                'expiration')}}
-        </p>
-      </ion-item>
-
-
-      <ion-item>
-        <ion-label>Mettre en ligne</ion-label>
-        <ion-toggle formControlName="activated"></ion-toggle>
-        <p *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
-                'activated')}}
-        </p>
-      </ion-item>
-
-      <div formArrayName="poll_proposals">
-        <div [formGroupName]="index"
-             *ngFor="let control of create_form.get('poll_proposals').controls; let index = index">
-          <ion-item>
-            <ion-label position="stacked">Proposition {{index + 1 }}</ion-label>
-            <ion-input formControlName="content" placeholder=""></ion-input>
+        <ion-item>
+            <ion-label position="stacked">Question</ion-label>
+            <ion-input formControlName="question" placeholder=""></ion-input>
             <p *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
-                    'poll_proposals.' + index + '.content')}}
+                'question')}}
             </p>
-          </ion-item>
-          <ion-button *ngIf="index > 1" (click)="removePollProposal(index)">supprimer</ion-button>
-        </div>
-        <ion-button (click)="addPollProposal()">Ajouter</ion-button>
+        </ion-item>
 
-      </div>
-      <ion-button type="submit" size="large" expand="block">bouton submit temporaire</ion-button>
+        <ion-item>
+            <ion-label position="stacked">Description</ion-label>
+            <ion-textarea formControlName="content" placeholder=""></ion-textarea>
+            <p *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
+                'content')}}
+            </p>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="stacked">Expiration</ion-label>
+            <ion-datetime formControlName="expiration"
+                          [monthNames]="environment.month_names"
+                          [monthShortNames]="environment.month_short_names"
+                          [dayNames]="environment.day_names"
+                          [dayShortNames]="environment.day_short_names"
+                          cancelText="Annuler"
+                          doneText="Terminer"
+                          [min]="moment().year()" [max]="moment().year() + 2"
+                          displayFormat="DD MMMM YYYY HH:mm"
+                          pickerFormat="DD MMMM YYYY HH:mm">
+            </ion-datetime>
+
+            <p *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
+                'expiration')}}
+            </p>
+        </ion-item>
+
+        <div formArrayName="poll_proposals">
+            <div [formGroupName]="index"
+                 *ngFor="let control of create_form.get('poll_proposals').controls; let index = index">
+                <ion-item>
+                    <ion-label position="stacked">Proposition {{index + 1 }}</ion-label>
+                    <ion-input formControlName="content" placeholder=""></ion-input>
+                    <p *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
+                        'poll_proposals.' + index + '.content')}}
+                    </p>
+                </ion-item>
+                <ion-button *ngIf="index > 1" (click)="removePollProposal(index)">supprimer</ion-button>
+            </div>
+            <ion-button (click)="addPollProposal()">Ajouter</ion-button>
+
+        </div>
+        <ion-button type="submit" size="large" expand="block">bouton submit temporaire</ion-button>
     </form>
-  </div>
-
-  <div *ngIf="current_step == 'preview'">
-    <h1>Récapitulatif</h1>
-    <mec-card>
-      <mec-poll [poll]="poll_preview">
-        <div class="mec-poll-header">
-          <h2>{{poll_preview.title}}</h2>
-        </div>
-      </mec-poll>
-    </mec-card>
-  </div>
 </ion-content>
-
-
-<ion-footer *ngIf="current_step == 'primary' && create_form">
-  <ion-toolbar>
-    <ion-buttons slot="end">
-      <ion-button [disabled]="true">Prévisualiser</ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-footer>
-
-
-<ion-footer *ngIf="current_step == 'preview'">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button (click)="loadPrimaryStep()">Revenir au formulaire</ion-button>
-    </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button (click)="submit()">Publier</ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-footer>

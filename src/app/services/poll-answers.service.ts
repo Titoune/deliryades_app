@@ -8,4 +8,8 @@ export class PollAnswersService {
 
     constructor(public httpService: HttpService) {
     }
+
+    public user_setCreateForm(data) {
+        return this.httpService.post('user/poll-answers/set-create-form', data);
+    }
 }

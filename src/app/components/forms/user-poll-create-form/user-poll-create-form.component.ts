@@ -17,7 +17,6 @@ export class UserPollCreateFormComponent implements OnInit {
   environment = environment;
   moment = moment;
   create_form: FormGroup;
-  current_step = 'primary';
   poll_preview: any = {};
 
   constructor(
@@ -37,11 +36,9 @@ export class UserPollCreateFormComponent implements OnInit {
 
   buildForm() {
     this.create_form = this.formBuilder.group({
-      title: new FormControl(null, [requiredValidator, lengthBetweenValidator(2, 10000)]),
       question: [null, [requiredValidator, lengthBetweenValidator(2, 10000)]],
-      description: [null, [requiredValidator, lengthBetweenValidator(2, 10000)]],
+      content: [null, [requiredValidator, lengthBetweenValidator(2, 10000)]],
       expiration: [moment().add(1, 'M').format(), [requiredValidator, dateValidator]],
-      activated: [true, [booleanValidator]],
       poll_proposals: this.formBuilder.array([
         this.formBuilder.group({
           content: [null, [requiredValidator, lengthBetweenValidator(2, 10000)]]
@@ -72,28 +69,6 @@ export class UserPollCreateFormComponent implements OnInit {
     }
   }
 
-
-  async loadPrimaryStep() {
-    this.current_step = 'primary';
-  }
-
-
-  async loadPreviewStep() {
-    if (this.create_form.valid) {
-      this.current_step = 'preview';
-      this.poll_preview = Object.assign({}, this.create_form.value);
-      this.poll_preview.created = moment().format();
-      this.poll_preview.answer_count = 0;
-      this.poll_preview.poll_answer = {};
-      for (const proposal of this.poll_preview.poll_proposals) {
-        proposal.answer_count = 0;
-      }
-
-    } else {
-      this.current_step = 'primary';
-    }
-  }
-
   async submit() {
     if (this.create_form.valid) {
       const loading = await this.loadingCtrl.create({message: 'enregistrement...'});
@@ -107,7 +82,6 @@ export class UserPollCreateFormComponent implements OnInit {
         await this.modalCtrl.dismiss();
       } else {
         ToolsService.generateServerValidationErrors(this.create_form, request);
-        this.current_step = 'primary';
       }
     }
   }

@@ -9,15 +9,15 @@
 </ion-header>
 <ion-content padding>
 
-    <ion-infinite-scroll position="top" threshold="1200px" (ionInfinite)="getDiscussionComments()">
+    <ion-infinite-scroll position="top" threshold="100px" (ionInfinite)="getDiscussionComments()">
         <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
 
-    <div style="height:60px;" *ngFor="let discussion_comment of discussion_comments">
+    <div *ngFor="let discussion_comment of discussion_comments">
 
         <img appMecImageCache
-             [type]="discussion_comment.user.sex === 'f' ? 'man' : 'woman'"
-             [url]="environment.resizer_url + 'user/' + discussion_comment.user.id + '/square/' + discussion_comment.user.picture"/>
+             [type]="discussion_comment.sender.sex === 'f' ? 'man' : 'woman'"
+             [url]="environment.resizer_url + 'user/' + discussion_comment.sender.id + '/square/' + discussion_comment.sender.picture"/>
 
         {{discussion_comment.created | date: 'dd/MM/yyyy à HH:mm'}}
         {{discussion_comment.content}}

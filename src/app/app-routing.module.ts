@@ -53,8 +53,8 @@ const routes: Routes = [
     {path: 'sondages', loadChildren: './bundles/user/user-polls-index/user-polls-index.module#UserPollsIndexPageModule', canActivate: [UserGuard]},
     {path: 'annuaire', loadChildren: './bundles/user/user-users-index/user-users-index.module#UserUsersIndexPageModule', canActivate: [UserGuard]},
     {path: 'evenements', loadChildren: './bundles/user/user-events-index/user-events-index.module#UserEventsIndexPageModule', canActivate: [UserGuard]},
-    {path: 'messagerie', loadChildren: './bundles/user/user-discussions-index/user-discussions-index.module#UserDiscussionsIndexPageModule', canActivate: [UserGuard]},
-    {path: 'messagerie/voir/:user_id', loadChildren: './bundles/user/user-discussion-view/user-discussion-view.module#UserDiscussionViewPageModule', canActivate: [UserGuard]},
+    {path: 'messages', loadChildren: './bundles/user/user-discussions-index/user-discussions-index.module#UserDiscussionsIndexPageModule', canActivate: [UserGuard]},
+    {path: 'messages/voir/:user_id', loadChildren: './bundles/user/user-discussion-view/user-discussion-view.module#UserDiscussionViewPageModule', canActivate: [UserGuard]},
     {path: 'parametres', loadChildren: './bundles/user/user-parameters-index/user-parameters-index.module#UserParametersIndexPageModule', canActivate: [UserGuard]},
     {path: 'chat', loadChildren: './bundles/user/user-chat-view/user-chat-view.module#UserChatViewPageModule', canActivate: [UserGuard]},
     {path: 'evenements/voir/:event_id', loadChildren: './bundles/user/user-event-view/user-event-view.module#UserEventViewPageModule', canActivate: [UserGuard]}

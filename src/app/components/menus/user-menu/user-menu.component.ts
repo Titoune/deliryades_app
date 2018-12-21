@@ -18,7 +18,7 @@ export class UserMenuComponent implements OnInit {
         },
         {
             title: 'Messagerie',
-            url: '/messagerie',
+            url: '/messages',
             icon: 'assets/icon/menu/messages.svg',
             class: 'messages',
             notification_count: this.toolsService.notification_counts[1]

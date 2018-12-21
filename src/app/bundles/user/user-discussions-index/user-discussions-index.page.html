@@ -15,16 +15,16 @@
     <ion-button (click)="showDiscussionCommentCreateFormModal()">Nouveau message</ion-button>
 
     <div class="discussions-list">
-        <mec-item-list routerDirection="forward" routerLink="/user/messages/voir/{{discussion_comment.user_id}}"
+        <mec-item-list routerDirection="forward" routerLink="/messages/voir/{{discussion_comment.sender_id}}"
                        *ngFor="let discussion_comment of discussion_comments">
             <div class="visuel">
                 <img appMecImageCache
-                     [type]="discussion_comment.user.sex === 'f' ? 'man' : 'woman'"
-                     [url]="environment.resizer_url + 'user/' + discussion_comment.user.user_id + '/default/' + discussion_comment.user.picture"
+                     [type]="discussion_comment.sender.sex === 'f' ? 'man' : 'woman'"
+                     [url]="environment.resizer_url + 'user/' + discussion_comment.sender.id + '/default/' + discussion_comment.sender.picture"
                      alt="">
             </div>
             <div class="header-title">
-                {{discussion_comment.user.fullname}}
+                {{discussion_comment.sender.fullname}}
             </div>
             <div class="content-text">
                 {{discussion_comment.content}}

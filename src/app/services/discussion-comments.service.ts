@@ -15,7 +15,7 @@ export class DiscussionCommentsService {
     }
 
     user_getDiscussionCommentsByUser(user_id, skip, asyncCacheOptions = null) {
-        return this.httpService.get('user/discussion-comments/get-discussion-comments/' + user_id + '/' + skip, asyncCacheOptions);
+        return this.httpService.get('user/discussion-comments/get-discussion-comments-by-user/' + user_id + '/' + skip, asyncCacheOptions);
     }
 
     user_setCreateForm(data) {

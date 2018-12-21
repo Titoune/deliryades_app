@@ -36,7 +36,7 @@ export class UserDiscussionCreateFormComponent implements OnInit {
     buildForm() {
         this.create_form = this.formBuilder.group({
             content: [null, [requiredValidator, lengthBetweenValidator(2, 10000)]],
-            user_id: [this.user.id, [requiredValidator]],
+            receiver_id: [this.user.id, [requiredValidator]],
         }, {updateOn: 'submit'});
     }
 
