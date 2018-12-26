@@ -18,8 +18,9 @@ import {UserPollCreateFormComponentModule} from './forms/user-poll-create-form/u
 import {UserEventUpdateFormComponentModule} from './forms/user-event-update-form/user-event-update-form.component.module';
 import {UserEventCreateFormComponentModule} from './forms/user-event-create-form/user-event-create-form.component.module';
 import {UserPollUpdateFormComponentModule} from './forms/user-poll-update-form/user-poll-update-form.component.module';
-import {SharedNotificationUpdateFormComponentModule} from './shared-notification-update-form/shared-notification-update-form.component.module';
+import {SharedNotificationUpdateFormComponentModule} from './forms/shared-notification-update-form/shared-notification-update-form.component.module';
 import {UserDiscussionCreateFormComponentModule} from './forms/user-discussion-create-form/user-discussion-create-form.component.module';
+import {UserSmsCreateFormComponentModule} from './forms/user-sms-create-form/user-sms-create-form.component.module';
 
 @NgModule({
     imports: [
@@ -43,7 +44,8 @@ import {UserDiscussionCreateFormComponentModule} from './forms/user-discussion-c
         UserEventUpdateFormComponentModule,
         UserEventCreateFormComponentModule,
         SharedNotificationUpdateFormComponentModule,
-        UserDiscussionCreateFormComponentModule
+        UserDiscussionCreateFormComponentModule,
+        UserSmsCreateFormComponentModule
     ]
 })
 export class ComponentsModule {

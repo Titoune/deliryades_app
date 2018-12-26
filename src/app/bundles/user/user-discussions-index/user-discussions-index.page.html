@@ -12,29 +12,25 @@
     <ion-refresher slot="fixed" (ionRefresh)="doRefresh()">
         <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
-    <ion-button (click)="showDiscussionCommentCreateFormModal()">Nouveau message</ion-button>
+    <ion-button expand="full" color="medium" (click)="showDiscussionCommentCreateFormModal()">Nouveau message privé
+    </ion-button>
 
-    <div class="discussions-list">
-        <mec-item-list routerDirection="forward" routerLink="/messages/voir/{{discussion_comment.sender_id}}"
-                       *ngFor="let discussion_comment of discussion_comments">
-            <div class="visuel">
+    <ion-list>
+        <ion-item routerDirection="forward" routerLink="/messages/voir/{{discussion_comment.sender_id}}"
+                  *ngFor="let discussion_comment of discussion_comments">
+            <ion-avatar slot="start">
                 <img appMecImageCache
                      [type]="discussion_comment.sender.sex === 'f' ? 'man' : 'woman'"
                      [url]="environment.resizer_url + 'user/' + discussion_comment.sender.id + '/default/' + discussion_comment.sender.picture"
                      alt="">
-            </div>
-            <div class="header-title">
-                {{discussion_comment.sender.fullname}}
-            </div>
-            <div class="content-text">
-                {{discussion_comment.content}}
-            </div>
-            <div class="content-more">
-                {{discussion_comment.created | date: 'dd/MM/yyyy à HH:mm'}}
-            </div>
-        </mec-item-list>
-    </div>
-
+            </ion-avatar>
+            <ion-label>
+                <h2>{{discussion_comment.sender.fullname}}</h2>
+                <h3>Le {{discussion_comment.created | date: 'dd/MM/yyyy à HH:mm'}}</h3>
+                <p>{{discussion_comment.content}}</p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
 
     <ion-infinite-scroll (ionInfinite)="getDiscussionComments()">
         <ion-infinite-scroll-content></ion-infinite-scroll-content>

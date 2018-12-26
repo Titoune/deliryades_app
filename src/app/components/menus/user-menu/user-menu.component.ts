@@ -48,7 +48,7 @@ export class UserMenuComponent implements OnInit {
     public footerMenus = [
         {
             title: 'Paramètres',
-            url: '/maire/parametres',
+            url: '/parametres',
             icon: 'settings',
             notification_count: 0
         },

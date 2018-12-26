@@ -63,13 +63,21 @@ export class UserUsersIndexPage implements OnInit {
     }
   }
 
-  async showUserViewModal(user_id) {
+  async showUserViewModal(user) {
     const modal = await this.modalCtrl.create({
       component: UserUserViewComponent,
-      componentProps: {user_id: user_id},
+      componentProps: {user: user},
       backdropDismiss: false
     });
     return await modal.present();
+  }
+
+  async email() {
+
+  }
+
+  async call() {
+
   }
 
   doRefresh() {

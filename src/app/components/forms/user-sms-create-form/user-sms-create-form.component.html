@@ -1,0 +1,30 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <span class="modal-close-button" (click)="cancelForm()">Annuler</span>
+        </ion-buttons>
+        <ion-title>Envoyer un sms</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <form *ngIf="!toolsService.isEmpty(user) && create_form" [formGroup]="create_form" #ngForm="ngForm"
+                      (ngSubmit)="submit()">
+
+                    <ion-item>
+                        <ion-label position="stacked">Contenu du sms</ion-label>
+                        <ion-textarea formControlName="content" placeholder=""></ion-textarea>
+                        <p *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
+                            'content')}}
+                        </p>
+                    </ion-item>
+
+                    <ion-button type="submit" size="large" expand="block">Envoyer</ion-button>
+                </form>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

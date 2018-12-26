@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <span class="modal-close-button" (click)="cancelForm()">Annuler</span>
+    </ion-buttons>
+    <ion-title>Modifier mon profil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <form *ngIf="!toolsService.isEmpty(user) && update_form" [formGroup]="update_form" #ngForm="ngForm"
+              (ngSubmit)="submit()">
+          <ion-item>
+            <ion-label position="stacked">Genre</ion-label>
+            <ion-select formControlName="sex" placeholder="">
+              <ion-select-option value="m">Homme</ion-select-option>
+              <ion-select-option value="f">Femme</ion-select-option>
+            </ion-select>
+            <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+                    'sex')}}
+            </p>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Prénom</ion-label>
+            <ion-input formControlName="firstname" placeholder=""></ion-input>
+            <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+                    'firstname')}}
+            </p>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Nom</ion-label>
+            <ion-input formControlName="lastname" placeholder=""></ion-input>
+            <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+                    'lastname')}}
+            </p>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Email</ion-label>
+            <ion-input formControlName="email" placeholder=""></ion-input>
+            <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+                    'email')}}
+            </p>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Date de naissance</ion-label>
+            <ion-datetime formControlName="birth" placeholder="" displayFormat="DD MMMM YYYY"
+                          pickerFormat="DD MMMM YYYY">
+            </ion-datetime>
+            <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+                    'birth')}}
+            </p>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Présentation</ion-label>
+            <ion-textarea formControlName="presentation" placeholder=""></ion-textarea>
+            <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+                    'presentation')}}
+            </p>
+          </ion-item>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

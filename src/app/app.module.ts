@@ -41,6 +41,9 @@ import {JoyrideModule} from 'ngx-joyride';
 import {CalendarModule, DateAdapter} from 'angular-calendar';
 import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
 import {UserMenuComponentModule} from './components/menus/user-menu/user-menu.component.module';
+import {EmailComposer} from '@ionic-native/email-composer/ngx';
+import {SMS} from '@ionic-native/sms/ngx';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 
 // import { Market } from '@ionic-native/market';
@@ -99,6 +102,9 @@ export function asyncCacheOptionsFactory(): AsyncCacheOptions {
         FirebaseMessaging,
         MobileAccessibility,
         Diagnostic,
+        EmailComposer,
+        SMS,
+        CallNumber,
         FileTransfer,
         File,
         WebView,

@@ -1,9 +1,7 @@
 <ion-header>
     <ion-toolbar>
-        <ion-buttons slot="end">
-            <ion-button (click)="modalCtrl.dismiss()" icon-only>
-                <ion-icon icon="close"></ion-icon>
-            </ion-button>
+        <ion-buttons slot="start">
+            <span class="modal-close-button" (click)="modalCtrl.dismiss()">Fermer</span>
         </ion-buttons>
         <ion-title>Autorisations de l'application</ion-title>
     </ion-toolbar>
