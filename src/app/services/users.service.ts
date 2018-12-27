@@ -43,16 +43,20 @@ export class UsersService {
 ////////////
 
 
-    shared_setUpdateForm(user_id, data) {
-        return this.httpService.patch('shared/users/set-update-form/' + user_id, data);
+    user_setUpdateForm(user_id, data) {
+        return this.httpService.patch('user/users/set-update-form/' + user_id, data);
     }
 
-    shared_getMe(user_id) {
-        return this.httpService.get('shared/users/get-me/' + user_id);
+    user_setPasswordUpdateForm(user_id, data) {
+        return this.httpService.patch('user/users/set-password-update-form/' + user_id, data);
     }
 
-    shared_setUserField(data) {
-        return this.httpService.patch('shared/users/set-user-field', data);
+    user_getMe(user_id) {
+        return this.httpService.get('user/users/get-me/' + user_id);
+    }
+
+    user_setUserField(data) {
+        return this.httpService.patch('user/users/set-user-field', data);
     }
 
 

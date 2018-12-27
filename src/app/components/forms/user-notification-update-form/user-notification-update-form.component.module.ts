@@ -1,16 +1,16 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {IonicModule} from '@ionic/angular';
 
 import {RouterModule, Routes} from '@angular/router';
-import {SharedProfileUpdateFormComponent} from './shared-profile-update-form.component';
 import {MecImageCacheDirectiveModule} from '../../../directives/mec-image-cache.directive.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {UserNotificationUpdateFormComponent} from './user-notification-update-form.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: SharedProfileUpdateFormComponent
+        component: UserNotificationUpdateFormComponent
     }];
 
 @NgModule({
@@ -22,8 +22,8 @@ const routes: Routes = [
         ReactiveFormsModule,
         MecImageCacheDirectiveModule
     ],
-    declarations: [SharedProfileUpdateFormComponent]
+    declarations: [UserNotificationUpdateFormComponent]
 })
 
-export class SharedProfileUpdateFormComponentModule {
+export class UserNotificationUpdateFormComponentModule {
 }

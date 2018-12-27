@@ -5,7 +5,7 @@ import {ToolsService} from '../../../services/tools.service';
 import {SharedPasswordUpdateFormComponent} from '../../../components/forms/shared-password-update-form/shared-password-update-form.component';
 import {SharedBugReportCreateFormComponent} from '../../../components/forms/shared-bug-report-create-form/shared-bug-report-create-form.component';
 import {SharedAppAuthorizationsComponent} from '../../../components/forms/shared-app-authorizations/shared-app-authorizations.component';
-import {SharedNotificationUpdateFormComponent} from '../../../components/forms/shared-notification-update-form/shared-notification-update-form.component';
+import {UserNotificationUpdateFormComponent} from '../../../components/forms/user-notification-update-form/user-notification-update-form.component';
 
 @Component({
     selector: 'app-user-parameters-index',
@@ -33,7 +33,7 @@ export class UserParametersIndexPage implements OnInit {
 
     async showNotificationsUpdateFormModal() {
         const modal = await this.modalCtrl.create({
-            component: SharedNotificationUpdateFormComponent,
+            component: UserNotificationUpdateFormComponent,
             backdropDismiss: false
         });
         return await modal.present();

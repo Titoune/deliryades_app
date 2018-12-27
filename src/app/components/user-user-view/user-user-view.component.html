@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <span class="modal-close-button" (click)="modal.dismiss()">Fermer</span>
+            <span class="modal-close-button" (click)="modalCtrl.dismiss()">Fermer</span>
         </ion-buttons>
         <ion-title *ngIf="!toolsService.isEmpty(user)">{{user.fullname}}</ion-title>
     </ion-toolbar>
@@ -16,7 +16,7 @@
              [url]="environment.resizer_url + 'user/' + user.id + '/default/' + user.picture"
              alt="">
         <br>
-        <ion-button routerDirection="root" routerLink="messages/voir/{{user.id}}" (click)="modal.dismiss()">
+        <ion-button routerDirection="root" routerLink="messages/voir/{{user.id}}" (click)="modalCtrl.dismiss()">
             <ion-icon name="send"></ion-icon>
         </ion-button>
         <ion-button *ngIf="user.email" (click)="sendEmail()">
@@ -39,6 +39,14 @@
             <label>Civilité</label>
             <span>{{user.sex_to_text}}</span>
         </li>
+        <li>
+            <label>Profession</label>
+            <span>{{user.profession}}</span>
+        </li>
+        <li>
+            <label>Branche</label>
+            <span>{{user.branch}}</span>
+        </li>
         <li class="long-text">
             <label>Présentation</label>
             <span> {{user.presentation}} </span>
@@ -47,14 +55,14 @@
             <label>Date de naissance</label>
             <span>{{user.birth | date: 'dd/MM/yyyy'}}</span>
         </li>
-        <li *ngIf="user.birth">
+        <li *ngIf="user.death">
             <label>Date de décès</label>
             <span>{{user.death | date: 'dd/MM/yyyy'}}</span>
         </li>
         <li class="header-list">
             Informations de contact
         </li>
-        <li>
+        <li *ngIf="user.email">
             <label>Email</label>
             <span>{{user.email}}</span>
         </li>

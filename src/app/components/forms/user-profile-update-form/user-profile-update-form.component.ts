@@ -1,17 +1,18 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {environment} from '../../../../environments/environment';
 import {UsersService} from '../../../services/users.service';
 import {AlertController, LoadingController, ModalController, NavController} from '@ionic/angular';
 import {ToolsService} from '../../../services/tools.service';
-import {dateValidator, inListValidator, lengthBetweenValidator, regexValidator, requiredValidator} from '../../../custom-validators';
-import {environment} from '../../../../environments/environment';
+import {dateValidator, inListValidator, lengthBetweenValidator, naturalNumberValidator, regexValidator, requiredValidator} from '../../../custom-validators';
 
 @Component({
-    selector: 'app-shared-profile-update-form',
-    templateUrl: './shared-profile-update-form.component.html',
-    styleUrls: ['./shared-profile-update-form.component.scss']
+    selector: 'app-user-profile-update-form',
+    templateUrl: './user-profile-update-form.component.html',
+    styleUrls: ['./user-profile-update-form.component.scss']
 })
-export class SharedProfileUpdateFormComponent implements OnInit {
+export class UserProfileUpdateFormComponent implements OnInit {
+
     user: any = {};
     update_form: FormGroup;
     environment = environment;
@@ -32,7 +33,7 @@ export class SharedProfileUpdateFormComponent implements OnInit {
     }
 
     getUser() {
-        this.userService.shared_getMe(this.toolsService.payloads.user.id).subscribe(request => {
+        this.userService.user_getMe(this.toolsService.payloads.user.id).subscribe(request => {
             this.user = request.data.user;
             this.buildForm();
         });
@@ -45,7 +46,13 @@ export class SharedProfileUpdateFormComponent implements OnInit {
             lastname: [this.user.lastname, [requiredValidator, regexValidator('^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð \'-]+$', 'veuillez vérifier ce champs')]],
             email: [this.user.email, [requiredValidator]],
             birth: [this.user.birth, [requiredValidator, dateValidator]],
-            presentation: [this.user.presentation, [lengthBetweenValidator(2, 10000)]]
+            death: [this.user.death, [requiredValidator, dateValidator]],
+            cellphone: [this.user.cellphone, [requiredValidator, regexValidator('^(?:(?:\\+|00)33|0)\\s*[1-9](?:[\\s.-]*\\d{2}){4}$', 'veuillez vérifier ce champs')]],
+            phone: [this.user.phone, [requiredValidator, regexValidator('^(?:(?:\\+|00)33|0)\\s*[1-9](?:[\\s.-]*\\d{2}){4}$', 'veuillez vérifier ce champs')]],
+            presentation: [this.user.presentation, [lengthBetweenValidator(2, 10000)]],
+            branch: [this.user.branch, [lengthBetweenValidator(1, 8), naturalNumberValidator]],
+            profession: [this.user.profession, [lengthBetweenValidator(1, 20)]]
+
         }, {updateOn: 'submit'});
     }
 
@@ -55,7 +62,7 @@ export class SharedProfileUpdateFormComponent implements OnInit {
             const loading = await this.loadingCtrl.create({message: 'enregistrement...'});
             await loading.present();
 
-            const request = await <any>this.userService.shared_setUpdateForm(this.user.id, this.update_form.value);
+            const request = await <any>this.userService.user_setUpdateForm(this.user.id, this.update_form.value);
 
             await loading.dismiss();
 

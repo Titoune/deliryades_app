@@ -43,7 +43,7 @@ export class SharedPasswordUpdateFormComponent implements OnInit {
             const loading = await this.loadingCtrl.create({message: 'enregistrement...'});
             await loading.present();
 
-            const request = await <any>this.userService.shared_setUpdateForm(this.toolsService.payloads.user.id, this.update_form.value);
+            const request = await <any>this.userService.user_setPasswordUpdateForm(this.toolsService.payloads.user.id, this.update_form.value);
 
             await loading.dismiss();
 

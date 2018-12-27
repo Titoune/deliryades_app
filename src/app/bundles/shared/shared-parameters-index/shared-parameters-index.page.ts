@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {SharedProfileUpdateFormComponent} from '../../../components/forms/shared-profile-update-form/shared-profile-update-form.component';
 import {ModalController} from '@ionic/angular';
 import {SharedBugReportCreateFormComponent} from '../../../components/forms/shared-bug-report-create-form/shared-bug-report-create-form.component';
 import {SharedAppAuthorizationsComponent} from '../../../components/forms/shared-app-authorizations/shared-app-authorizations.component';
 import {environment} from '../../../../environments/environment';
 import {SharedPasswordUpdateFormComponent} from '../../../components/forms/shared-password-update-form/shared-password-update-form.component';
+import {UserProfileUpdateFormComponent} from '../../../components/forms/user-profile-update-form/user-profile-update-form.component';
 
 @Component({
     selector: 'app-shared-parameters-index',
@@ -22,7 +22,7 @@ export class SharedParametersIndexPage implements OnInit {
 
     async showUserUpdateFormModal() {
         const modal = await this.modalCtrl.create({
-            component: SharedProfileUpdateFormComponent,
+            component: UserProfileUpdateFormComponent,
             backdropDismiss: false
         });
         return await modal.present();
