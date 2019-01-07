@@ -8,8 +8,8 @@
   </ion-toolbar>
 </ion-header>
 <ion-content padding>
-  <ion-button (click)="showEventCreateFormModal()">Créer un évènement</ion-button>
-
+  <ion-button expand="full" color="purple" (click)="showEventCreateFormModal()">Créer un évènement
+  </ion-button>
   <button mwlCalendarPreviousView view="month" [(viewDate)]="date" (click)="getMonthEvents()">
     Précédent
   </button>

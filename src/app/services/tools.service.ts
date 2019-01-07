@@ -9,13 +9,13 @@ export class ToolsService {
     public jwt: string = null;
     public socket_jwt: string = null;
     public payloads: any = {};
-    public device_platform = 'web';
-    public app_version: string = environment.apiVersion;
+    public platform = 'web';
+    public api_version: string = environment.api_version;
     public device_push_token: string = null;
-    public device_uuid: string = null;
-    public device_manufacturer: string = null;
-    public device_model: string = null;
-    public device_version: string = null;
+    public uuid: string = null;
+    public manufacturer: string = null;
+    public model: string = null;
+    public version: string = null;
 
     public screen_width: number = window.innerWidth;
     public screen_height: number = window.innerHeight;

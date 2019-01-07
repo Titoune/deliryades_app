@@ -8,10 +8,8 @@
 </ion-header>
 
 <ion-content padding>
-
-  <h1>{{date | date: 'dd/MM/yyyy'}}</h1>
-  <ion-button (click)="showEventCreateFormModal()">Créer un évènement</ion-button>
-
+  <ion-button expand="full" color="purple" (click)="showEventCreateFormModal()">Créer un évènement à cette date
+  </ion-button>
 
   <div *ngFor="let event of events">
     {{event.start | date: 'dd/MM à H:mm'}} : {{event.title}}

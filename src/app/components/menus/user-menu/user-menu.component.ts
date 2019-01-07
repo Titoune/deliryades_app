@@ -51,12 +51,6 @@ export class UserMenuComponent implements OnInit {
             url: '/parametres',
             icon: 'settings',
             notification_count: 0
-        },
-        {
-            title: 'Autres comptes',
-            url: '/comptes',
-            icon: 'assets/icon/menu/switch.svg',
-            notification_count: 0
         }
     ];
     environment = environment;
@@ -67,6 +61,20 @@ export class UserMenuComponent implements OnInit {
     }
 
     ngOnInit() {
-    }
+        if (this.toolsService.payloads.user.admin === 1) {
+            this.footerMenus.push({
+                title: 'Autres comptes',
+                url: '/comptes',
+                icon: 'assets/icon/menu/switch.svg',
+                notification_count: 0
+            });
+        }
 
+        this.footerMenus.push({
+            title: 'Déconnexion',
+            url: '/deconnexion',
+            icon: 'assets/icon/menu/switch.svg',
+            notification_count: 0
+        });
+    }
 }

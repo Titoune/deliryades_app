@@ -4,7 +4,9 @@
             <ion-menu-button></ion-menu-button>
             <ion-back-button></ion-back-button>
         </ion-buttons>
-        <ion-title>Message</ion-title>
+        <ion-title *ngIf="!toolsService.isEmpty(user)">
+            {{user.fullname}}
+        </ion-title>
     </ion-toolbar>
 </ion-header>
 <ion-content padding>
@@ -13,12 +15,23 @@
         <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
 
-    <div *ngFor="let discussion_comment of discussion_comments">
+    <div *ngFor="let discussion_comment of discussion_comments" class="message" [class.left]=" discussion_comment.sender_id === toolsService.payloads.user.id" [class.right]="discussion_comment.sender_id !== toolsService.payloads.user.id">
+        <img class="user-img" [src]="discussion_comment.sender.picture" alt="" src="">
+        <div class="msg-detail">
+            <div class="msg-info">
+                <p>
+                    {{discussion_comment.sender.fullname}}&nbsp;&nbsp;&nbsp;{{discussion_comment.created | date: 'dd/MM/yyyy à HH:mm'}}</p>
+            </div>
+            <div class="msg-content">
+                <span class="triangle"></span>
+                <p class="line-breaker ">{{discussion_comment.content}}</p>
+            </div>
+        </div>
+    </div>
 
-        <img appMecImageCache
-             [type]="discussion_comment.sender.sex === 'f' ? 'man' : 'woman'"
-             [url]="environment.resizer_url + 'user/' + discussion_comment.sender.id + '/square/' + discussion_comment.sender.picture"/>
 
+
+    <div class="message"*ngFor="let discussion_comment of discussion_comments">
         {{discussion_comment.created | date: 'dd/MM/yyyy à HH:mm'}}
         {{discussion_comment.content}}
         <a (click)="loadDiscussionCommentActionSheet(discussion_comment)">options</a>
@@ -27,13 +40,23 @@
 
     <form *ngIf="create_form" [formGroup]="create_form" #ngForm="ngForm" (ngSubmit)="submit()">
         <ion-item>
-            <ion-label>Contenu</ion-label>
-            <ion-textarea formControlName="content" placeholder=""></ion-textarea>
+            <ion-textarea formControlName="content" placeholder="Tapez votre message"></ion-textarea>
             <small *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
                 'content')}}
             </small>
         </ion-item>
-        <ion-button type="submit" size="large" expand="block">envoyer</ion-button>
+        <ion-button type="submit" size="small">envoyer</ion-button>
     </form>
 
 </ion-content>
+
+<ion-footer no-border>
+    <div class="input-wrap">
+        <form *ngIf="create_form" [formGroup]="create_form" #ngForm="ngForm" (ngSubmit)="submit()">
+            <ion-textarea formControlName="content" placeholder="Tapez votre message"></ion-textarea>
+            <button ion-button clear icon-only item-right>
+                <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon>
+            </button>
+        </form>
+    </div>
+</ion-footer>

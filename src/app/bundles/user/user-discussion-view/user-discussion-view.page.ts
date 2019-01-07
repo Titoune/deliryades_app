@@ -7,6 +7,7 @@ import {ToolsService} from '../../../services/tools.service';
 import {ActivatedRoute} from '@angular/router';
 import {lengthBetweenValidator, requiredValidator} from '../../../custom-validators';
 import {DiscussionCommentsService} from '../../../services/discussion-comments.service';
+import {UsersService} from '../../../services/users.service';
 
 @Component({
     selector: 'app-user-discussion-view',
@@ -17,12 +18,14 @@ export class UserDiscussionViewPage implements OnInit {
 
     @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
     public discussion_comments: any = [];
+    public user: any = {};
     create_form: FormGroup;
     environment = environment;
     moment = moment;
 
     constructor(
         public discussionCommentsService: DiscussionCommentsService,
+        public usersService: UsersService,
         public navCtrl: NavController,
         public toolsService: ToolsService,
         private route: ActivatedRoute,
@@ -35,6 +38,7 @@ export class UserDiscussionViewPage implements OnInit {
 
 
     ngOnInit() {
+        this.getUser();
         this.getDiscussionCommentsFromCache();
         this.buildForm();
     }
@@ -45,6 +49,14 @@ export class UserDiscussionViewPage implements OnInit {
             content: [null, [requiredValidator, lengthBetweenValidator(2, 10000)]],
             receiver_id: [this.route.snapshot.paramMap.get('user_id'), [requiredValidator]],
         }, {updateOn: 'submit'});
+    }
+
+    getUser() {
+        this.usersService.user_getUser(this.route.snapshot.paramMap.get('user_id')).subscribe(request => {
+            this.user = request.data.user;
+        });
+
+
     }
 
     getDiscussionCommentsFromCache() {

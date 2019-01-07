@@ -10,6 +10,8 @@ import {Diagnostic} from '@ionic-native/diagnostic/ngx';
 import {MobileAccessibility} from '@ionic-native/mobile-accessibility/ngx';
 import {SocketService} from './services/socket.service';
 import {Plugins} from '@capacitor/core';
+import {DevicesService} from './services/devices.service';
+import {Firebase} from '@ionic-native/firebase/ngx';
 
 @Component({
     selector: 'app-root',
@@ -27,7 +29,9 @@ export class AppComponent {
         public diagnostic: Diagnostic,
         private mobileAccessibility: MobileAccessibility,
         private alertCtrl: AlertController,
-        public events: Events
+        public events: Events,
+        public devicesService: DevicesService,
+        private firebase: Firebase
     ) {
         platform.pause.subscribe(() => {
             console.log('platforme pause');
@@ -50,12 +54,13 @@ export class AppComponent {
         this.mobileAccessibility.usePreferredTextZoom(false);
         this.statusBar.styleDefault();
         await this.initializeTools();
+        await this.getDeviceToken();
+        await this.updateDevice();
         await this.initializeDynamicLinks();
-        await this.initializeAuthorizations();
+        this.initializeAuthorizations();
         await this.initializeBackButton();
 
-
-        if (this.toolsService.device_platform !== 'web') {
+        if (this.toolsService.platform !== 'web') {
             const {SplashScreen} = Plugins;
             SplashScreen.hide();
         }
@@ -71,20 +76,51 @@ export class AppComponent {
 
             const {Device} = Plugins;
             Device.getInfo().then(res => {
-                this.toolsService.device_platform = res.platform.toLowerCase();
-                this.toolsService.device_manufacturer = res.manufacturer;
-                this.toolsService.device_model = res.model;
-                this.toolsService.device_version = res.osVersion;
-                this.toolsService.device_uuid = res.uuid;
-                this.toolsService.app_version = environment.apiVersion;
+                this.toolsService.platform = res.platform.toLowerCase();
+                this.toolsService.manufacturer = res.manufacturer;
+                this.toolsService.model = res.model;
+                this.toolsService.version = res.osVersion;
+                this.toolsService.uuid = res.uuid;
+                this.toolsService.api_version = environment.api_version;
                 resolve();
+            }).catch(err => console.log(err));
+        });
+    }
+
+    async updateDevice() {
+        if (this.toolsService.platform !== 'web') {
+            await this.devicesService.user_setUpdateForm(this.toolsService.uuid, {
+                device_push_token: this.toolsService.device_push_token,
+                api: this.toolsService.api_version,
+                manufacturer: this.toolsService.manufacturer,
+                model: this.toolsService.model,
+                version: this.toolsService.version,
+                platform: this.toolsService.platform
             });
+        }
+    }
+
+    async getDeviceToken() {
+        return new Promise((resolve) => {
+            if (this.toolsService.platform !== 'web') {
+                this.firebase.getToken()
+                    .then(token => {
+                        this.toolsService.device_push_token = token;
+                        resolve();
+                    })
+                    .catch(error => {
+                        resolve();
+                        console.error('Error getting token', error);
+                    });
+            } else {
+                resolve();
+            }
         });
     }
 
 
     async initializeDynamicLinks() {
-        if (this.toolsService.device_platform !== 'web') {
+        if (this.toolsService.platform !== 'web') {
             this.firebaseDynamicLinks.onDynamicLink()
                 .subscribe((res: any) => {
                     const query_params: any = ToolsService.extractUrlParams(res.deepLink);
@@ -100,7 +136,7 @@ export class AppComponent {
     }
 
     async initializeAuthorizations() {
-        if (this.toolsService.device_platform !== 'web') {
+        if (this.toolsService.platform !== 'web') {
             let response = await <any>this.diagnostic.isLocationAuthorized();
             this.toolsService.authorization_location = JSON.stringify(response) === 'true';
 
@@ -110,7 +146,7 @@ export class AppComponent {
             response = await <any>this.diagnostic.isCameraAuthorized();
             this.toolsService.authorization_camera = JSON.stringify(response) === 'true';
 
-            if (this.toolsService.device_platform === 'ios') {
+            if (this.toolsService.platform === 'ios') {
                 response = await <any>this.diagnostic.isCameraRollAuthorized();
                 this.toolsService.authorization_external_storage = JSON.stringify(response) === 'true';
             } else {

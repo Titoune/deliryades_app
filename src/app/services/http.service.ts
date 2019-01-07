@@ -16,7 +16,7 @@ export class HttpService {
     get(endpoint, asyncCacheOptions = {bypassCache: false, fromCacheAndReplay: true}) {
         return this.cachedHttp.get(environment.api_url + endpoint, {
             params: {
-                api: environment.app_version
+                api: environment.api_version
             }
         }, asyncCacheOptions);
 
@@ -25,7 +25,7 @@ export class HttpService {
         //         'Content-Type': 'application/json'
         //     },
         //     params: {
-        //         api: environment.app_version
+        //         api: environment.api_version
         //     }
         // }).toPromise().catch(err => {
         //
@@ -41,7 +41,7 @@ export class HttpService {
                 'Content-Type': 'application/json'
             },
             params: {
-                api: environment.app_version
+                api: environment.api_version
             }
         }).toPromise().catch(err => {
             return (err instanceof ProgressEvent ? {code: 0} : err.error);
@@ -54,7 +54,7 @@ export class HttpService {
                 'Content-Type': 'application/json'
             },
             params: {
-                api: environment.app_version
+                api: environment.api_version
             }
         }).toPromise().catch(err => {
             return (err instanceof ProgressEvent ? {code: 0} : err.error);
@@ -70,7 +70,7 @@ export class HttpService {
                 'Content-Type': 'application/json'
             },
             params: {
-                api: environment.app_version
+                api: environment.api_version
             }
         }).toPromise().catch(err => {
             return (err instanceof ProgressEvent ? {code: 0} : err.error);

@@ -12,8 +12,8 @@
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh()">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-
-  <ion-button (click)="showPollCreateFormModal()">Créer un sondage</ion-button>
+  <ion-button expand="full" color="purple" (click)="showPollCreateFormModal()">Créer un sondage
+  </ion-button>
 
   <ion-segment (ionChange)="segmentChanged($event)">
     <ion-segment-button value="all" [checked]="(segment == 'all')">

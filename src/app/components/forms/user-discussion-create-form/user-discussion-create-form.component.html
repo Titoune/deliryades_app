@@ -1,40 +1,19 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <span class="modal-close-button" (click)="cancelForm()">Annuler</span>
+            <span class="modal-close-button" (click)="modalCtrl.dismiss()">Annuler</span>
         </ion-buttons>
-        <ion-title>Création message</ion-title>
+        <ion-title>Rechercher une personne</ion-title>
     </ion-toolbar>
 </ion-header>
 
 
 <ion-content padding>
-
-    <div *ngIf="toolsService.isEmpty(user)">
-        <ion-searchbar showCancelButton="true" cancelButtonText="annuler" [debounce]="700"
-                       (ionChange)="findRecipient($event)" placeholder="Rechercher un destinataire"></ion-searchbar>
-
-        <ion-list>
-            <ion-item *ngFor="let user of users" (click)="selectRecipient(user)">
-                <ion-label>{{user.fullname}}</ion-label>
-            </ion-item>
-        </ion-list>
-    </div>
-
-    <div *ngIf="!toolsService.isEmpty(user)">
-        {{user.fullname}}
-        <img appMecImageCache [type]="(user.sex == 'f' ? 'woman' : 'man')"
-             [url]="environment.resizer_url + 'user/' + user.id + '/square/' + user.picture"/>
-
-        <form *ngIf="create_form" [formGroup]="create_form" #ngForm="ngForm" (ngSubmit)="submit()">
-            <ion-item>
-                <ion-label position="stacked">Contenu</ion-label>
-                <ion-textarea formControlName="content" placeholder=""></ion-textarea>
-                <p *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
-                    'content')}}
-                </p>
-            </ion-item>
-            <ion-button type="submit" size="large" expand="block">envoyer</ion-button>
-        </form>
-    </div>
+    <ion-searchbar showCancelButton="true" cancelButtonText="annuler" [debounce]="700"
+                   (ionChange)="findRecipient($event)" placeholder="Rechercher un destinataire"></ion-searchbar>
+    <ion-list>
+        <ion-item *ngFor="let user of users" (click)="selectRecipient(user)">
+            <ion-label>{{user.fullname}}</ion-label>
+        </ion-item>
+    </ion-list>
 </ion-content>

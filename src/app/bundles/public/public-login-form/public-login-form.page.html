@@ -3,13 +3,13 @@
         <ion-row justify-content-center>
             <ion-col align-self-center size-lg="5" size-md="6" size-xs="12">
                 <div text-center>
-                    <h4>Maires et citoyens</h4>
+                    <h4>Deliryades</h4>
                 </div>
                 <form #ngForm="ngForm" (ngSubmit)="submit()" *ngIf="create_form" [formGroup]="create_form">
                     <ion-item>
-                        <ion-input formControlName="email" placeholder="Email" type="text"></ion-input>
+                        <ion-input formControlName="cellphone" placeholder="Numéro de téléphone portable" type="text"></ion-input>
                         <p *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
-                            'email')}}
+                            'cellphone')}}
                         </p>
                     </ion-item>
 
@@ -21,13 +21,12 @@
                         </p>
                     </ion-item>
 
-                    <ion-button expand="block" size="large" type="submit">connexion</ion-button>
+                    <ion-button type="submit" expand="full" color="purple">connexion</ion-button>
+
                 </form>
                 <div text-center>
+                    <br>
                     <a routerDirection="forward" routerLink="/mot-de-passe-perdu">Mot de passe perdu ?</a>
-                </div>
-                <div text-center>
-                    <ion-button href="/inscription" routerDirection="root">Créer un compte</ion-button>
                 </div>
             </ion-col>
         </ion-row>

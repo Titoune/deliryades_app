@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {emailValidator, requiredValidator} from '../../../custom-validators';
+import {emailValidator, regexValidator, requiredValidator} from '../../../custom-validators';
 import {LoadingController, NavController} from '@ionic/angular';
 import {ToolsService} from '../../../services/tools.service';
 import {environment} from '../../../../environments/environment';
+import {DevicesService} from '../../../services/devices.service';
 
 @Component({
     selector: 'app-public-login-form',
@@ -18,6 +19,7 @@ export class PublicLoginFormPage implements OnInit {
 
     constructor(
         public authService: AuthService,
+        public toolsService: ToolsService,
         public formBuilder: FormBuilder,
         public loadingCtrl: LoadingController,
         public navCtrl: NavController
@@ -30,7 +32,7 @@ export class PublicLoginFormPage implements OnInit {
 
     buildForm() {
         this.create_form = this.formBuilder.group({
-            email: [null, [requiredValidator, emailValidator]],
+            cellphone: [null, [requiredValidator]],
             password: [null, [requiredValidator]],
         }, {updateOn: 'submit'});
     }
@@ -42,9 +44,7 @@ export class PublicLoginFormPage implements OnInit {
             await loading.present();
 
             const request = await <any>this.authService.public_setUserLoginForm(this.create_form.value);
-
             await loading.dismiss();
-
             if (request.code === 200) {
                 await this.navCtrl.navigateRoot('/comptes');
             } else {

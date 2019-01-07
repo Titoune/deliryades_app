@@ -5,6 +5,7 @@ import {UsersService} from '../../../services/users.service';
 import {AlertController, LoadingController, ModalController, NavController} from '@ionic/angular';
 import {ToolsService} from '../../../services/tools.service';
 import {booleanValidator} from '../../../custom-validators';
+import {DevicesService} from '../../../services/devices.service';
 
 @Component({
     selector: 'app-user-notification-update-form',
@@ -25,11 +26,24 @@ export class UserNotificationUpdateFormComponent implements OnInit {
         public toolsService: ToolsService,
         public alertCtrl: AlertController,
         public modalCtrl: ModalController,
+        public devicesService: DevicesService,
     ) {
     }
 
     ngOnInit() {
+        this.updateDevice();
         this.getUser();
+    }
+
+    async updateDevice() {
+        await this.devicesService.user_setUpdateForm(this.toolsService.uuid, {
+            device_push_token: this.toolsService.device_push_token,
+            api: this.toolsService.api_version,
+            manufacturer: this.toolsService.manufacturer,
+            model: this.toolsService.model,
+            version: this.toolsService.version,
+            platform: this.toolsService.platform
+        });
     }
 
     getUser() {

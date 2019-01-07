@@ -24,5 +24,4 @@ export class SharedAccountsIndexPage implements OnInit {
             this.navCtrl.navigateRoot('/annuaire');
         }
     }
-
 }

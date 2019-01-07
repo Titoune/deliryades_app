@@ -91,9 +91,9 @@ export class HttpResponseInterceptor implements HttpInterceptor {
                     {
                         text: 'Aller sur le store',
                         handler: () => {
-                            if (this.toolsService.device_platform === 'android') {
+                            if (this.toolsService.platform === 'android') {
                                 // this.market.open(environment.android_package_name);
-                            } else if (this.toolsService.device_platform === 'ios') {
+                            } else if (this.toolsService.platform === 'ios') {
                                 // this.market.open(environment.ios_app_id);
                             }
                         }

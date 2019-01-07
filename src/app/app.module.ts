@@ -13,8 +13,10 @@ import {HttpResponseInterceptor} from './interceptors/HttpResponseInterceptor';
 import {environment} from '../environments/environment';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {Firebase} from '@ionic-native/firebase/ngx';
 import {FirebaseDynamicLinks} from '@ionic-native/firebase-dynamic-links/ngx';
 import {FirebaseMessaging} from '@ionic-native/firebase-messaging/ngx';
+
 import {MobileAccessibility} from '@ionic-native/mobile-accessibility/ngx';
 import {Diagnostic} from '@ionic-native/diagnostic/ngx';
 import {FileTransfer} from '@ionic-native/file-transfer/ngx';
@@ -43,7 +45,7 @@ import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
 import {UserMenuComponentModule} from './components/menus/user-menu/user-menu.component.module';
 import {EmailComposer} from '@ionic-native/email-composer/ngx';
 import {SMS} from '@ionic-native/sms/ngx';
-import { CallNumber } from '@ionic-native/call-number/ngx';
+import {CallNumber} from '@ionic-native/call-number/ngx';
 
 
 // import { Market } from '@ionic-native/market';
@@ -98,6 +100,7 @@ export function asyncCacheOptionsFactory(): AsyncCacheOptions {
     providers: [
         {provide: LOCALE_ID, useValue: 'fr-FR'},
         StatusBar,
+        Firebase,
         FirebaseDynamicLinks,
         FirebaseMessaging,
         MobileAccessibility,

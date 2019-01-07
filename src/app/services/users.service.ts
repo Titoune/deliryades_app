@@ -17,6 +17,11 @@ export class UsersService {
         return this.httpService.post('user/users/get-user-by-name/', data);
     }
 
+    user_getUser(user_id) {
+        return this.httpService.get('user/users/get-user/' + user_id);
+    }
+
+
     administrator_getUsers(skip, asyncCacheOptions = null) {
         return this.httpService.get('admin/users/get-users/' + skip, asyncCacheOptions);
     }

@@ -54,7 +54,7 @@ export class MecImageCacheDirective implements OnChanges {
             this.src = 'assets/default-img/unknown.png';
         }
 
-        if (this.toolsService.device_platform !== 'web' && this.url.substr(this.url.lastIndexOf('/') + 1) !== 'null') {
+        if (this.toolsService.platform !== 'web' && this.url.substr(this.url.lastIndexOf('/') + 1) !== 'null') {
             if (this.url) {
                 this.md5_filename = Md5.init(this.url);
                 this.checkFile().then((url: string) => {

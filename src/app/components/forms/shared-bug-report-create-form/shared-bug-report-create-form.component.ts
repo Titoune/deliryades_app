@@ -45,13 +45,12 @@ export class SharedBugReportCreateFormComponent implements OnInit {
                 content: this.create_form.value.content,
                 payloads: this.toolsService.payloads,
                 jwt: this.toolsService.jwt,
-                device_platform: this.toolsService.device_platform,
-                app_version: this.toolsService.app_version,
+                platform: this.toolsService.platform,
+                version: this.toolsService.version,
                 device_push_token: this.toolsService.device_push_token,
-                device_uuid: this.toolsService.device_uuid,
-                device_manufacturer: this.toolsService.device_manufacturer,
-                device_model: this.toolsService.device_model,
-                device_version: this.toolsService.device_version,
+                uuid: this.toolsService.uuid,
+                manufacturer: this.toolsService.manufacturer,
+                model: this.toolsService.model
             });
 
             await loading.dismiss();

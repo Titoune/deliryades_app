@@ -11,6 +11,6 @@ export class ConfigurationsService {
 
 
   shared_setBugReportCreateForm(data) {
-    return this.httpService.post('shared/configurations/set-bug-report-create-form', data);
+    return this.httpService.post('user/configurations/set-bug-report-create-form', data);
   }
 }

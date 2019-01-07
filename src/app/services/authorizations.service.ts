@@ -18,8 +18,8 @@ export class AuthorizationsService {
 
     requestNotificationAuthorization() {
         return new Promise((resolve) => {
-            if (['ios', 'android'].indexOf(this.toolsService.device_platform) !== -1) {
-                if (this.toolsService.device_platform !== 'android') {
+            if (['ios', 'android'].indexOf(this.toolsService.platform) !== -1) {
+                if (this.toolsService.platform !== 'android') {
                     // alert('Nous avons besoin de votre permission pour vous envoyer des notifications');
                     this.firebaseMessaging.requestPermission().then(data => {
                         this.toolsService.authorization_notification = true;
@@ -43,7 +43,7 @@ export class AuthorizationsService {
     requestCameraAuthorization() {
         return new Promise((resolve) => {
 
-            if (['ios', 'android'].indexOf(this.toolsService.device_platform) !== -1) {
+            if (['ios', 'android'].indexOf(this.toolsService.platform) !== -1) {
                 this.requestExternalStorageAuthorization().then(res => {
                     if (res === true) {
                         if (this.toolsService.authorization_camera !== true) {
@@ -76,7 +76,7 @@ export class AuthorizationsService {
     requestMicrophoneAuthorization() {
         return new Promise((resolve) => {
 
-            if (['ios', 'android'].indexOf(this.toolsService.device_platform) !== -1) {
+            if (['ios', 'android'].indexOf(this.toolsService.platform) !== -1) {
                 if (this.toolsService.authorization_microphone !== true) {
                     // alert('Nous avons besoin de votre permission accéder au micro');
                     this.diagnostic.requestMicrophoneAuthorization().then(data => {
@@ -103,11 +103,11 @@ export class AuthorizationsService {
     requestExternalStorageAuthorization() {
         return new Promise((resolve) => {
 
-            if (['ios', 'android'].indexOf(this.toolsService.device_platform) !== -1) {
+            if (['ios', 'android'].indexOf(this.toolsService.platform) !== -1) {
                 if (this.toolsService.authorization_external_storage !== true) {
                     // alert('Nous avons besoin de votre permission accéder à vos photos');
 
-                    if (this.toolsService.device_platform === 'ios') {
+                    if (this.toolsService.platform === 'ios') {
                         this.diagnostic.requestCameraRollAuthorization().then(data => {
                             if (data === 'authorized') {
                                 this.toolsService.authorization_external_storage = true;
@@ -149,7 +149,7 @@ export class AuthorizationsService {
     requestLocationAuthorization() {
         return new Promise((resolve) => {
 
-            if (['ios', 'android'].indexOf(this.toolsService.device_platform) !== -1) {
+            if (['ios', 'android'].indexOf(this.toolsService.platform) !== -1) {
                 if (this.toolsService.authorization_location !== true) {
                     // alert('Nous avons besoin de votre permission accéder à votre position');
                     this.diagnostic.requestLocationAuthorization().then(data => {
