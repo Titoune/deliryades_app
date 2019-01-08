@@ -1,6 +1,6 @@
 {
-  "appId": "com.meridia.mairesetcitoyens",
-  "appName": "MairesEtCitoyens",
+  "appId": "com.deliry.deliryades",
+  "appName": "Deliryades",
   "bundledWebRuntime": false,
   "webDir": "www",
   "plugins": {

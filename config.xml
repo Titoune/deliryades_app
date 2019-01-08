@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.meridia.mairesetcitoyens" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>mairesetcitoyens</name>
-    <description>An awesome Ionic/Cordova app.</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+<widget id="com.deliry.deliryades" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>deliryades</name>
+    <description>Plateforme des Deliryades.</description>
+    <author email="deliry.antoine@gmail.com" href="http://deliryades.fr/">Antoine Deliry</author>
     <content src="index.html" />
     <access origin="*" />
     <access origin="content:///*" />
@@ -86,17 +86,16 @@
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <plugin name="cordova-plugin-market" spec="1.2.0" />
     <plugin name="cordova-plugin-firebase-dynamiclinks" spec="1.0.1">
-        <variable name="APP_DOMAIN" value="example.com" />
-        <variable name="PAGE_LINK_DOMAIN" value="example.page.link" />
+        <variable name="APP_DOMAIN" value="deliryades.fr" />
+        <variable name="PAGE_LINK_DOMAIN" value="deliryades.page.link" />
     </plugin>
     <plugin name="cordova.plugins.diagnostic" spec="4.0.10" />
     <plugin name="phonegap-plugin-mobile-accessibility" spec="1.0.5" />
     <plugin name="cordova-plugin-firebase-messaging" spec="1.1.4" />
     <plugin name="cordova-plugin-file-transfer" spec="1.7.1" />
     <plugin name="cordova-plugin-file" spec="6.0.1" />
-    <engine name="android" spec="~7.1.2" />
     <plugin name="cordova-plugin-email-composer" spec="0.9.1" />
     <plugin name="cordova-sms-plugin" spec="1.0.0" />
     <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
-    <plugin name="cordova-plugin-firebase" spec="2.0.5" />
+    <engine name="android" spec="~7.1.2" />
 </widget>

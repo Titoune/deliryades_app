@@ -11,7 +11,7 @@ import {MobileAccessibility} from '@ionic-native/mobile-accessibility/ngx';
 import {SocketService} from './services/socket.service';
 import {Plugins} from '@capacitor/core';
 import {DevicesService} from './services/devices.service';
-import {Firebase} from '@ionic-native/firebase/ngx';
+import {FirebaseMessaging} from '@ionic-native/firebase-messaging/ngx';
 
 @Component({
     selector: 'app-root',
@@ -31,7 +31,7 @@ export class AppComponent {
         private alertCtrl: AlertController,
         public events: Events,
         public devicesService: DevicesService,
-        private firebase: Firebase
+        public firebaseMessaging: FirebaseMessaging
     ) {
         platform.pause.subscribe(() => {
             console.log('platforme pause');
@@ -103,15 +103,13 @@ export class AppComponent {
     async getDeviceToken() {
         return new Promise((resolve) => {
             if (this.toolsService.platform !== 'web') {
-                this.firebase.getToken()
-                    .then(token => {
-                        this.toolsService.device_push_token = token;
-                        resolve();
-                    })
-                    .catch(error => {
-                        resolve();
-                        console.error('Error getting token', error);
-                    });
+                this.firebaseMessaging.getToken().then(token => {
+                    this.toolsService.device_push_token = token;
+                    resolve();
+                }).catch(error => {
+                    resolve();
+                    console.error('Error getting token', error);
+                });
             } else {
                 resolve();
             }

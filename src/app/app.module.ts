@@ -13,7 +13,6 @@ import {HttpResponseInterceptor} from './interceptors/HttpResponseInterceptor';
 import {environment} from '../environments/environment';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
-import {Firebase} from '@ionic-native/firebase/ngx';
 import {FirebaseDynamicLinks} from '@ionic-native/firebase-dynamic-links/ngx';
 import {FirebaseMessaging} from '@ionic-native/firebase-messaging/ngx';
 
@@ -100,7 +99,6 @@ export function asyncCacheOptionsFactory(): AsyncCacheOptions {
     providers: [
         {provide: LOCALE_ID, useValue: 'fr-FR'},
         StatusBar,
-        Firebase,
         FirebaseDynamicLinks,
         FirebaseMessaging,
         MobileAccessibility,
