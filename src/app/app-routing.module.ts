@@ -20,12 +20,6 @@ const routes: Routes = [
         canActivate: [PublicGuard]
     },
     {
-        path: 'nouveau-mot-de-passe/:email/:token',
-        loadChildren: './bundles/public/public-password-regenerate-form/public-password-regenerate-form.module#PublicPasswordRegenerateFormPageModule',
-        canActivate: [PublicGuard]
-
-    },
-    {
         path: 'deconnexion',
         loadChildren: './bundles/public/public-logout/public-logout.module#PublicLogoutPageModule',
         canActivate: [PublicGuard]

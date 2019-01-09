@@ -30,7 +30,7 @@ export class PublicPasswordLostFormPage implements OnInit {
 
     buildForm() {
         this.create_form = this.formBuilder.group({
-            email: [null, [requiredValidator, emailValidator]],
+            cellphone: [null, [requiredValidator]],
             recaptcha: [null, requiredValidator]
         }, {updateOn: 'submit'});
     }

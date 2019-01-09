@@ -16,27 +16,17 @@
     </ion-infinite-scroll>
 
     <div *ngFor="let discussion_comment of discussion_comments" class="message" [class.left]=" discussion_comment.sender_id === toolsService.payloads.user.id" [class.right]="discussion_comment.sender_id !== toolsService.payloads.user.id">
-        <img class="user-img" [src]="discussion_comment.sender.picture" alt="" src="">
+        <img class="user-img" [src]="discussion_comment.sender.picture" alt="">
         <div class="msg-detail">
             <div class="msg-info">
                 <p>
-                    {{discussion_comment.sender.fullname}}&nbsp;&nbsp;&nbsp;{{discussion_comment.created | date: 'dd/MM/yyyy à HH:mm'}}</p>
+                    {{discussion_comment.created | date: 'dd/MM/yyyy à HH:mm'}}</p>
             </div>
-            <div class="msg-content">
-                <span class="triangle"></span>
+            <div (click)="loadDiscussionCommentActionSheet(discussion_comment)" class="msg-content">
                 <p class="line-breaker ">{{discussion_comment.content}}</p>
             </div>
         </div>
     </div>
-
-
-
-    <div class="message"*ngFor="let discussion_comment of discussion_comments">
-        {{discussion_comment.created | date: 'dd/MM/yyyy à HH:mm'}}
-        {{discussion_comment.content}}
-        <a (click)="loadDiscussionCommentActionSheet(discussion_comment)">options</a>
-    </div>
-
 
     <form *ngIf="create_form" [formGroup]="create_form" #ngForm="ngForm" (ngSubmit)="submit()">
         <ion-item>
