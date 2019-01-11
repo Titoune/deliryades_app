@@ -1,102 +1,137 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <span class="modal-close-button" (click)="cancelForm()">Annuler</span>
-    </ion-buttons>
-    <ion-title>Modifier mon profil</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <span class="modal-close-button" (click)="cancelForm()">Annuler</span>
+        </ion-buttons>
+        <ion-title>Modifier mon profil</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <form *ngIf="!toolsService.isEmpty(user) && update_form" [formGroup]="update_form" #ngForm="ngForm"
-              (ngSubmit)="submit()">
-          <ion-item>
-            <ion-label position="stacked">Genre</ion-label>
-            <ion-select formControlName="sex" placeholder="">
-              <ion-select-option value="m">Homme</ion-select-option>
-              <ion-select-option value="f">Femme</ion-select-option>
-            </ion-select>
-            <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
-                    'sex')}}
-            </p>
-          </ion-item>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <form *ngIf="!toolsService.isEmpty(user) && update_form" [formGroup]="update_form" #ngForm="ngForm"
+                      (ngSubmit)="submit()">
+                    <ion-item>
+                        <ion-label position="stacked">Genre</ion-label>
+                        <ion-select formControlName="sex" placeholder="">
+                            <ion-select-option value="m">Homme</ion-select-option>
+                            <ion-select-option value="f">Femme</ion-select-option>
+                        </ion-select>
+                        <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+                            'sex')}}
+                        </p>
+                    </ion-item>
 
-          <ion-item>
-            <ion-label position="stacked">Prénom</ion-label>
-            <ion-input formControlName="firstname" placeholder=""></ion-input>
-            <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
-                    'firstname')}}
-            </p>
-          </ion-item>
+                    <ion-item>
+                        <ion-label position="stacked">Prénom</ion-label>
+                        <ion-input formControlName="firstname" placeholder=""></ion-input>
+                        <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+                            'firstname')}}
+                        </p>
+                    </ion-item>
 
-          <ion-item>
-            <ion-label position="stacked">Nom</ion-label>
-            <ion-input formControlName="lastname" placeholder=""></ion-input>
-            <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
-                    'lastname')}}
-            </p>
-          </ion-item>
+                    <ion-item>
+                        <ion-label position="stacked">Nom</ion-label>
+                        <ion-input formControlName="lastname" placeholder=""></ion-input>
+                        <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+                            'lastname')}}
+                        </p>
+                    </ion-item>
 
-          <ion-item>
-            <ion-label position="stacked">Email</ion-label>
-            <ion-input formControlName="email" placeholder=""></ion-input>
-            <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
-                    'email')}}
-            </p>
-          </ion-item>
+                    <ion-item>
+                        <ion-label position="stacked">Email</ion-label>
+                        <ion-input formControlName="email" placeholder=""></ion-input>
+                        <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+                            'email')}}
+                        </p>
+                    </ion-item>
+                    <ion-row>
+                        <ion-col size-md="2" size-lg="2" size-xs="4">
+                            <ion-item>
+                                <ion-label position="stacked">Indicatif</ion-label>
+                                <ion-select formControlName="cellphone_prefix" placeholder="">
+                                    <ion-select-option *ngFor="let p of prefix" value="{{p}}">{{p}}</ion-select-option>
+                                </ion-select>
+                                <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+                                    'cellphone_prefix')}}
+                                </p>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size-md="10" size-lg="10" size-xs="8">
+                            <ion-item>
+                                <ion-label position="stacked">Téléphone mobile</ion-label>
+                                <ion-input type="tel" formControlName="cellphone" placeholder=""></ion-input>
+                                <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+                                    'cellphone')}}
+                                </p>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
 
-          <ion-item>
-            <ion-label position="stacked">Date de naissance</ion-label>
-            <ion-datetime formControlName="birth" placeholder="" displayFormat="DD MMMM YYYY"
-                          pickerFormat="DD MMMM YYYY">
-            </ion-datetime>
-            <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
-                    'birth')}}
-            </p>
-          </ion-item>
+                    <ion-row>
+                        <ion-col size-md="2" size-lg="2" size-xs="4">
+                            <ion-item>
+                                <ion-label position="stacked">Indicatif</ion-label>
+                                <ion-select formControlName="phone_prefix" placeholder="">
+                                    <ion-select-option *ngFor="let p of prefix" value="{{p}}">{{p}}</ion-select-option>
+                                </ion-select>
+                                <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+                                    'phone_prefix')}}
+                                </p>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size-md="10" size-lg="10" size-xs="8">
+                            <ion-item>
+                                <ion-label position="stacked">Téléphone fixe</ion-label>
+                                <ion-input type="tel" formControlName="phone" placeholder=""></ion-input>
+                                <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+                                    'phone')}}
+                                </p>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
 
-          <ion-item>
-            <ion-label position="stacked">Date de décès</ion-label>
-            <ion-datetime formControlName="death" placeholder="" displayFormat="DD MMMM YYYY"
-                          pickerFormat="DD MMMM YYYY">
-            </ion-datetime>
-            <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
-                    'death')}}
-            </p>
-          </ion-item>
+                    <ion-item>
+                        <ion-label position="stacked">Date de naissance</ion-label>
+                        <ion-datetime formControlName="birth" placeholder="" displayFormat="DD MMMM YYYY"
+                                      pickerFormat="DD MMMM YYYY">
+                        </ion-datetime>
+                        <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+                            'birth')}}
+                        </p>
+                    </ion-item>
 
-          <ion-item>
-            <ion-label position="stacked">Présentation</ion-label>
-            <ion-textarea formControlName="presentation" placeholder=""></ion-textarea>
-            <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
-                    'presentation')}}
-            </p>
-          </ion-item>
-
-
-          <ion-item>
-            <ion-label position="stacked">Profession</ion-label>
-            <ion-input formControlName="profession" placeholder=""></ion-input>
-            <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
-                    'profession')}}
-            </p>
-          </ion-item>
+                    <ion-item>
+                        <ion-label position="stacked">Présentation</ion-label>
+                        <ion-textarea formControlName="presentation" placeholder=""></ion-textarea>
+                        <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+                            'presentation')}}
+                        </p>
+                    </ion-item>
 
 
-          <ion-item>
-            <ion-label position="stacked">Branche</ion-label>
-            <ion-input formControlName="branch" placeholder=""></ion-input>
-            <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
-                    'branch')}}
-            </p>
-          </ion-item>
+                    <ion-item>
+                        <ion-label position="stacked">Profession</ion-label>
+                        <ion-input formControlName="profession" placeholder=""></ion-input>
+                        <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+                            'profession')}}
+                        </p>
+                    </ion-item>
 
-          <ion-button type="submit" expand="full" color="purple">Enregistrer</ion-button>
-        </form>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+
+                    <ion-item>
+                        <ion-label position="stacked">Branche</ion-label>
+                        <ion-input formControlName="branch" placeholder=""></ion-input>
+                        <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
+                            'branch')}}
+                        </p>
+                    </ion-item>
+
+                    <ion-button type="submit" expand="full" color="purple">Enregistrer</ion-button>
+                </form>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>

@@ -4,7 +4,7 @@ import {environment} from '../../../../environments/environment';
 import {UsersService} from '../../../services/users.service';
 import {AlertController, LoadingController, ModalController, NavController} from '@ionic/angular';
 import {ToolsService} from '../../../services/tools.service';
-import {dateValidator, inListValidator, lengthBetweenValidator, naturalNumberValidator, regexValidator, requiredValidator} from '../../../custom-validators';
+import {dateValidator, emailValidator, inListValidator, lengthBetweenValidator, naturalNumberValidator, regexValidator, requiredValidator} from '../../../custom-validators';
 
 @Component({
     selector: 'app-user-profile-update-form',
@@ -16,6 +16,7 @@ export class UserProfileUpdateFormComponent implements OnInit {
     user: any = {};
     update_form: FormGroup;
     environment = environment;
+    prefix = [];
 
     constructor(
         public userService: UsersService,
@@ -29,6 +30,9 @@ export class UserProfileUpdateFormComponent implements OnInit {
     }
 
     ngOnInit() {
+        for (let i = 30; i < 50; i++) {
+            this.prefix.push('+' + i);
+        }
         this.getUser();
     }
 
@@ -44,11 +48,12 @@ export class UserProfileUpdateFormComponent implements OnInit {
             sex: [this.user.sex, [requiredValidator, inListValidator(['m', 'f'])]],
             firstname: [this.user.firstname, [requiredValidator, regexValidator('^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð \'-]+$', 'veuillez vérifier ce champs')]],
             lastname: [this.user.lastname, [requiredValidator, regexValidator('^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð \'-]+$', 'veuillez vérifier ce champs')]],
-            email: [this.user.email, [requiredValidator]],
-            birth: [this.user.birth, [requiredValidator, dateValidator]],
-            death: [this.user.death, [requiredValidator, dateValidator]],
-            cellphone: [this.user.cellphone, [requiredValidator, regexValidator('^(?:(?:\\+|00)33|0)\\s*[1-9](?:[\\s.-]*\\d{2}){4}$', 'veuillez vérifier ce champs')]],
-            phone: [this.user.phone, [requiredValidator, regexValidator('^(?:(?:\\+|00)33|0)\\s*[1-9](?:[\\s.-]*\\d{2}){4}$', 'veuillez vérifier ce champs')]],
+            email: [this.user.email, [emailValidator]],
+            birth: [this.user.birth, [dateValidator]],
+            cellphone_prefix: [this.user.cellphone_prefix],
+            cellphone: [this.user.cellphone, [regexValidator('^(?:(?:\\+|00)33|0)\\s*[1-9](?:[\\s.-]*\\d{2}){4}$', 'veuillez vérifier ce champs')]],
+            phone_prefix: [this.user.phone_prefix],
+            phone: [this.user.phone, [regexValidator('^(?:(?:\\+|00)33|0)\\s*[1-9](?:[\\s.-]*\\d{2}){4}$', 'veuillez vérifier ce champs')]],
             presentation: [this.user.presentation, [lengthBetweenValidator(2, 10000)]],
             branch: [this.user.branch, [lengthBetweenValidator(1, 8), naturalNumberValidator]],
             profession: [this.user.profession, [lengthBetweenValidator(1, 20)]]

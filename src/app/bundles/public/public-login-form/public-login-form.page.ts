@@ -32,7 +32,7 @@ export class PublicLoginFormPage implements OnInit {
 
     buildForm() {
         this.create_form = this.formBuilder.group({
-            cellphone: [null, [requiredValidator]],
+            credential: [null, [requiredValidator]],
             password: [null, [requiredValidator]],
         }, {updateOn: 'submit'});
     }
@@ -46,7 +46,7 @@ export class PublicLoginFormPage implements OnInit {
             const request = await <any>this.authService.public_setUserLoginForm(this.create_form.value);
             await loading.dismiss();
             if (request.code === 200) {
-                await this.navCtrl.navigateRoot('/comptes');
+                await this.navCtrl.navigateRoot('/annuaire');
             } else {
                 ToolsService.generateServerValidationErrors(this.create_form, request);
             }

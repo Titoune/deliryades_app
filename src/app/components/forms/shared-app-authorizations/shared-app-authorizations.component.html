@@ -1,6 +1,6 @@
 <ion-header>
     <ion-toolbar>
-        <ion-buttons slot="start">
+        <ion-buttons slot="end">
             <span class="modal-close-button" (click)="modalCtrl.dismiss()">Fermer</span>
         </ion-buttons>
         <ion-title>Autorisations de l'application</ion-title>
@@ -18,9 +18,9 @@
             <span *ngIf="toolsService.authorization_notification == true">Autorisation accordée</span>
             <span *ngIf="toolsService.authorization_notification != true">Autorisation refusée</span>
         </p>
-        <button (click)="authorizationsService.requestNotificationAuthorization()"
+        <ion-button expand="full" color="purple" (click)="authorizationsService.requestNotificationAuthorization()"
                 *ngIf="toolsService.authorization_notification != true">Activer
-        </button>
+        </ion-button>
     </div>
 
 
@@ -34,9 +34,9 @@
             <span *ngIf="toolsService.authorization_external_storage == true">Autorisation accordée</span>
             <span *ngIf="toolsService.authorization_external_storage != true">Autorisation refusée</span>
         </p>
-        <button (click)="authorizationsService.requestExternalStorageAuthorization()"
+        <ion-button expand="full" color="purple" (click)="authorizationsService.requestExternalStorageAuthorization()"
                 *ngIf="toolsService.authorization_external_storage != true">Activer
-        </button>
+        </ion-button>
     </div>
 
 
@@ -49,9 +49,9 @@
             <span *ngIf="toolsService.authorization_camera == true">Autorisation accordée</span>
             <span *ngIf="toolsService.authorization_camera != true">Autorisation refusée</span>
         </p>
-        <button (click)="authorizationsService.requestCameraAuthorization()"
+        <ion-button expand="full" color="purple" (click)="authorizationsService.requestCameraAuthorization()"
                 *ngIf="toolsService.authorization_camera != true">Activer
-        </button>
+        </ion-button>
     </div>
 
 
@@ -64,23 +64,23 @@
             <span *ngIf="toolsService.authorization_microphone == true">Autorisation accordée</span>
             <span *ngIf="toolsService.authorization_microphone != true">Autorisation refusée</span>
         </p>
-        <button (click)="authorizationsService.requestMicrophoneAuthorization()"
+        <ion-button expand="full" color="purple" (click)="authorizationsService.requestMicrophoneAuthorization()"
                 *ngIf="toolsService.authorization_microphone != true">Activer
-        </button>
+        </ion-button>
     </div>
 
 
     <div>
         <h2>Géolocalisation</h2>
         <p>
-            Permet de vous localiser lors de la création d'un signalement ou de la saisie de votre adresse
+            Permet de vous localiser quand vous cherchez une adresse
         </p>
         <p>
             <span *ngIf="toolsService.authorization_location == true">Autorisation accordée</span>
             <span *ngIf="toolsService.authorization_location != true">Autorisation refusée</span>
         </p>
-        <button (click)="authorizationsService.requestLocationAuthorization()"
+        <ion-button expand="full" color="purple" (click)="authorizationsService.requestLocationAuthorization()"
                 *ngIf="toolsService.authorization_location != true">Activer
-        </button>
+        </ion-button>
     </div>
 </ion-content>

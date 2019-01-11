@@ -10,19 +10,19 @@ import {environment} from '../../../../environments/environment';
 export class UserMenuComponent implements OnInit {
     public menus = [
         {
-            title: 'Administrés',
+            title: 'Annuaire',
             url: '/annuaire',
             icon: 'assets/icon/menu/administres.svg',
             class: 'administres',
             notification_count: this.toolsService.notification_counts[7]
         },
-        {
-            title: 'Messagerie',
-            url: '/messages',
-            icon: 'assets/icon/menu/messages.svg',
-            class: 'messages',
-            notification_count: this.toolsService.notification_counts[1]
-        },
+       // {
+       //     title: 'Messagerie',
+       //     url: '/messages',
+        //    icon: 'assets/icon/menu/messages.svg',
+        //    class: 'messages',
+         //   notification_count: this.toolsService.notification_counts[1]
+        //},
         {
             title: 'Sondages',
             url: '/sondages',
@@ -30,20 +30,20 @@ export class UserMenuComponent implements OnInit {
             class: 'polls',
             notification_count: 0
         },
-        {
-            title: 'Agenda',
-            url: '/evenements',
-            icon: 'assets/icon/menu/calendar.svg',
-            class: 'calendar',
-            notification_count: 0
-        },
-        {
-            title: 'Chat',
-            url: '/chat',
-            icon: 'assets/icon/menu/calendar.svg',
-            class: 'calendar',
-            notification_count: 0
-        }
+       // {
+        //    title: 'Agenda',
+         //   url: '/evenements',
+         //   icon: 'assets/icon/menu/calendar.svg',
+         //   class: 'calendar',
+         //   notification_count: 0
+        //},
+        //{
+        //    title: 'Chat',
+        //    url: '/chat',
+        //    icon: 'assets/icon/menu/calendar.svg',
+        //    class: 'calendar',
+        //    notification_count: 0
+        //}
     ];
     public footerMenus = [
         {

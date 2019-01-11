@@ -5,11 +5,16 @@
                 <div text-center>
                     <h4>Deliryades</h4>
                 </div>
+                <p text-center>
+                    Pour vous connecter, utilisez votre <b>adresse email</b> ou votre <b>numéro de téléphone portable</b><br>(sans
+                    indificatif ex : 0607080910)
+                </p>
                 <form #ngForm="ngForm" (ngSubmit)="submit()" *ngIf="create_form" [formGroup]="create_form">
                     <ion-item>
-                        <ion-input formControlName="cellphone" placeholder="Numéro de téléphone portable" type="text"></ion-input>
+                        <ion-input formControlName="credential" placeholder="Téléphone portable ou adresse email"
+                                   type="text"></ion-input>
                         <p *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
-                            'cellphone')}}
+                            'credential')}}
                         </p>
                     </ion-item>
 

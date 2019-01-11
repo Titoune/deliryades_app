@@ -6,6 +6,7 @@ import {SharedPasswordUpdateFormComponent} from '../../../components/forms/share
 import {SharedBugReportCreateFormComponent} from '../../../components/forms/shared-bug-report-create-form/shared-bug-report-create-form.component';
 import {SharedAppAuthorizationsComponent} from '../../../components/forms/shared-app-authorizations/shared-app-authorizations.component';
 import {UserNotificationUpdateFormComponent} from '../../../components/forms/user-notification-update-form/user-notification-update-form.component';
+import {UserProfileUpdateFormComponent} from '../../../components/forms/user-profile-update-form/user-profile-update-form.component';
 
 @Component({
     selector: 'app-user-parameters-index',
@@ -25,6 +26,14 @@ export class UserParametersIndexPage implements OnInit {
     async showPasswordUpdateFormModal() {
         const modal = await this.modalCtrl.create({
             component: SharedPasswordUpdateFormComponent,
+            backdropDismiss: false
+        });
+        return await modal.present();
+    }
+
+    async showProfilUpdateFormModal() {
+        const modal = await this.modalCtrl.create({
+            component: UserProfileUpdateFormComponent,
             backdropDismiss: false
         });
         return await modal.present();
