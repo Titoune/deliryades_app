@@ -68,12 +68,12 @@
         </li>
         <li *ngIf="user.phone">
             <label>Téléphone fixe</label>
-            <span>{{user.phone}}</span>
+            <span>{{user.phone_prefix}}{{user.phone}}</span>
         </li>
 
         <li *ngIf="user.cellphone">
             <label>Téléphone mobile</label>
-            <span>{{user.cellphone}}</span>
+            <span>{{user.cellphone_prefix}}{{user.cellphone}}</span>
         </li>
         <li *ngIf="user.route">
             <label>Adresse</label>

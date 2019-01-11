@@ -3,7 +3,6 @@ import {ActionSheetController, AlertController, IonInfiniteScroll, IonRefresher,
 import {environment} from '../../../../environments/environment';
 import * as moment from 'moment';
 import {ToolsService} from '../../../services/tools.service';
-import {ActivatedRoute} from '@angular/router';
 import {UsersService} from '../../../services/users.service';
 import {UserUserViewComponent} from '../../../components/user-user-view/user-user-view.component';
 
@@ -27,7 +26,6 @@ export class UserUsersIndexPage implements OnInit {
       public navCtrl: NavController,
       public toolsService: ToolsService,
       public loadingCtrl: LoadingController,
-      public actionSheetCtrl: ActionSheetController,
       public alertCtrl: AlertController,
       public modalCtrl: ModalController
   ) {

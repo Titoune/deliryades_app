@@ -40,17 +40,13 @@ export class UserUserViewComponent implements OnInit {
     }
 
     async sendEmail() {
-        this.emailComposer.isAvailable().then((available: boolean) => {
-            if (available) {
-                const email = {
-                    to: this.user.email,
-                    subject: '',
-                    body: '',
-                    isHtml: false
-                };
-                this.emailComposer.open(email);
-            }
-        });
+        const email = {
+            to: this.user.email,
+            subject: '',
+            body: '',
+            isHtml: false
+        };
+        this.emailComposer.open(email);
     }
 
     async loadCallActionSheet() {
@@ -58,22 +54,22 @@ export class UserUserViewComponent implements OnInit {
 
         if (this.user.cellphone) {
             options.push({
-                text: this.user.cellphone,
+                text: this.user.cellphone_prefix + this.user.cellphone,
                 role: 'destructive',
 
                 handler: async () => {
-                    await this.call(this.user.cellphone);
+                    await this.call(this.user.cellphone_prefix + this.user.cellphone);
                 }
             });
         }
 
         if (this.user.phone) {
             options.push({
-                text: this.user.phone,
+                text: this.user.phone_prefix + this.user.phone,
                 role: 'destructive',
 
                 handler: async () => {
-                    await this.call(this.user.phone);
+                    await this.call(this.user.phone_prefix + this.user.phone);
                 }
             });
         }

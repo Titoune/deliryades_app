@@ -41,7 +41,7 @@ export class SharedBugReportCreateFormComponent implements OnInit {
             const loading = await this.loadingCtrl.create({message: 'enregistrement...'});
             await loading.present();
 
-            const request = await <any>this.configurationsService.shared_setBugReportCreateForm({
+            const request = await <any>this.configurationsService.public_setBugReportCreateForm({
                 content: this.create_form.value.content,
                 payloads: this.toolsService.payloads,
                 jwt: this.toolsService.jwt,
