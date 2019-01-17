@@ -1,8 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {environment} from '../../../../environments/environment';
 import * as moment from 'moment';
-import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
-import {PollsService} from '../../../services/polls.service';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {AlertController, LoadingController, ModalController} from '@ionic/angular';
 import {ToolsService} from '../../../services/tools.service';
 import {lengthBetweenValidator, requiredValidator} from '../../../custom-validators';
@@ -48,7 +47,7 @@ export class UserSmsCreateFormComponent implements OnInit {
             const loading = await this.loadingCtrl.create({message: 'envoi...'});
             await loading.present();
 
-            this.sms.send(this.user.cellphone, this.create_form.value.content);
+            this.sms.send(this.user.cellphone_prefix + this.user.cellphone, this.create_form.value.content);
 
             await loading.dismiss();
             await this.modalCtrl.dismiss();
