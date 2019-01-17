@@ -12,6 +12,7 @@ import {SocketService} from './services/socket.service';
 import {Plugins} from '@capacitor/core';
 import {DevicesService} from './services/devices.service';
 import {FirebaseMessaging} from '@ionic-native/firebase-messaging/ngx';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
 @Component({
     selector: 'app-root',
@@ -31,7 +32,8 @@ export class AppComponent {
         private alertCtrl: AlertController,
         public events: Events,
         public devicesService: DevicesService,
-        public firebaseMessaging: FirebaseMessaging
+        public firebaseMessaging: FirebaseMessaging,
+        private splashScreen: SplashScreen
     ) {
         platform.pause.subscribe(() => {
             console.log('platforme pause');
@@ -49,6 +51,7 @@ export class AppComponent {
 
     async initializeApp() {
         await this.platform.ready();
+        this.splashScreen.hide();
         console.log('platform ready');
 
         this.mobileAccessibility.usePreferredTextZoom(false);
