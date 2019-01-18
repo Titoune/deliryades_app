@@ -32,7 +32,7 @@
     <preference name="xwalkZOrderOnTop" value="true" />
     <preference name="BackgroundColor" value="0" />
     <platform name="android">
-        <resource-file src="google-services.json" target="app/google-services.json" />
+        <resource-file src="config/google-services.json" target="app/google-services.json" />
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
@@ -54,7 +54,7 @@
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
     </platform>
     <platform name="ios">
-        <resource-file src="GoogleService-Info.plist" />
+        <resource-file src="config/GoogleService-Info.plist" target="GoogleService-Info.plist" />
         <edit-config file="*-Info.plist" mode="merge" target="NSBluetoothPeripheralUsageDescription">
             <string>Cas d'utilisation : lecture sur un casque bluetooth d'une vidéo</string>
         </edit-config>
@@ -149,6 +149,6 @@
     <plugin name="cordova-plugin-email-composer" spec="0.9.1" />
     <plugin name="cordova-sms-plugin" spec="1.0.0" />
     <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
-    <engine name="android" spec="7.1.2" />
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
+    <engine name="android" spec="~7.1.2" />
 </widget>
