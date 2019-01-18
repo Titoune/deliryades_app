@@ -45,6 +45,7 @@ import {UserMenuComponentModule} from './components/menus/user-menu/user-menu.co
 import {EmailComposer} from '@ionic-native/email-composer/ngx';
 import {SMS} from '@ionic-native/sms/ngx';
 import {CallNumber} from '@ionic-native/call-number/ngx';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
 
 // import { Market } from '@ionic-native/market';
@@ -99,6 +100,7 @@ export function asyncCacheOptionsFactory(): AsyncCacheOptions {
     providers: [
         {provide: LOCALE_ID, useValue: 'fr-FR'},
         StatusBar,
+        SplashScreen,
         FirebaseDynamicLinks,
         FirebaseMessaging,
         MobileAccessibility,
