@@ -5,7 +5,7 @@ import {environment} from '../../../environments/environment';
     selector: 'mec-header-publication',
     templateUrl: './mec-header-publication.component.html',
     styleUrls: ['./mec-header-publication.component.scss'],
-    encapsulation: ViewEncapsulation.Native
+    encapsulation: ViewEncapsulation.ShadowDom
 })
 export class MecHeaderPublicationComponent implements OnInit {
 

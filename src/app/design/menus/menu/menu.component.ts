@@ -8,7 +8,7 @@ import {environment} from '../../../../environments/environment';
     selector: 'mec-menu',
     templateUrl: './menu.component.html',
     styleUrls: ['./menu.component.scss'],
-    encapsulation: ViewEncapsulation.Native
+    encapsulation: ViewEncapsulation.ShadowDom
 
 })
 export class MenuComponent implements OnInit {

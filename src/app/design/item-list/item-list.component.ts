@@ -5,7 +5,7 @@ import {environment} from '../../../environments/environment';
     selector: 'mec-item-list',
     templateUrl: './item-list.component.html',
     styleUrls: ['./item-list.component.scss'],
-    encapsulation: ViewEncapsulation.Native
+    encapsulation: ViewEncapsulation.ShadowDom
 })
 export class ItemListComponent implements OnInit {
 

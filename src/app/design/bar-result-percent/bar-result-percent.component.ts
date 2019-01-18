@@ -5,7 +5,7 @@ import {environment} from '../../../environments/environment';
     selector: 'mec-bar-result-percent',
     templateUrl: './bar-result-percent.component.html',
     styleUrls: ['./bar-result-percent.component.scss'],
-    encapsulation: ViewEncapsulation.Native
+    encapsulation: ViewEncapsulation.ShadowDom
 })
 export class BarResultPercentComponent implements OnInit {
 

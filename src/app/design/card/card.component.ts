@@ -5,7 +5,7 @@ import {environment} from '../../../environments/environment';
     selector: 'mec-card',
     templateUrl: './card.component.html',
     styleUrls: ['./card.component.scss'],
-    encapsulation: ViewEncapsulation.Native
+    encapsulation: ViewEncapsulation.ShadowDom
 })
 export class CardComponent implements OnInit {
     environment = environment;

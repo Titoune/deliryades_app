@@ -5,7 +5,7 @@ import {environment} from '../../../../environments/environment';
     selector: 'mec-publication-pdf',
     templateUrl: './publication-pdf.component.html',
     styleUrls: ['./publication-pdf.component.scss'],
-    encapsulation: ViewEncapsulation.Native
+    encapsulation: ViewEncapsulation.ShadowDom
 
 })
 export class PublicationPdfComponent implements OnInit {

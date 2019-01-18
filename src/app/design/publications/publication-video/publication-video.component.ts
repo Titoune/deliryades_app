@@ -6,7 +6,7 @@ import {environment} from '../../../../environments/environment';
     selector: 'mec-publication-video',
     templateUrl: './publication-video.component.html',
     styleUrls: ['./publication-video.component.scss'],
-    encapsulation: ViewEncapsulation.Native
+    encapsulation: ViewEncapsulation.ShadowDom
 
 })
 export class PublicationVideoComponent implements OnInit {

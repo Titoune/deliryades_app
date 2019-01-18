@@ -5,7 +5,7 @@ import {environment} from '../../../../environments/environment';
     selector: 'mec-publication-picture',
     templateUrl: './publication-picture.component.html',
     styleUrls: ['./publication-picture.component.scss'],
-    encapsulation: ViewEncapsulation.Native
+    encapsulation: ViewEncapsulation.ShadowDom
 
 })
 export class PublicationPictureComponent implements OnInit {

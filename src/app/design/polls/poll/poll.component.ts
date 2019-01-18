@@ -7,7 +7,7 @@ import {environment} from '../../../../environments/environment';
     selector: 'mec-poll',
     templateUrl: './poll.component.html',
     styleUrls: ['./poll.component.scss'],
-    encapsulation: ViewEncapsulation.Native
+    encapsulation: ViewEncapsulation.ShadowDom
 })
 export class PollComponent implements OnInit {
     @Input() poll: any;

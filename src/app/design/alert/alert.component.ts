@@ -5,7 +5,7 @@ import {environment} from '../../../environments/environment';
     selector: 'mec-alert',
     templateUrl: './alert.component.html',
     styleUrls: ['./alert.component.scss'],
-    encapsulation: ViewEncapsulation.Native
+    encapsulation: ViewEncapsulation.ShadowDom
 
 })
 export class AlertComponent implements OnInit {

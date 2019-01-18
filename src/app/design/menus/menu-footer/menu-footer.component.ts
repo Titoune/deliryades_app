@@ -5,7 +5,7 @@ import {environment} from '../../../../environments/environment';
     selector: 'mec-menu-footer',
     templateUrl: './menu-footer.component.html',
     styleUrls: ['./menu-footer.component.scss'],
-    encapsulation: ViewEncapsulation.Native
+    encapsulation: ViewEncapsulation.ShadowDom
 
 })
 export class MenuFooterComponent implements OnInit {

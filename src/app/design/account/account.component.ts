@@ -5,7 +5,7 @@ import {environment} from '../../../environments/environment';
     selector: 'mec-account',
     templateUrl: './account.component.html',
     styleUrls: ['./account.component.scss'],
-    encapsulation: ViewEncapsulation.Native
+    encapsulation: ViewEncapsulation.ShadowDom
 })
 export class AccountComponent implements OnInit {
     @Input() account: any;

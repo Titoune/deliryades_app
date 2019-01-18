@@ -5,7 +5,7 @@ import {environment} from '../../../../environments/environment';
     selector: 'mec-publication-social-bar',
     templateUrl: './publication-social-bar.component.html',
     styleUrls: ['./publication-social-bar.component.scss'],
-    encapsulation: ViewEncapsulation.Native
+    encapsulation: ViewEncapsulation.ShadowDom
 
 })
 export class PublicationSocialBarComponent implements OnInit {

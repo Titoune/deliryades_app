@@ -5,7 +5,7 @@ import {environment} from '../../../environments/environment';
     selector: 'mec-widget',
     templateUrl: './mec-widget.component.html',
     styleUrls: ['./mec-widget.component.scss'],
-    encapsulation: ViewEncapsulation.Native
+    encapsulation: ViewEncapsulation.ShadowDom
 
 })
 export class MecWidgetComponent implements OnInit {

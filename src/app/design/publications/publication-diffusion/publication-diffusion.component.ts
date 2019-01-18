@@ -5,7 +5,7 @@ import {environment} from '../../../../environments/environment';
     selector: 'mec-publication-diffusion',
     templateUrl: './publication-diffusion.component.html',
     styleUrls: ['./publication-diffusion.component.scss'],
-    encapsulation: ViewEncapsulation.Native
+    encapsulation: ViewEncapsulation.ShadowDom
 
 })
 /**

@@ -5,7 +5,7 @@ import {environment} from '../../../../environments/environment';
     selector: 'mec-publication-comment',
     templateUrl: './publication-comment.component.html',
     styleUrls: ['./publication-comment.component.scss'],
-    encapsulation: ViewEncapsulation.Native
+    encapsulation: ViewEncapsulation.ShadowDom
 
 })
 export class PublicationCommentComponent implements OnInit {
