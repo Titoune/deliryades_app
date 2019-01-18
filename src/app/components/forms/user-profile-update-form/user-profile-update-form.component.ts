@@ -5,6 +5,7 @@ import {UsersService} from '../../../services/users.service';
 import {AlertController, LoadingController, ModalController, NavController} from '@ionic/angular';
 import {ToolsService} from '../../../services/tools.service';
 import {dateValidator, emailValidator, inListValidator, lengthBetweenValidator, naturalNumberValidator, regexValidator, requiredValidator} from '../../../custom-validators';
+import * as moment from 'moment';
 
 @Component({
     selector: 'app-user-profile-update-form',
@@ -16,6 +17,7 @@ export class UserProfileUpdateFormComponent implements OnInit {
     user: any = {};
     update_form: FormGroup;
     environment = environment;
+    moment = moment;
     prefix = [];
 
     constructor(
@@ -49,7 +51,7 @@ export class UserProfileUpdateFormComponent implements OnInit {
             firstname: [this.user.firstname, [requiredValidator, regexValidator('^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð \'-]+$', 'veuillez vérifier ce champs')]],
             lastname: [this.user.lastname, [requiredValidator, regexValidator('^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð \'-]+$', 'veuillez vérifier ce champs')]],
             email: [this.user.email, [emailValidator]],
-            birth: [this.user.birth, [dateValidator]],
+            birth: [moment(this.user.birth).format('YYYY-MM-DD'), [dateValidator]],
             cellphone_prefix: [this.user.cellphone_prefix],
             cellphone: [this.user.cellphone, [regexValidator('^(?:(?:\\+|00)33|0)\\s*[1-9](?:[\\s.-]*\\d{2}){4}$', 'veuillez vérifier ce champs')]],
             phone_prefix: [this.user.phone_prefix],

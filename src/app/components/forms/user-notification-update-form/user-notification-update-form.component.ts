@@ -14,6 +14,7 @@ import {DevicesService} from '../../../services/devices.service';
 })
 export class UserNotificationUpdateFormComponent implements OnInit {
 
+
     user: any = {};
     update_form: FormGroup;
     environment = environment;
@@ -65,8 +66,6 @@ export class UserNotificationUpdateFormComponent implements OnInit {
     }
 
     async updateUserField(field) {
-        const value = (this.update_form.get(field).value === false);
-        this.update_form.get(field).setValue(value);
-        await <any>this.usersService.user_setUserField({[field]: value});
+        await <any>this.usersService.user_setUserField({[field]: this.user[field]});
     }
 }

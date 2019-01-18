@@ -12,17 +12,17 @@
     <form *ngIf="!toolsService.isEmpty(user) && update_form" [formGroup]="update_form" #ngForm="ngForm">
             <ion-item>
                 <ion-label>[Mobile] Notifications anniversaires</ion-label>
-                <ion-toggle formControlName="notification_cellphone_anniversary"
+                <ion-toggle [(ngModel)]="user.notification_cellphone_anniversary"  formControlName="notification_cellphone_anniversary"
                             (ionChange)="updateUserField('notification_cellphone_anniversary')"></ion-toggle>
             </ion-item>
             <ion-item>
                 <ion-label>[Mobile] Notifications évènements</ion-label>
-                <ion-toggle formControlName="notification_cellphone_event"
+                <ion-toggle [(ngModel)]="user.notification_cellphone_event" formControlName="notification_cellphone_event"
                             (ionChange)="updateUserField('notification_cellphone_event')"></ion-toggle>
             </ion-item>
             <ion-item>
                 <ion-label>[Mobile] Notifications sondages</ion-label>
-                <ion-toggle formControlName="notification_cellphone_poll"
+                <ion-toggle [(ngModel)]="user.notification_cellphone_poll" formControlName="notification_cellphone_poll"
                             (ionChange)="updateUserField('notification_cellphone_poll')"></ion-toggle>
             </ion-item>
 
@@ -30,17 +30,17 @@
             </ion-item-divider>
             <ion-item>
                 <ion-label>[Email] Notifications anniversaires</ion-label>
-                <ion-toggle formControlName="notification_email_anniversary"
+                <ion-toggle [(ngModel)]="user.notification_email_anniversary" formControlName="notification_email_anniversary"
                             (ionChange)="updateUserField('notification_email_anniversary')"></ion-toggle>
             </ion-item>
             <ion-item>
                 <ion-label>[Email] Notifications sondages</ion-label>
-                <ion-toggle formControlName="notification_email_poll"
+                <ion-toggle [(ngModel)]="user.notification_email_poll" formControlName="notification_email_poll"
                             (ionChange)="updateUserField('notification_email_poll')"></ion-toggle>
             </ion-item>
             <ion-item>
                 <ion-label>[Email] Notifications évènements</ion-label>
-                <ion-toggle formControlName="notification_email_event"
+                <ion-toggle [(ngModel)]="user.notification_email_event" formControlName="notification_email_event"
                             (ionChange)="updateUserField('notification_email_event')"></ion-toggle>
             </ion-item>
     </form>
