@@ -51,11 +51,11 @@ export class ToolsService {
         24: 0
     };
 
-    public authorization_notification;
-    public authorization_location;
-    public authorization_external_storage;
-    public authorization_camera;
-    public authorization_microphone;
+    public authorization_notification = false;
+    public authorization_location = false;
+    public authorization_external_storage = false;
+    public authorization_camera = false;
+    public authorization_microphone = false;
 
     constructor(private ngZone: NgZone, public events: Events, private file: File) {
         this.getScreenSize();

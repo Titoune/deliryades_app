@@ -44,7 +44,9 @@ export class AppComponent {
         });
 
         platform.resume.subscribe(() => {
-            this.authorizationsServices.requestNotificationAuthorization();
+            if ('user' in this.toolsService.payloads) {
+                this.authorizationsServices.requestNotificationAuthorization();
+            }
             console.log('platform resume');
             this.events.publish('platform-resume', true);
         });
@@ -54,7 +56,6 @@ export class AppComponent {
 
     async initializeApp() {
         await this.platform.ready();
-        this.splashScreen.hide();
         console.log('platform ready');
 
         this.mobileAccessibility.usePreferredTextZoom(false);
@@ -63,13 +64,9 @@ export class AppComponent {
         await this.getDeviceToken();
         await this.updateDevice();
         await this.initializeDynamicLinks();
-        this.initializeAuthorizations();
+        await this.initializeAuthorizations();
         await this.initializeBackButton();
-
-        if (this.toolsService.platform !== 'web') {
-            const {SplashScreen} = Plugins;
-            SplashScreen.hide();
-        }
+        this.splashScreen.hide();
     }
 
     async initializeTools() {
@@ -94,69 +91,59 @@ export class AppComponent {
     }
 
     async updateDevice() {
-        if (this.toolsService.platform !== 'web') {
-            await this.devicesService.user_setUpdateForm(this.toolsService.uuid, {
-                device_push_token: this.toolsService.device_push_token,
-                api: this.toolsService.api_version,
-                manufacturer: this.toolsService.manufacturer,
-                model: this.toolsService.model,
-                version: this.toolsService.version,
-                platform: this.toolsService.platform
-            });
-        }
+        await this.devicesService.user_setUpdateForm(this.toolsService.uuid, {
+            device_push_token: this.toolsService.device_push_token,
+            api: this.toolsService.api_version,
+            manufacturer: this.toolsService.manufacturer,
+            model: this.toolsService.model,
+            version: this.toolsService.version,
+            platform: this.toolsService.platform
+        });
     }
 
     async getDeviceToken() {
         return new Promise((resolve) => {
-            if (this.toolsService.platform !== 'web') {
-                this.firebaseMessaging.getToken().then(token => {
-                    this.toolsService.device_push_token = token;
-                    resolve();
-                }).catch(error => {
-                    resolve();
-                    console.error('Error getting token', error);
-                });
-            } else {
+            this.firebaseMessaging.getToken().then(token => {
+                this.toolsService.device_push_token = token;
                 resolve();
-            }
+            }).catch(error => {
+                resolve();
+                console.error('Error getting token', error);
+            });
         });
     }
 
 
     async initializeDynamicLinks() {
-        if (this.toolsService.platform !== 'web') {
-            this.firebaseDynamicLinks.onDynamicLink()
-                .subscribe((res: any) => {
-                    const query_params: any = ToolsService.extractUrlParams(res.deepLink);
-                    if (res.deepLink.indexOf('/auth/generate-password') !== -1) {
-                        this.navCtrl.navigateRoot('/nouveau-mot-de-passe/' + query_params.email + '/' + query_params.token);
-                    } else if (res.deepLink.indexOf('/auth/email-validation') !== -1) {
-                        this.navCtrl.navigateRoot('/validation/' + query_params.email + '/' + query_params.token);
-                    }
-                }, (error: any) => {
-                    console.log(error);
-                });
-        }
+        this.firebaseDynamicLinks.onDynamicLink()
+            .subscribe((res: any) => {
+                const query_params: any = ToolsService.extractUrlParams(res.deepLink);
+                if (res.deepLink.indexOf('/auth/generate-password') !== -1) {
+                    this.navCtrl.navigateRoot('/nouveau-mot-de-passe/' + query_params.email + '/' + query_params.token);
+                } else if (res.deepLink.indexOf('/auth/email-validation') !== -1) {
+                    this.navCtrl.navigateRoot('/validation/' + query_params.email + '/' + query_params.token);
+                }
+            }, (error: any) => {
+                console.log(error);
+            });
     }
 
     async initializeAuthorizations() {
-        if (this.toolsService.platform !== 'web') {
-            let response = await <any>this.diagnostic.isLocationAuthorized();
-            this.toolsService.authorization_location = JSON.stringify(response) === 'true';
+        let response = await <any>this.diagnostic.isLocationAuthorized();
+        this.toolsService.authorization_location = JSON.stringify(response) === 'true';
 
-            response = await <any>this.diagnostic.isMicrophoneAuthorized();
-            this.toolsService.authorization_microphone = JSON.stringify(response) === 'true';
+        response = await <any>this.diagnostic.isMicrophoneAuthorized();
+        this.toolsService.authorization_microphone = JSON.stringify(response) === 'true';
 
-            response = await <any>this.diagnostic.isCameraAuthorized();
-            this.toolsService.authorization_camera = JSON.stringify(response) === 'true';
+        response = await <any>this.diagnostic.isCameraAuthorized();
+        this.toolsService.authorization_camera = JSON.stringify(response) === 'true';
 
-            if (this.toolsService.platform === 'ios') {
-                response = await <any>this.diagnostic.isCameraRollAuthorized();
-                this.toolsService.authorization_external_storage = JSON.stringify(response) === 'true';
-            } else {
-                response = await <any>this.diagnostic.isExternalStorageAuthorized();
-                this.toolsService.authorization_external_storage = JSON.stringify(response) === 'true';
-            }
+        if (this.toolsService.platform === 'ios') {
+            response = await <any>this.diagnostic.isCameraRollAuthorized();
+            this.toolsService.authorization_external_storage = JSON.stringify(response) === 'true';
+        } else {
+            response = await <any>this.diagnostic.isExternalStorageAuthorized();
+            this.toolsService.authorization_external_storage = JSON.stringify(response) === 'true';
         }
     }
 

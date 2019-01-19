@@ -20,36 +20,32 @@ export class AuthorizationsService {
 
     async requestNotificationAuthorization() {
         return new Promise(async (resolve) => {
-            if (['ios', 'android'].indexOf(this.toolsService.platform) !== -1) {
-                if (this.toolsService.platform !== 'android') {
-                    if (this.toolsService.authorization_notification === false) {
-                        const confirm = await this.alertCtrl.create({
-                            header: 'Confirmation',
-                            message: 'Nous avons besoin de votre autorisation pour vous envoyer des notifications (anniversaires, sondages, évènements), voulez-vous le faire maintenant ?',
-                            buttons: [
-                                {
-                                    text: 'non',
-                                    handler: () => {
-                                        resolve();
-                                    }
-                                }, {
-                                    text: 'oui',
-                                    handler: () => {
-                                        this.firebaseMessaging.requestPermission().then(data => {
-                                            this.toolsService.authorization_notification = true;
-                                            resolve();
-                                        }, error => {
-                                            this.toolsService.authorization_notification = false;
-                                            resolve();
-                                        });
-                                    }
+            if (this.toolsService.platform !== 'android') {
+                if (this.toolsService.authorization_notification === false) {
+                    const confirm = await this.alertCtrl.create({
+                        header: 'Confirmation',
+                        message: 'Nous avons besoin de votre autorisation pour vous envoyer des notifications (anniversaires, sondages, évènements), voulez-vous le faire maintenant ?',
+                        buttons: [
+                            {
+                                text: 'non',
+                                handler: () => {
+                                    resolve();
                                 }
-                            ]
-                        });
-                        await confirm.present();
-                    } else {
-                        resolve();
-                    }
+                            }, {
+                                text: 'oui',
+                                handler: () => {
+                                    this.firebaseMessaging.requestPermission().then(data => {
+                                        this.toolsService.authorization_notification = true;
+                                        resolve();
+                                    }, error => {
+                                        this.toolsService.authorization_notification = false;
+                                        resolve();
+                                    });
+                                }
+                            }
+                        ]
+                    });
+                    await confirm.present();
                 } else {
                     resolve();
                 }
