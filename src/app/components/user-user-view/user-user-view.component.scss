@@ -1,11 +1,4 @@
 :host(app-user-user-view) {
-  img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    display: block;
-    margin: 15px auto;
-  }
 
   ul {
     margin: 0;
@@ -42,7 +35,7 @@
 
       &.header-list {
         grid-template-columns: 1fr;
-        background: var(--color-bluegrey);
+        background: var(--color-purple);
         color: #fff;
         font-weight: 500;
         font-size: 1rem;

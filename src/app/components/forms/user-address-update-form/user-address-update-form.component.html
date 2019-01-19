@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancelForm()" icon-only>
+        <ion-icon icon="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Modifier mon adresse</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <h1>Adresse actuelle</h1>
+  <button (click)="loadAddressUpdatePrompt()">Modifier</button>
+  <div *ngIf="!user.lat">Pas d'adresse renseignée</div>
+
+  <div *ngIf="user.lat">
+    {{user.street_number}} {{user.route}} {{user.postal_code}} {{user.locality}} {{user.country}}
+    <div leaflet (leafletMapReady)="onMapReady($event)" style="width:100%; height: 300px"></div>
+  </div>
+</ion-content>

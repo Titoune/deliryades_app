@@ -168,19 +168,13 @@ export class UserProfileUpdateFormComponent implements OnInit {
             cameraDirection: 1,
         }).then(async (result) => {
             result = this.webview.convertFileSrc(result);
-            const loading = await this.loadingCtrl.create({message: 'enregistrement...'});
-            await loading.present();
-
 
             this.uploadPicture(result).then(async data => {
 
                 if (this.toolsService.platform === 'ios') {
                     result = result.replace(/^file:\/\//, '');
                 }
-
                 this.user_picture.nativeElement.src = result;
-
-                await loading.dismiss();
             });
 
         }, (err) => {
@@ -203,9 +197,6 @@ export class UserProfileUpdateFormComponent implements OnInit {
             cameraDirection: 1,
         }).then(async (result) => {
             result = this.webview.convertFileSrc(result);
-            const loading = await this.loadingCtrl.create({message: 'enregistrement...'});
-            await loading.present();
-
 
             this.uploadPicture(result).then(async data => {
 
@@ -214,8 +205,6 @@ export class UserProfileUpdateFormComponent implements OnInit {
                 }
 
                 this.user_picture.nativeElement.src = result;
-
-                await loading.dismiss();
             });
 
         }, (err) => {

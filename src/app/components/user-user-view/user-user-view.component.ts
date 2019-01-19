@@ -5,6 +5,7 @@ import {ActionSheetController, AlertController, LoadingController, ModalControll
 import {EmailComposer} from '@ionic-native/email-composer/ngx';
 import {UserSmsCreateFormComponent} from '../forms/user-sms-create-form/user-sms-create-form.component';
 import {CallNumber} from '@ionic-native/call-number/ngx';
+import {LaunchNavigator, LaunchNavigatorOptions} from '@ionic-native/launch-navigator/ngx';
 
 @Component({
     selector: 'app-user-user-view',
@@ -23,7 +24,8 @@ export class UserUserViewComponent implements OnInit {
         public loadingCtrl: LoadingController,
         private emailComposer: EmailComposer,
         private callNumber: CallNumber,
-        public actionSheetCtrl: ActionSheetController
+        public actionSheetCtrl: ActionSheetController,
+        private launchNavigator: LaunchNavigator
     ) {
     }
 
@@ -96,5 +98,13 @@ export class UserUserViewComponent implements OnInit {
         this.callNumber.callNumber(number, true)
             .then(res => console.log('Launched dialer!', res))
             .catch(err => console.log('Error launching dialer', err));
+    }
+
+    async navigate() {
+        this.launchNavigator.navigate(this.user.street_number + ' ' + this.user.route + ' ' + this.user.postal_code + ' ' + this.user.locality + ' ' + this.user.country)
+            .then(
+                success => console.log('Launched navigator'),
+                error => console.log('Error launching navigator', error)
+            );
     }
 }

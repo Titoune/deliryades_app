@@ -47,6 +47,7 @@ import {SMS} from '@ionic-native/sms/ngx';
 import {CallNumber} from '@ionic-native/call-number/ngx';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {Camera} from '@ionic-native/camera/ngx';
+import {LaunchNavigator, LaunchNavigatorOptions} from '@ionic-native/launch-navigator/ngx';
 
 
 // import { Market } from '@ionic-native/market';
@@ -96,7 +97,7 @@ export function asyncCacheOptionsFactory(): AsyncCacheOptions {
         AngularFirestoreModule,
         NgxCaptchaModule,
         LeafletModule.forRoot(),
-        JoyrideModule.forRoot()
+        JoyrideModule.forRoot(),
     ],
     providers: [
         {provide: LOCALE_ID, useValue: 'fr-FR'},
@@ -112,6 +113,7 @@ export function asyncCacheOptionsFactory(): AsyncCacheOptions {
         FileTransfer,
         File,
         WebView,
+        LaunchNavigator,
         Camera,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
         {provide: HTTP_INTERCEPTORS, useClass: HttpResponseInterceptor, multi: true}

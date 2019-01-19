@@ -81,8 +81,8 @@ export class HttpService {
     }
 
     public file(endpoint, data) {
-        data = this.webview.convertFileSrc(data);
-        // data = data.replace('http://localhost:8080', 'file://');
+        // data = this.webview.convertFileSrc(data);
+        data = data.replace('http://localhost:8080/_app_file_', 'file://');
        // if (data.charAt(0) === '/') {
        //     data = 'file://' + data;
        // }

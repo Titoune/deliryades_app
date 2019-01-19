@@ -21,6 +21,7 @@ import {UserDiscussionCreateFormComponentModule} from './forms/user-discussion-c
 import {UserSmsCreateFormComponentModule} from './forms/user-sms-create-form/user-sms-create-form.component.module';
 import {UserNotificationUpdateFormComponentModule} from './forms/user-notification-update-form/user-notification-update-form.component.module';
 import {UserProfileUpdateFormComponentModule} from './forms/user-profile-update-form/user-profile-update-form.component.module';
+import {UserAddressUpdateFormComponentModule} from './forms/user-address-update-form/user-address-update-form.component.module';
 
 @NgModule({
     imports: [
@@ -45,7 +46,8 @@ import {UserProfileUpdateFormComponentModule} from './forms/user-profile-update-
         UserDiscussionCreateFormComponentModule,
         UserSmsCreateFormComponentModule,
         UserNotificationUpdateFormComponentModule,
-        UserProfileUpdateFormComponentModule
+        UserProfileUpdateFormComponentModule,
+        UserAddressUpdateFormComponentModule
     ]
 })
 export class ComponentsModule {

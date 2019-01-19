@@ -12,8 +12,10 @@
 
         <img #user_picture (click)="loadPictureActionSheet()" appMecImageCache
              [type]="user.sex === 'f' ? 'woman' : 'man'"
-             [url]="user.picture_sizes['md']" [ngStyle]="{'width.px': 100 , 'height.px':100}" alt="" class="img-circle">
-        <p>Cliquer sur la photo pour la modifier</p>
+             [url]="user.picture_sizes['lg']" [ngStyle]="{'width.px': 200 , 'height.px':200}" alt="" class="img-circle">
+        <p>
+            <small>Cliquer sur la photo pour la modifier</small>
+        </p>
     </div>
     <form *ngIf="!toolsService.isEmpty(user) && update_form" [formGroup]="update_form" #ngForm="ngForm"
           (ngSubmit)="submit()">

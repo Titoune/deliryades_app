@@ -1,6 +1,6 @@
 <ion-header>
     <ion-toolbar>
-        <ion-buttons slot="start">
+        <ion-buttons slot="end">
             <span class="modal-close-button" (click)="modalCtrl.dismiss()">Fermer</span>
         </ion-buttons>
         <ion-title *ngIf="!toolsService.isEmpty(user)">{{user.fullname}}</ion-title>
@@ -13,26 +13,32 @@
 
         <img appMecImageCache
              [type]="user.sex === 'f' ? 'woman' : 'man'"
-             [url]="user.picture_sizes['sm']" alt="">
+             [url]="user.picture_sizes['lg']" [ngStyle]="{'width.px': 200 , 'height.px':200}" class="img-circle" alt="">
         <br>
-        <ion-button routerDirection="root" routerLink="messages/voir/{{user.id}}" (click)="modalCtrl.dismiss()">
-            <ion-icon name="send"></ion-icon>
-        </ion-button>
-        <ion-button *ngIf="user.email" (click)="sendEmail()">
-            <ion-icon name="mail"></ion-icon>
-        </ion-button>
-
-        <ion-button *ngIf="user.cellphone || user.phone" (click)="loadCallActionSheet()">
+        <ion-button shape="round" color="success" *ngIf="user.cellphone || user.phone" (click)="loadCallActionSheet()">
             <ion-icon name="call"></ion-icon>
         </ion-button>
 
-        <ion-button *ngIf="user.cellphone" (click)="showSmsCreateFormModal()">
+        <ion-button shape="round" color="secondary" *ngIf="user.cellphone" (click)="showSmsCreateFormModal()">
             <ion-icon name="text"></ion-icon>
+        </ion-button>
+
+        <ion-button shape="round" color="tertiary" *ngIf="user.email" (click)="sendEmail()">
+            <ion-icon name="mail"></ion-icon>
+        </ion-button>
+
+        <ion-button shape="round" color="danger" routerDirection="root" routerLink="messages/voir/{{user.id}}"
+                    (click)="modalCtrl.dismiss()">
+            <ion-icon name="chatboxes"></ion-icon>
         </ion-button>
     </div>
     <ul>
         <li class="header-list">
             Informations
+        </li>
+        <li>
+            <label>Nom</label>
+            <span>{{user.firstname}} {{user.lastname}}</span>
         </li>
         <li>
             <label>Civilité</label>
@@ -42,13 +48,9 @@
             <label>Profession</label>
             <span>{{user.profession}}</span>
         </li>
-        <li>
-            <label>Branche</label>
-            <span>{{user.branch}}</span>
-        </li>
-        <li class="long-text">
-            <label>Présentation</label>
-            <span> {{user.presentation}} </span>
+        <li *ngIf="!user.death && user.birth">
+            <label>Age</label>
+            <span>{{user.age}} ans</span>
         </li>
         <li *ngIf="user.birth">
             <label>Date de naissance</label>
@@ -58,26 +60,36 @@
             <label>Date de décès</label>
             <span>{{user.death | date: 'dd/MM/yyyy'}}</span>
         </li>
+        <li *ngIf="user.branch">
+            <label>Branche famille</label>
+            <span>{{user.branch}}</span>
+        </li>
+        <li *ngIf="user.presentation" class="long-text">
+            <label>Présentation</label>
+            <span> {{user.presentation}}</span>
+        </li>
         <li class="header-list">
-            Informations de contact
+            Coordonnées
         </li>
         <li *ngIf="user.email">
             <label>Email</label>
             <span>{{user.email}}</span>
         </li>
-        <li *ngIf="user.phone">
-            <label>Téléphone fixe</label>
-            <span>{{user.phone_prefix}}{{user.phone}}</span>
-        </li>
-
         <li *ngIf="user.cellphone">
             <label>Téléphone mobile</label>
             <span>{{user.cellphone_prefix}}{{user.cellphone}}</span>
+        </li>
+        <li *ngIf="user.phone">
+            <label>Téléphone fixe</label>
+            <span>{{user.phone_prefix}}{{user.phone}}</span>
         </li>
         <li *ngIf="user.route">
             <label>Adresse</label>
             <span>{{ user.street_number}} {{ user.route}}<br>
                 {{ user.postal_code}} - {{ user.locality}}  {{ user.country}}</span>
         </li>
+        <ion-button color="tertiary" expand="full" (click)="navigate()">Itinéraire vers le domicile
+             <ion-icon slot="end" name="navigate"></ion-icon>
+        </ion-button>
     </ul>
 </ion-content>
