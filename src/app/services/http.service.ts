@@ -84,8 +84,10 @@ export class HttpService {
         if (data.charAt(0) === '/') {
             data = 'file://' + data;
         }
+        console.log(data);
 
         return this.toolsService.readFileInformations(data).then(result => {
+            console.log('inside readfile info');
             const fileTransfer: FileTransferObject = this.fileTransfer.create();
 
             return fileTransfer.upload(data, environment.api_url + endpoint, {
@@ -97,9 +99,11 @@ export class HttpService {
                 headers: {'Authorization': this.toolsService.jwt},
                 params: {api: environment.api_version}
             }, true).catch(err => {
+                console.log(err);
                 return (err instanceof ProgressEvent ? {code: 0} : err.error);
             });
         }).catch(err => {
+            console.log(err);
             return err.error;
         });
     }
