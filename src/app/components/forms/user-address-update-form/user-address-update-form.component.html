@@ -1,21 +1,22 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="end">
-      <ion-button (click)="cancelForm()" icon-only>
-        <ion-icon icon="close"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>Modifier mon adresse</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <span (click)="cancelForm()" class="modal-close-button">Fermer</span>
+        </ion-buttons>
+        <ion-title>Mon adresse domicile</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <h1>Adresse actuelle</h1>
-  <button (click)="loadAddressUpdatePrompt()">Modifier</button>
-  <div *ngIf="!user.lat">Pas d'adresse renseignée</div>
+    <div text-center style="font-size:16px; font-weight: bold; margin:15px 0;">
+        <p *ngIf="!user.route">Pas d'adresse renseignée</p>
+        <p  *ngIf="user.route">
+            {{user.street_number}} {{user.route}} {{user.postal_code}} {{user.locality}} {{user.country}}
+        </p>
+    </div>
 
-  <div *ngIf="user.lat">
-    {{user.street_number}} {{user.route}} {{user.postal_code}} {{user.locality}} {{user.country}}
-    <div leaflet (leafletMapReady)="onMapReady($event)" style="width:100%; height: 300px"></div>
-  </div>
+    <ion-button color="tertiary" expand="full" (click)="loadAddressUpdatePrompt()">Renseigner mon adresse</ion-button>
+    <br>
+    <br>
+    <div *ngIf="user.lat" leaflet (leafletMapReady)="onMapReady($event)" style="width:100%; height: 300px"></div>
 </ion-content>

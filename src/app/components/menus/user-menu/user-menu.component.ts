@@ -64,7 +64,7 @@ export class UserMenuComponent implements OnInit {
         if (this.toolsService.payloads.user.admin === 1) {
             this.footerMenus.push({
                 title: 'Autres comptes',
-                url: '/comptes',
+                url: '/annuaire',
                 icon: 'assets/icon/menu/switch.svg',
                 notification_count: 0
             });
@@ -73,7 +73,7 @@ export class UserMenuComponent implements OnInit {
         this.footerMenus.push({
             title: 'Déconnexion',
             url: '/deconnexion',
-            icon: 'assets/icon/menu/switch.svg',
+            icon: 'power',
             notification_count: 0
         });
     }

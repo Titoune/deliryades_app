@@ -1,50 +1,51 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>Sondages</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Sondages</ion-title>
+    </ion-toolbar>
 </ion-header>
 <ion-content padding>
 
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh()">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-  <ion-button expand="full" color="purple" (click)="showPollCreateFormModal()">Créer un sondage
-  </ion-button>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh()">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
 
-  <ion-segment (ionChange)="segmentChanged($event)">
-    <ion-segment-button value="all" [checked]="(segment == 'all')">
-      <ion-icon icon="play"></ion-icon>
-      Tous
-    </ion-segment-button>
-    <ion-segment-button value="mine" [checked]="(segment == 'mine')">
-      <ion-icon icon="square"></ion-icon>
-      Mes sondages
-    </ion-segment-button>
-  </ion-segment>
+    <ion-segment (ionChange)="segmentChanged($event)">
+        <ion-segment-button value="all" [checked]="(segment == 'all')">
+            Tous
+        </ion-segment-button>
+        <ion-segment-button value="mine" [checked]="(segment == 'mine')">
+            Mes sondages
+        </ion-segment-button>
+    </ion-segment>
 
-  <mec-card *ngFor="let poll of polls; let poll_index = index">
-    <mec-poll [poll]="poll">
-      <div class="mec-poll-header">
-        <a (click)="loadPollActionSheet(poll)">options</a>
-      </div>
-      <div class="proposals">
-        <div class="proposal" *ngFor="let proposal of poll.poll_proposals; let proposal_index = index">
-
-          <ion-icon [icon]="(proposal.selected == 1) ? 'checkbox-outline' : 'square-outline'"
-                    (click)="confirmPollAnswer(proposal.id, poll.id,poll_index,proposal_index)"></ion-icon>
-
-          <span>{{proposal.content}}</span>
-        </div>
-      </div>
-    </mec-poll>
-  </mec-card>
+    <ion-button *ngIf="segment ==='mine'" expand="full" color="tertiary" (click)="showPollCreateFormModal()">Créer un
+        sondage
+    </ion-button>
 
 
-  <ion-infinite-scroll (ionInfinite)="getPolls()">
-    <ion-infinite-scroll-content></ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+    <mec-card *ngFor="let poll of polls; let poll_index = index">
+        <mec-poll [poll]="poll">
+            <div class="mec-poll-header">
+                <a (click)="loadPollActionSheet(poll)">options</a>
+            </div>
+            <div class="proposals">
+                <div class="proposal" *ngFor="let proposal of poll.poll_proposals; let proposal_index = index">
+
+                    <ion-icon [icon]="(proposal.selected == 1) ? 'checkbox-outline' : 'square-outline'"
+                              (click)="confirmPollAnswer(proposal.id, poll.id,poll_index,proposal_index)"></ion-icon>
+
+                    <span>{{proposal.content}}</span>
+                </div>
+            </div>
+        </mec-poll>
+    </mec-card>
+
+
+    <ion-infinite-scroll (ionInfinite)="getPolls()">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

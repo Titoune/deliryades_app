@@ -88,7 +88,7 @@
             <span>{{ user.street_number}} {{ user.route}}<br>
                 {{ user.postal_code}} - {{ user.locality}}  {{ user.country}}</span>
         </li>
-        <ion-button color="tertiary" expand="full" (click)="navigate()">Itinéraire vers le domicile
+        <ion-button *ngIf="user.route" color="tertiary" expand="full" (click)="navigate()">Itinéraire vers le domicile
              <ion-icon slot="end" name="navigate"></ion-icon>
         </ion-button>
     </ul>
