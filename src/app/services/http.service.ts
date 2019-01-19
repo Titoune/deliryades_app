@@ -4,6 +4,7 @@ import {environment} from '../../environments/environment';
 import {CachedHttp} from 'angular-async-cache';
 import {ToolsService} from './tools.service';
 import {FileTransfer, FileTransferObject} from '@ionic-native/file-transfer/ngx';
+import {WebView} from '@ionic-native/ionic-webview/ngx';
 
 
 @Injectable({
@@ -12,7 +13,7 @@ import {FileTransfer, FileTransferObject} from '@ionic-native/file-transfer/ngx'
 export class HttpService {
 
     constructor(
-        public httpClient: HttpClient, private cachedHttp: CachedHttp, private toolsService: ToolsService,  private fileTransfer: FileTransfer) {
+        public httpClient: HttpClient, private cachedHttp: CachedHttp, private toolsService: ToolsService,  private fileTransfer: FileTransfer, private webview: WebView) {
     }
 
     get(endpoint, asyncCacheOptions = {bypassCache: false, fromCacheAndReplay: true}) {
@@ -80,10 +81,11 @@ export class HttpService {
     }
 
     public file(endpoint, data) {
-        data = data.replace('http://localhost:8080', 'file://');
-        if (data.charAt(0) === '/') {
-            data = 'file://' + data;
-        }
+        data = this.webview.convertFileSrc(data);
+        // data = data.replace('http://localhost:8080', 'file://');
+       // if (data.charAt(0) === '/') {
+       //     data = 'file://' + data;
+       // }
         console.log(data);
 
         return this.toolsService.readFileInformations(data).then(result => {
