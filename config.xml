@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.deliry.deliryades" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>deliryades</name>
+    <name>Deliryades</name>
     <description>Plateforme des Deliryades.</description>
     <author email="deliry.antoine@gmail.com" href="http://deliryades.fr/">Antoine Deliry</author>
     <content src="index.html" />
