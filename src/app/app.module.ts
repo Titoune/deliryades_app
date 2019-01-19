@@ -48,6 +48,7 @@ import {CallNumber} from '@ionic-native/call-number/ngx';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {Camera} from '@ionic-native/camera/ngx';
 import {LaunchNavigator, LaunchNavigatorOptions} from '@ionic-native/launch-navigator/ngx';
+import { OpenNativeSettings } from '@ionic-native/open-native-settings/ngx';
 
 
 // import { Market } from '@ionic-native/market';
@@ -115,6 +116,7 @@ export function asyncCacheOptionsFactory(): AsyncCacheOptions {
         WebView,
         LaunchNavigator,
         Camera,
+        OpenNativeSettings,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
         {provide: HTTP_INTERCEPTORS, useClass: HttpResponseInterceptor, multi: true}
         // Market

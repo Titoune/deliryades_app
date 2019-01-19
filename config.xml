@@ -155,4 +155,5 @@
     <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" spec="4.2.2">
         <variable name="OKHTTP_VERSION" value="3.+" />
     </plugin>
+    <plugin name="cordova-open-native-settings" spec="1.5.2" />
 </widget>

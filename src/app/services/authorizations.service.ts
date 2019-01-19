@@ -3,6 +3,7 @@ import {ToolsService} from './tools.service';
 import {FirebaseMessaging} from '@ionic-native/firebase-messaging/ngx';
 import {Diagnostic} from '@ionic-native/diagnostic/ngx';
 import {AlertController} from '@ionic/angular';
+import {OpenNativeSettings} from '@ionic-native/open-native-settings/ngx';
 
 @Injectable({
     providedIn: 'root'
@@ -13,7 +14,8 @@ export class AuthorizationsService {
         public toolsService: ToolsService,
         public firebaseMessaging: FirebaseMessaging,
         public diagnostic: Diagnostic,
-        public alertCtrl: AlertController
+        public alertCtrl: AlertController,
+        private openNativeSettings: OpenNativeSettings
     ) {
     }
 
@@ -21,7 +23,10 @@ export class AuthorizationsService {
     async requestNotificationAuthorization() {
         return new Promise(async (resolve) => {
             if (this.toolsService.platform !== 'android') {
-                if (this.toolsService.authorization_notification === false) {
+
+                const check = await <any>this.diagnostic.getRemoteNotificationsAuthorizationStatus();
+
+                if (check !== 'authorized') {
                     const confirm = await this.alertCtrl.create({
                         header: 'Confirmation',
                         message: 'Nous avons besoin de votre autorisation pour vous envoyer des notifications (anniversaires, sondages, évènements), voulez-vous le faire maintenant ?',
@@ -34,13 +39,24 @@ export class AuthorizationsService {
                             }, {
                                 text: 'oui',
                                 handler: () => {
-                                    this.firebaseMessaging.requestPermission().then(data => {
-                                        this.toolsService.authorization_notification = true;
+
+                                    if (check === 'not_determined') {
+                                        this.firebaseMessaging.requestPermission().then(data => {
+                                            this.toolsService.authorization_notification = true;
+                                            resolve();
+                                        }, error => {
+                                            this.toolsService.authorization_notification = false;
+                                            resolve();
+                                        });
+                                    } else {
+                                        if (this.toolsService.platform === 'ios') {
+                                            this.openNativeSettings.open('application_details');
+                                        } else {
+                                            this.openNativeSettings.open('application_details');
+                                        }
                                         resolve();
-                                    }, error => {
-                                        this.toolsService.authorization_notification = false;
-                                        resolve();
-                                    });
+                                    }
+
                                 }
                             }
                         ]

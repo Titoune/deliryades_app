@@ -138,6 +138,9 @@ export class AppComponent {
         response = await <any>this.diagnostic.isCameraAuthorized();
         this.toolsService.authorization_camera = JSON.stringify(response) === 'true';
 
+        response = await <any>this.diagnostic.isRemoteNotificationsEnabled();
+        this.toolsService.authorization_notification = JSON.stringify(response) === 'true';
+
         if (this.toolsService.platform === 'ios') {
             response = await <any>this.diagnostic.isCameraRollAuthorized();
             this.toolsService.authorization_external_storage = JSON.stringify(response) === 'true';
