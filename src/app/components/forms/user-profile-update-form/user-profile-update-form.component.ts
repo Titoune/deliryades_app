@@ -230,7 +230,7 @@ export class UserProfileUpdateFormComponent implements OnInit {
         const loading = await this.loadingCtrl.create({message: 'enregistrement de la photo...'});
         await loading.present();
 
-        const request = await <any>this.userService.user_uploadUserPicture( {file: picture_uri});
+        const request = await <any>this.userService.user_uploadUserPicture(picture_uri);
 
         await loading.dismiss();
 
