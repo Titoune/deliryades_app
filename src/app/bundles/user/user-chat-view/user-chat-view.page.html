@@ -18,7 +18,7 @@
 
         <img appMecImageCache
              [type]="(chat_comment.user.sex === 'f' ? 'man' : 'woman')"
-             [url]="environment.resizer_url + 'user/' + chat_comment.user.id + '/square/' + chat_comment.user.picture"/>
+             [url]="chat_comment.user.picture_sizes['sm']"/>
         {{chat_comment.user.fullname}}
         {{chat_comment.created | date: 'dd/MM/yyyy à HH:mm'}}
         {{chat_comment.content}}

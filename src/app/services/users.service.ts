@@ -52,6 +52,10 @@ export class UsersService {
         return this.httpService.patch('user/users/set-update-form/' + user_id, data);
     }
 
+    user_setPictureForm(user_id, data) {
+        return this.httpService.patch('user/users/set-update-form/' + user_id, data);
+    }
+
     user_setPasswordUpdateForm(user_id, data) {
         return this.httpService.patch('user/users/set-password-update-form/' + user_id, data);
     }

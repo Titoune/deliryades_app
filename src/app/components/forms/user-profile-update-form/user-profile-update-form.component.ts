@@ -1,11 +1,14 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {environment} from '../../../../environments/environment';
 import {UsersService} from '../../../services/users.service';
-import {AlertController, LoadingController, ModalController, NavController} from '@ionic/angular';
+import {ActionSheetController, AlertController, LoadingController, ModalController, NavController} from '@ionic/angular';
 import {ToolsService} from '../../../services/tools.service';
 import {dateValidator, emailValidator, inListValidator, lengthBetweenValidator, naturalNumberValidator, regexValidator, requiredValidator} from '../../../custom-validators';
 import * as moment from 'moment';
+import {AuthorizationsService} from '../../../services/authorizations.service';
+import {Camera} from '@ionic-native/camera/ngx';
+import {WebView} from '@ionic-native/ionic-webview/ngx';
 
 @Component({
     selector: 'app-user-profile-update-form',
@@ -13,6 +16,7 @@ import * as moment from 'moment';
     styleUrls: ['./user-profile-update-form.component.scss']
 })
 export class UserProfileUpdateFormComponent implements OnInit {
+    @ViewChild('user_picture') user_picture: any;
 
     user: any = {};
     update_form: FormGroup;
@@ -28,6 +32,10 @@ export class UserProfileUpdateFormComponent implements OnInit {
         public toolsService: ToolsService,
         public alertCtrl: AlertController,
         public modalCtrl: ModalController,
+        public authorizations: AuthorizationsService,
+        public actionSheetCtrl: ActionSheetController,
+        private camera: Camera,
+        private webview: WebView
     ) {
     }
 
@@ -103,6 +111,130 @@ export class UserProfileUpdateFormComponent implements OnInit {
 
             await alert.present();
         } else {
+            await this.modalCtrl.dismiss();
+        }
+    }
+
+
+    async loadPictureActionSheet() {
+        const options = [];
+
+        options.push({
+            text: 'Sélectionner une photo',
+            handler: () => {
+                this.authorizations.requestExternalStorageAuthorization().then(res => {
+                    if (res === true) {
+                        this.selectPicture();
+                    }
+                });
+            }
+        });
+        options.push({
+            text: 'Prendre une photo',
+            handler: () => {
+                this.authorizations.requestCameraAuthorization().then(res => {
+                    if (res === true) {
+                        this.takePicture();
+                    }
+                });
+            }
+        });
+        options.push({
+            text: 'Annuler',
+            handler: () => {
+
+            }
+        });
+
+        const actionSheet = await this.actionSheetCtrl.create({
+            // overlayIndex: 10,
+            header: 'Actions',
+            buttons: options
+        });
+        await actionSheet.present();
+
+    }
+
+    async takePicture() {
+        this.camera.getPicture({
+            quality: 100,
+            destinationType: this.camera.DestinationType.FILE_URI,
+            encodingType: this.camera.EncodingType.JPEG,
+            mediaType: this.camera.MediaType.PICTURE,
+            allowEdit: true,
+            targetWidth: 800,
+            targetHeight: 800,
+            correctOrientation: true,
+            cameraDirection: 1,
+        }).then(async (result) => {
+            result = this.webview.convertFileSrc(result);
+            const loading = await this.loadingCtrl.create({message: 'enregistrement...'});
+            await loading.present();
+
+
+            this.uploadPicture(result).then(async data => {
+
+                if (this.toolsService.platform === 'ios') {
+                    result = result.replace(/^file:\/\//, '');
+                }
+
+                this.user_picture.nativeElement.src = result;
+
+                await loading.dismiss();
+            });
+
+        }, (err) => {
+            // Handle error
+        });
+    }
+
+
+    async selectPicture() {
+        this.camera.getPicture({
+            quality: 100,
+            sourceType: 0,
+            destinationType: this.camera.DestinationType.FILE_URI,
+            encodingType: this.camera.EncodingType.JPEG,
+            mediaType: this.camera.MediaType.PICTURE,
+            allowEdit: true,
+            targetWidth: 800,
+            targetHeight: 800,
+            correctOrientation: true,
+            cameraDirection: 1,
+        }).then(async (result) => {
+            result = this.webview.convertFileSrc(result);
+            const loading = await this.loadingCtrl.create({message: 'enregistrement...'});
+            await loading.present();
+
+
+            this.uploadPicture(result).then(async data => {
+
+                if (this.toolsService.platform === 'ios') {
+                    result = result.replace(/^file:\/\//, '');
+                }
+
+                this.user_picture.nativeElement.src = result;
+
+                await loading.dismiss();
+            });
+
+        }, (err) => {
+            // Handle error
+        });
+    }
+
+
+    async uploadPicture(picture_uri) {
+
+
+        const loading = await this.loadingCtrl.create({message: 'enregistrement de la photo...'});
+        await loading.present();
+
+        const request = await <any>this.userService.user_setPictureForm(this.user.id, {picture_uri: picture_uri});
+
+        await loading.dismiss();
+
+        if (request.code === 200) {
             await this.modalCtrl.dismiss();
         }
     }

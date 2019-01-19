@@ -151,4 +151,5 @@
     <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
     <engine name="android" spec="~7.1.2" />
+    <plugin name="cordova-plugin-camera" spec="4.0.3" />
 </widget>

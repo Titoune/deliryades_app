@@ -13,8 +13,7 @@
 
         <img appMecImageCache
              [type]="user.sex === 'f' ? 'man' : 'woman'"
-             [url]="environment.resizer_url + 'user/' + user.id + '/default/' + user.picture"
-             alt="">
+             [url]="user.picture_sizes['sm']" alt="">
         <br>
         <ion-button routerDirection="root" routerLink="messages/voir/{{user.id}}" (click)="modalCtrl.dismiss()">
             <ion-icon name="send"></ion-icon>

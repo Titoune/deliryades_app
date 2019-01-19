@@ -33,25 +33,9 @@ export class MecImageCacheDirective implements OnChanges {
     async ngOnChanges() {
 
         if (this.type === 'man') {
-            this.src = 'assets/default-img/man.jpg';
+            this.src = 'assets/img/man.jpg';
         } else if (this.type === 'woman') {
-            this.src = 'assets/default-img/woman.jpg';
-        } else if (this.type === 'mayor') {
-            this.src = 'assets/default-img/mayor.jpg';
-        } else if (this.type === 'city') {
-            this.src = 'assets/default-img/city.jpg';
-        } else if (this.type === 'publication') {
-            this.src = 'assets/default-img/publication.png';
-        } else if (this.type === 'councillor') {
-            this.src = 'assets/default-img/councillor.png';
-        } else if (this.type === 'ad') {
-            this.src = 'assets/default-img/ad.png';
-        } else if (this.type === 'negociation') {
-            this.src = 'assets/default-img/negociation.png';
-        } else if (this.type === 'signaling') {
-            this.src = 'assets/default-img/signaling.png';
-        } else {
-            this.src = 'assets/default-img/unknown.png';
+            this.src = 'assets/img/woman.jpg';
         }
 
         if (this.toolsService.platform !== 'web' && this.url.substr(this.url.lastIndexOf('/') + 1) !== 'null') {

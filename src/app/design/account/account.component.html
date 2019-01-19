@@ -1,11 +1,11 @@
 <div class="mec-account">
 
     <div class="user-picture">
-        <img appMecImageCache *ngIf="['citizen', 'administrator'].indexOf(type) !== -1" [type]="(account.user.sex == 'f' ? 'woman' : 'man')" [url]="environment.resizer_url + 'user/' + account.user_id + '/square/' + account.user.picture"/>
+        <img appMecImageCache *ngIf="['citizen', 'administrator'].indexOf(type) !== -1" [type]="(account.user.sex == 'f' ? 'woman' : 'man')" [url]="account.user.picture_sizes['md']"/>
 
-        <img appMecImageCache *ngIf="['mayor', 'mandatary'].indexOf(type) !== -1 && account.city.user" [url]="environment.resizer_url + 'user/' + account.city.user_id + '/square/' + account.user.picture"
+        <img appMecImageCache *ngIf="['mayor', 'mandatary'].indexOf(type) !== -1 && account.city.user" [url]="account.user.picture_sizes['md']"
              type="mayor"/>
-        <img appMecImageCache *ngIf="['mayor', 'mandatary'].indexOf(type) !== -1 && !account.city.user" [url]="environment.resizer_url + 'supposed-mayor/' + account.city.city_supposed_mayor.id + '/square/' + account.city.city_supposed_mayor.picture" type="mayor"/>
+        <img appMecImageCache *ngIf="['mayor', 'mandatary'].indexOf(type) !== -1 && !account.city.user" [url]="account.city.city_supposed_mayor.picture_sizes['md']" type="mayor"/>
 
     </div>
 
