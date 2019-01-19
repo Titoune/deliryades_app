@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {CachedHttp} from 'angular-async-cache';
+import {ToolsService} from './tools.service';
+import {FileTransfer, FileTransferObject} from '@ionic-native/file-transfer/ngx';
 
 
 @Injectable({
@@ -10,7 +12,7 @@ import {CachedHttp} from 'angular-async-cache';
 export class HttpService {
 
     constructor(
-        public httpClient: HttpClient, private cachedHttp: CachedHttp) {
+        public httpClient: HttpClient, private cachedHttp: CachedHttp, private toolsService: ToolsService,  private fileTransfer: FileTransfer) {
     }
 
     get(endpoint, asyncCacheOptions = {bypassCache: false, fromCacheAndReplay: true}) {
@@ -74,6 +76,31 @@ export class HttpService {
             }
         }).toPromise().catch(err => {
             return (err instanceof ProgressEvent ? {code: 0} : err.error);
+        });
+    }
+
+    public file(endpoint, data) {
+        data = data.replace('http://localhost:8080', 'file://');
+        if (data.charAt(0) === '/') {
+            data = 'file://' + data;
+        }
+
+        return this.toolsService.readFileInformations(data).then(result => {
+            const fileTransfer: FileTransferObject = this.fileTransfer.create();
+
+            return fileTransfer.upload(data, environment.api_url + endpoint, {
+                httpMethod: 'post',
+                fileKey: 'file',
+                fileName: 'file.' + (data.split('.').pop()),
+                chunkedMode: false,
+                mimeType: result['type'],
+                headers: {'Authorization': this.toolsService.jwt},
+                params: {api: environment.api_version}
+            }, true).catch(err => {
+                return (err instanceof ProgressEvent ? {code: 0} : err.error);
+            });
+        }).catch(err => {
+            return err.error;
         });
     }
 

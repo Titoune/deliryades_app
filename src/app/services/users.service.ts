@@ -53,7 +53,7 @@ export class UsersService {
     }
 
     user_uploadUserPicture(data) {
-        return this.httpService.post('user/users/upload-user-picture/', data);
+        return this.httpService.file('user/users/upload-user-picture/', data);
     }
 
     user_setPasswordUpdateForm(user_id, data) {

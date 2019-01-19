@@ -1,6 +1,7 @@
 import {Injectable, NgZone} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {Events} from '@ionic/angular';
+import {File, FileEntry} from '@ionic-native/file/ngx';
 
 @Injectable({
     providedIn: 'root'
@@ -56,7 +57,7 @@ export class ToolsService {
     public authorization_camera;
     public authorization_microphone;
 
-    constructor(private ngZone: NgZone, public events: Events) {
+    constructor(private ngZone: NgZone, public events: Events, private file: File) {
         this.getScreenSize();
         window.onresize = (e) => {
             this.ngZone.run(() => {
@@ -98,6 +99,28 @@ export class ToolsService {
                 }
             });
         }
+    }
+
+    public readFileInformations(path) {
+        return new Promise((resolve, reject) => {
+            this.file.resolveLocalFilesystemUrl(path).then((entry: FileEntry) => {
+                const fileEntry = entry as FileEntry;
+                fileEntry.file(data => {
+                    resolve(data);
+                }, error => {
+                    reject(error);
+
+                });
+            }).catch(data => {
+                reject({
+                    error: {
+                        code: data.code,
+                        flash: data.message,
+                        status: 'error',
+                    }
+                });
+            })
+        });
     }
 
 
