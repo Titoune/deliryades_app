@@ -12,7 +12,7 @@
     <div style="width: 100%; text-align: center;">
 
         <img appMecImageCache
-             [type]="user.sex === 'f' ? 'man' : 'woman'"
+             [type]="user.sex === 'f' ? 'woman' : 'man'"
              [url]="user.picture_sizes['sm']" alt="">
         <br>
         <ion-button routerDirection="root" routerLink="messages/voir/{{user.id}}" (click)="modalCtrl.dismiss()">
