@@ -50,19 +50,7 @@ export class UserNotificationUpdateFormComponent implements OnInit {
     getUser() {
         this.usersService.user_getMe(this.toolsService.payloads.user.id).subscribe(request => {
             this.user = request.data.user;
-            this.buildForm();
         });
-    }
-
-    buildForm() {
-        this.update_form = this.formBuilder.group({
-            notification_cellphone_anniversary: [this.user.notification_cellphone_anniversary, [booleanValidator]],
-            notification_cellphone_event: [this.user.notification_cellphone_event, [booleanValidator]],
-            notification_cellphone_poll: [this.user.notification_cellphone_poll, [booleanValidator]],
-            notification_email_anniversary: [this.user.notification_email_anniversary, [booleanValidator]],
-            notification_email_poll: [this.user.notification_email_poll, [booleanValidator]],
-            notification_email_event: [this.user.notification_email_event, [booleanValidator]],
-        }, {updateOn: 'submit'});
     }
 
     async updateUserField(field) {
