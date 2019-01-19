@@ -12,7 +12,8 @@ import {SocketService} from './services/socket.service';
 import {Plugins} from '@capacitor/core';
 import {DevicesService} from './services/devices.service';
 import {FirebaseMessaging} from '@ionic-native/firebase-messaging/ngx';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import {SplashScreen} from '@ionic-native/splash-screen/ngx';
+import {AuthorizationsService} from './services/authorizations.service';
 
 @Component({
     selector: 'app-root',
@@ -33,7 +34,8 @@ export class AppComponent {
         public events: Events,
         public devicesService: DevicesService,
         public firebaseMessaging: FirebaseMessaging,
-        private splashScreen: SplashScreen
+        private splashScreen: SplashScreen,
+        public authorizationsServices: AuthorizationsService
     ) {
         platform.pause.subscribe(() => {
             console.log('platforme pause');
@@ -42,6 +44,7 @@ export class AppComponent {
         });
 
         platform.resume.subscribe(() => {
+            this.authorizationsServices.requestNotificationAuthorization();
             console.log('platform resume');
             this.events.publish('platform-resume', true);
         });

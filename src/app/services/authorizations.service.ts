@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {ToolsService} from './tools.service';
 import {FirebaseMessaging} from '@ionic-native/firebase-messaging/ngx';
 import {Diagnostic} from '@ionic-native/diagnostic/ngx';
+import {AlertController} from '@ionic/angular';
 
 @Injectable({
     providedIn: 'root'
@@ -12,28 +13,48 @@ export class AuthorizationsService {
         public toolsService: ToolsService,
         public firebaseMessaging: FirebaseMessaging,
         public diagnostic: Diagnostic,
+        public alertCtrl: AlertController
     ) {
     }
 
 
-    requestNotificationAuthorization() {
-        return new Promise((resolve) => {
+    async requestNotificationAuthorization() {
+        return new Promise(async (resolve) => {
             if (['ios', 'android'].indexOf(this.toolsService.platform) !== -1) {
                 if (this.toolsService.platform !== 'android') {
-                    // alert('Nous avons besoin de votre permission pour vous envoyer des notifications');
-                    this.firebaseMessaging.requestPermission().then(data => {
-                        this.toolsService.authorization_notification = true;
-                        resolve(true);
-                    }, error => {
-                        this.toolsService.authorization_notification = false;
-                        resolve(true);
-                    });
+                    if (this.toolsService.authorization_notification === false) {
+                        const confirm = await this.alertCtrl.create({
+                            header: 'Confirmation',
+                            message: 'Nous avons besoin de votre autorisation pour vous envoyer des notifications (anniversaires, sondages, évènements), voulez-vous le faire maintenant ?',
+                            buttons: [
+                                {
+                                    text: 'non',
+                                    handler: () => {
+                                        resolve();
+                                    }
+                                }, {
+                                    text: 'oui',
+                                    handler: () => {
+                                        this.firebaseMessaging.requestPermission().then(data => {
+                                            this.toolsService.authorization_notification = true;
+                                            resolve();
+                                        }, error => {
+                                            this.toolsService.authorization_notification = false;
+                                            resolve();
+                                        });
+                                    }
+                                }
+                            ]
+                        });
+                        await confirm.present();
+                    } else {
+                        resolve();
+                    }
                 } else {
-                    this.toolsService.authorization_notification = true;
-                    resolve(true);
+                    resolve();
                 }
             } else {
-                resolve(true);
+                resolve();
             }
         });
 

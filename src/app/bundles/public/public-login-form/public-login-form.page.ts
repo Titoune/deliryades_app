@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {emailValidator, regexValidator, requiredValidator} from '../../../custom-validators';
-import {LoadingController, NavController} from '@ionic/angular';
+import {AlertController, LoadingController, NavController} from '@ionic/angular';
 import {ToolsService} from '../../../services/tools.service';
 import {environment} from '../../../../environments/environment';
-import {DevicesService} from '../../../services/devices.service';
+import {AuthorizationsService} from '../../../services/authorizations.service';
 
 @Component({
     selector: 'app-public-login-form',
@@ -22,7 +22,9 @@ export class PublicLoginFormPage implements OnInit {
         public toolsService: ToolsService,
         public formBuilder: FormBuilder,
         public loadingCtrl: LoadingController,
-        public navCtrl: NavController
+        public navCtrl: NavController,
+        public authorizationsService: AuthorizationsService,
+        public alertCtrl: AlertController
     ) {
     }
 
@@ -46,10 +48,13 @@ export class PublicLoginFormPage implements OnInit {
             const request = await <any>this.authService.public_setUserLoginForm(this.create_form.value);
             await loading.dismiss();
             if (request.code === 200) {
-                await this.navCtrl.navigateRoot('/annuaire');
+                this.authorizationsService.requestNotificationAuthorization().then(async () => {
+                    await this.navCtrl.navigateRoot('/annuaire');
+                });
             } else {
                 ToolsService.generateServerValidationErrors(this.create_form, request);
             }
         }
     }
+
 }
