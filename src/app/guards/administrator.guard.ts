@@ -24,7 +24,7 @@ export class AdministratorGuard implements CanActivate {
             if ('user_type' in this.toolsService.payloads && this.toolsService.payloads.user.admin !== 1) {
                 return true;
             } else {
-                this.navCtrl.navigateRoot('/comptes');
+                this.navCtrl.navigateRoot('/');
             }
         } else {
             this.navCtrl.navigateRoot('/');

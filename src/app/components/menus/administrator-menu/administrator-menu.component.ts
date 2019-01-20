@@ -25,12 +25,6 @@ export class AdministratorMenuComponent implements OnInit {
         }
     ];
     public footerMenus = [
-        {
-            title: 'Autres comptes',
-            url: '/comptes',
-            icon: 'assets/icon/menu/switch.svg',
-            notification_count: 0
-        }
     ];
     environment = environment;
 

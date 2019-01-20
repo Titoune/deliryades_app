@@ -115,7 +115,7 @@ export class HttpResponseInterceptor implements HttpInterceptor {
 
 
         if (response.account_logout && response.account_logout === true) {
-            await this.navCtrl.navigateRoot('/comptes');
+            await this.navCtrl.navigateRoot('/connexion');
         }
     }
 }

@@ -61,6 +61,8 @@ export class PublicLoginFormPage implements OnInit {
                         platform: this.toolsService.platform
                     });
                     await this.navCtrl.navigateRoot('/annuaire');
+                }).catch(res => {
+                    console.log(res);
                 });
             } else {
                 ToolsService.generateServerValidationErrors(this.create_form, request);

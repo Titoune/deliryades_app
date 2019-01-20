@@ -17,15 +17,7 @@ export class PublicGuard implements CanActivate {
         state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
         this.toolsService.allow_split_pane = false;
-
         this.toolsService.menu_type = 'public';
-
-        if (state.url !== '/deconnexion' && 'user' in this.toolsService.payloads) {
-            this.navCtrl.navigateRoot('/comptes');
-
-        } else {
-            return true;
-        }
-        return false;
+        return true;
     }
 }

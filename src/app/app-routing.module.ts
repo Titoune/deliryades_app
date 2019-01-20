@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {PublicGuard} from './guards/public.guard';
-import {SharedGuard} from './guards/shared.guard';
 import {AdministratorGuard} from './guards/administrator.guard';
 import {UserGuard} from './guards/user.guard';
 
@@ -23,11 +22,6 @@ const routes: Routes = [
         path: 'deconnexion',
         loadChildren: './bundles/public/public-logout/public-logout.module#PublicLogoutPageModule',
         canActivate: [PublicGuard]
-    },
-    {
-        path: 'comptes',
-        loadChildren: './bundles/shared/shared-accounts-index/shared-accounts-index.module#SharedAccountsIndexPageModule',
-        canActivate: [SharedGuard]
     },
     {
         path: 'admin/dashboard',
