@@ -11,7 +11,7 @@
                 <form #ngForm="ngForm" (ngSubmit)="submit()" *ngIf="create_form" [formGroup]="create_form">
                     <ion-item>
                         <ion-input formControlName="credential" placeholder="Téléphone portable ou adresse email"
-                                   type="number"></ion-input>
+                                   type="text"></ion-input>
                         <p *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
                             'credential')}}
                         </p>
