@@ -1,5 +1,5 @@
 <ion-app>
-    <ion-split-pane [disabled]="true">
+    <ion-split-pane [disabled]="false">
         <ion-menu>
             <app-public-menu *ngIf="toolsService.menu_type == 'public'"></app-public-menu>
             <app-shared-menu *ngIf="toolsService.menu_type == 'shared'"></app-shared-menu>
