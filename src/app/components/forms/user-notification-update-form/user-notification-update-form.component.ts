@@ -32,19 +32,7 @@ export class UserNotificationUpdateFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.updateDevice();
         this.getUser();
-    }
-
-    async updateDevice() {
-        await this.devicesService.user_setUpdateForm(this.toolsService.uuid, {
-            device_push_token: this.toolsService.device_push_token,
-            api: this.toolsService.api_version,
-            manufacturer: this.toolsService.manufacturer,
-            model: this.toolsService.model,
-            version: this.toolsService.version,
-            platform: this.toolsService.platform
-        });
     }
 
     getUser() {

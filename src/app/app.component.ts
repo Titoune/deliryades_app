@@ -44,9 +44,6 @@ export class AppComponent {
         });
 
         platform.resume.subscribe(() => {
-            if ('user' in this.toolsService.payloads) {
-                this.authorizationsServices.requestNotificationAuthorization();
-            }
             console.log('platform resume');
             this.events.publish('platform-resume', true);
         });
@@ -62,11 +59,14 @@ export class AppComponent {
         this.statusBar.styleDefault();
         await this.initializeTools();
         await this.getDeviceToken();
-        await this.updateDevice();
         await this.initializeDynamicLinks();
         await this.initializeAuthorizations();
         await this.initializeBackButton();
         this.splashScreen.hide();
+        if ('user' in this.toolsService.payloads) {
+            this.updateDevice();
+            this.authorizationsServices.requestNotificationAuthorization();
+        }
     }
 
     async initializeTools() {

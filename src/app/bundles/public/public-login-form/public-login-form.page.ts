@@ -6,6 +6,7 @@ import {AlertController, LoadingController, NavController} from '@ionic/angular'
 import {ToolsService} from '../../../services/tools.service';
 import {environment} from '../../../../environments/environment';
 import {AuthorizationsService} from '../../../services/authorizations.service';
+import {DevicesService} from '../../../services/devices.service';
 
 @Component({
     selector: 'app-public-login-form',
@@ -24,7 +25,8 @@ export class PublicLoginFormPage implements OnInit {
         public loadingCtrl: LoadingController,
         public navCtrl: NavController,
         public authorizationsService: AuthorizationsService,
-        public alertCtrl: AlertController
+        public alertCtrl: AlertController,
+        public devicesService: DevicesService
     ) {
     }
 
@@ -49,6 +51,14 @@ export class PublicLoginFormPage implements OnInit {
             await loading.dismiss();
             if (request.code === 200) {
                 this.authorizationsService.requestNotificationAuthorization().then(async () => {
+                    await this.devicesService.user_setUpdateForm(this.toolsService.uuid, {
+                        device_push_token: this.toolsService.device_push_token,
+                        api: this.toolsService.api_version,
+                        manufacturer: this.toolsService.manufacturer,
+                        model: this.toolsService.model,
+                        version: this.toolsService.version,
+                        platform: this.toolsService.platform
+                    });
                     await this.navCtrl.navigateRoot('/annuaire');
                 });
             } else {
