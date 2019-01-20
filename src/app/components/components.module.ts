@@ -6,7 +6,6 @@ import {AdministratorMenuComponentModule} from './menus/administrator-menu/admin
 import {PublicMenuComponentModule} from './menus/public-menu/public-menu.component.module';
 import {SharedMenuComponentModule} from './menus/shared-menu/shared-menu.component.module';
 import {SharedBugReportCreateFormComponentModule} from './forms/shared-bug-report-create-form/shared-bug-report-create-form.component.module';
-import {SharedAppAuthorizationsComponentModule} from './forms/shared-app-authorizations/shared-app-authorizations.component.module';
 import {SharedPasswordUpdateFormComponentModule} from './forms/shared-password-update-form/shared-password-update-form.component.module';
 import {AdministratorUserUpdateFormComponentModule} from './forms/administrator-user-update-form/administrator-user-update-form.component.module';
 import {UserMenuComponentModule} from './menus/user-menu/user-menu.component.module';
@@ -33,7 +32,6 @@ import {UserAddressUpdateFormComponentModule} from './forms/user-address-update-
         PublicMenuComponentModule,
         SharedMenuComponentModule,
         SharedBugReportCreateFormComponentModule,
-        SharedAppAuthorizationsComponentModule,
         SharedPasswordUpdateFormComponentModule,
         AdministratorUserUpdateFormComponentModule,
         UserEventsDayViewComponentModule,

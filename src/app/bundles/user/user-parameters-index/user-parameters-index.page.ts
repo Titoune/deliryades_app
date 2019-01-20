@@ -4,10 +4,10 @@ import {ModalController} from '@ionic/angular';
 import {ToolsService} from '../../../services/tools.service';
 import {SharedPasswordUpdateFormComponent} from '../../../components/forms/shared-password-update-form/shared-password-update-form.component';
 import {SharedBugReportCreateFormComponent} from '../../../components/forms/shared-bug-report-create-form/shared-bug-report-create-form.component';
-import {SharedAppAuthorizationsComponent} from '../../../components/forms/shared-app-authorizations/shared-app-authorizations.component';
 import {UserNotificationUpdateFormComponent} from '../../../components/forms/user-notification-update-form/user-notification-update-form.component';
 import {UserProfileUpdateFormComponent} from '../../../components/forms/user-profile-update-form/user-profile-update-form.component';
 import {UserAddressUpdateFormComponent} from '../../../components/forms/user-address-update-form/user-address-update-form.component';
+import {OpenNativeSettings} from '@ionic-native/open-native-settings/ngx';
 
 @Component({
     selector: 'app-user-parameters-index',
@@ -18,7 +18,10 @@ export class UserParametersIndexPage implements OnInit {
 
     environment = environment;
 
-    constructor(public modalCtrl: ModalController, public toolsService: ToolsService) {
+    constructor(public modalCtrl: ModalController,
+                public toolsService: ToolsService,
+                private openNativeSettings: OpenNativeSettings
+    ) {
     }
 
     ngOnInit() {
@@ -65,14 +68,4 @@ export class UserParametersIndexPage implements OnInit {
         });
         return await modal.present();
     }
-
-    async showAppAuthorizationsModal() {
-        const modal = await this.modalCtrl.create({
-            component: SharedAppAuthorizationsComponent,
-            backdropDismiss: false
-        });
-        return await modal.present();
-    }
-
-
 }

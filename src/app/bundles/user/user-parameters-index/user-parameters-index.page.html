@@ -16,42 +16,42 @@
                 <h2>Mon profil</h2>
             </ion-label>
             <ion-icon size="small" slot="start" name="contact"></ion-icon>
-            <ion-icon slot="end" name="arrow-forward"></ion-icon>
+            <ion-icon slot="end" name="arrow-forward" size="small"></ion-icon>
         </ion-item>
         <ion-item (click)="showAddressUpdateFormModal()">
             <ion-label>
                 <h2>Mon adresse domicile</h2>
             </ion-label>
             <ion-icon size="small" slot="start" name="map"></ion-icon>
-            <ion-icon slot="end" name="arrow-forward"></ion-icon>
+            <ion-icon slot="end" name="arrow-forward" size="small"></ion-icon>
         </ion-item>
         <ion-item (click)="showPasswordUpdateFormModal()">
             <ion-label>
                 <h2>Mon mot de passe</h2>
             </ion-label>
             <ion-icon size="small" slot="start" name="lock"></ion-icon>
-            <ion-icon slot="end" name="arrow-forward"></ion-icon>
+            <ion-icon slot="end" name="arrow-forward" size="small"></ion-icon>
         </ion-item>
         <ion-item (click)="showNotificationsUpdateFormModal()">
             <ion-label>
                 <h2>Préférences notifications</h2>
             </ion-label>
             <ion-icon size="small" slot="start" name="notifications"></ion-icon>
-            <ion-icon slot="end" name="arrow-forward"></ion-icon>
+            <ion-icon slot="end" name="arrow-forward" size="small"></ion-icon>
         </ion-item>
-        <ion-item (click)="showAppAuthorizationsModal()">
+        <ion-item (click)="openNativeSettings.open('application_details')">
             <ion-label>
                 <h2>Autorisations application</h2>
             </ion-label>
             <ion-icon size="small" slot="start" name="phone-portrait"></ion-icon>
-            <ion-icon slot="end" name="arrow-forward"></ion-icon>
+            <ion-icon slot="end" name="arrow-forward" size="small"></ion-icon>
         </ion-item>
         <ion-item (click)="showBugReportCreateFormModal()">
             <ion-label>
                 <h2>Signaler un bug</h2>
             </ion-label>
             <ion-icon size="small" slot="start" name="bug"></ion-icon>
-            <ion-icon slot="end" name="arrow-forward"></ion-icon>
+            <ion-icon slot="end" name="arrow-forward" size="small"></ion-icon>
         </ion-item>
     </ion-list>
 </ion-content>
