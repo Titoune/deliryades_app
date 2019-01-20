@@ -52,6 +52,7 @@ export class PublicLoginFormPage implements OnInit {
             if (request.code === 200) {
                 this.authorizationsService.requestNotificationAuthorization().then(async () => {
                     await this.devicesService.user_setUpdateForm(this.toolsService.uuid, {
+                        user_id: this.toolsService.payloads.user.id,
                         device_push_token: this.toolsService.device_push_token,
                         api: this.toolsService.api_version,
                         manufacturer: this.toolsService.manufacturer,
