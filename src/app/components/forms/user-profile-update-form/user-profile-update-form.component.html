@@ -101,7 +101,15 @@
 
         <ion-item>
             <ion-label position="stacked">Date de naissance</ion-label>
-            <ion-datetime formControlName="birth" placeholder="" displayFormat="DD MMMM YYYY"
+            <ion-datetime formControlName="birth"
+                          [monthNames]="environment.month_names"
+                          [monthShortNames]="environment.month_short_names"
+                          [dayNames]="environment.day_names"
+                          [dayShortNames]="environment.day_short_names"
+                          cancelText="Annuler"
+                          doneText="Terminer"
+                          [min]="moment().year() - 130" [max]="moment().year()"
+                          displayFormat="DD MMMM YYYY"
                           pickerFormat="DD MMMM YYYY">
             </ion-datetime>
             <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
@@ -119,7 +127,7 @@
 
         <ion-item>
             <ion-label position="stacked">Branche</ion-label>
-            <ion-input formControlName="branch" placeholder=""></ion-input>
+            <ion-input type="number" formControlName="branch" placeholder=""></ion-input>
             <p *ngIf="ngForm.submitted" class="form-error">{{update_form.getError('error',
                 'branch')}}
             </p>
