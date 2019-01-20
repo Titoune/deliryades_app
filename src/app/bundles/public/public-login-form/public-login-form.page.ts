@@ -44,7 +44,7 @@ export class PublicLoginFormPage implements OnInit {
     async submit() {
 
         if (this.create_form.valid) {
-            const loading = await this.loadingCtrl.create({message: 'connexion...'});
+            const loading = await this.loadingCtrl.create({message: 'connexion en cours...'});
             await loading.present();
 
             const request = await <any>this.authService.public_setUserLoginForm(this.create_form.value);

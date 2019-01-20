@@ -78,7 +78,7 @@ export class HttpResponseInterceptor implements HttpInterceptor {
                 duration: 2000,
                 position: 'bottom',
                 cssClass: (res instanceof HttpErrorResponse ? 'toast-error' : 'toast-success'),
-                closeButtonText: 'Fermer',
+                closeButtonText: 'Retour',
                 showCloseButton: false
             });
             await toast.present();

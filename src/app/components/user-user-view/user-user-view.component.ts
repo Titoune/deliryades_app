@@ -45,7 +45,7 @@ export class UserUserViewComponent implements OnInit {
         const email = {
             to: this.user.email,
             subject: '',
-            body: '',
+            body: 'Envoyé avec amour via l\'application Deliryades',
             isHtml: false
         };
         this.emailComposer.open(email);

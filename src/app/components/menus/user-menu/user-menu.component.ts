@@ -22,14 +22,14 @@ export class UserMenuComponent implements OnInit {
         //    icon: 'assets/icon/menu/messages.svg',
         //    class: 'messages',
          //   notification_count: this.toolsService.notification_counts[1]
-        //},
-        {
-            title: 'Sondages',
-            url: '/sondages',
-            icon: 'assets/icon/menu/polls.svg',
-            class: 'polls',
-            notification_count: 0
-        },
+        // },
+       // {
+           // title: 'Sondages',
+           // url: '/sondages',
+           // icon: 'assets/icon/menu/polls.svg',
+           // class: 'polls',
+           // notification_count: 0
+       // },
        // {
         //    title: 'Agenda',
          //   url: '/evenements',
@@ -51,6 +51,18 @@ export class UserMenuComponent implements OnInit {
             url: '/parametres',
             icon: 'settings',
             notification_count: 0
+        },
+        {
+            title: null,
+            url: null,
+            icon: null,
+            notification_count: 0
+        },
+        {
+            title: 'Déconnexion',
+            url: '/deconnexion',
+            icon: 'power',
+            notification_count: 0
         }
     ];
     environment = environment;
@@ -61,20 +73,5 @@ export class UserMenuComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (this.toolsService.payloads.user.admin === 1) {
-            this.footerMenus.push({
-                title: 'Autres comptes',
-                url: '/annuaire',
-                icon: 'assets/icon/menu/switch.svg',
-                notification_count: 0
-            });
-        }
-
-        this.footerMenus.push({
-            title: 'Déconnexion',
-            url: '/deconnexion',
-            icon: 'power',
-            notification_count: 0
-        });
     }
 }
