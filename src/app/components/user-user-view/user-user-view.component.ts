@@ -101,7 +101,12 @@ export class UserUserViewComponent implements OnInit {
     }
 
     async navigate() {
-        this.launchNavigator.navigate(this.user.street_number + ' ' + this.user.route + ' ' + this.user.postal_code + ' ' + this.user.locality + ' ' + this.user.country)
+        this.launchNavigator.navigate(this.user.street_number + ' ' + this.user.route + ' ' + this.user.postal_code + ' ' + this.user.locality + ' ' + this.user.country, {
+            appSelection:{
+                dialogHeaderText: 'Choisir une application pour le trajet',
+                cancelButtonText: 'Annuler'
+            }
+        })
             .then(
                 success => console.log('Launched navigator'),
                 error => console.log('Error launching navigator', error)
