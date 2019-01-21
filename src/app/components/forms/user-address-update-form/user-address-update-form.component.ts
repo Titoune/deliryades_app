@@ -201,7 +201,7 @@ export class UserAddressUpdateFormComponent implements OnInit {
     async onMapReady(map: any) {
         setTimeout(() => {
             map.invalidateSize();
-        }, 0);
+        }, 10);
 
         map.setView([this.user.lat, this.user.lng], 14);
         leaflet.marker([this.user.lat, this.user.lng],

@@ -25,8 +25,8 @@
             </ion-avatar>
             <ion-label>
                 <h2>{{user.fullname}}</h2>
-                <p *ngIf="user.age">{{user.age}} ans</p>
-                <p *ngIf="!user.age">--</p>
+                <p *ngIf="user.age && !user.death">{{user.age}} ans</p>
+                <p *ngIf="!user.age || user.death">--</p>
             </ion-label>
             <ion-icon size="small" slot="end" name="arrow-forward"></ion-icon>
         </ion-item>
