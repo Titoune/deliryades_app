@@ -1,23 +1,25 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {environment} from '../../../../environments/environment';
+import * as moment from 'moment';
 import {UsersService} from '../../../services/users.service';
 import {ActionSheetController, AlertController, LoadingController, ModalController, NavController} from '@ionic/angular';
 import {ToolsService} from '../../../services/tools.service';
-import {dateValidator, emailValidator, inListValidator, lengthBetweenValidator, naturalNumberValidator, regexValidator, requiredValidator} from '../../../custom-validators';
-import * as moment from 'moment';
 import {AuthorizationsService} from '../../../services/authorizations.service';
 import {Camera} from '@ionic-native/camera/ngx';
 import {WebView} from '@ionic-native/ionic-webview/ngx';
+import {dateValidator, emailValidator, inListValidator, lengthBetweenValidator, naturalNumberValidator, regexValidator, requiredValidator} from '../../../custom-validators';
 
 @Component({
-    selector: 'app-user-profile-update-form',
-    templateUrl: './user-profile-update-form.component.html',
-    styleUrls: ['./user-profile-update-form.component.scss']
+    selector: 'app-user-update-form',
+    templateUrl: './user-update-form.component.html',
+    styleUrls: ['./user-update-form.component.scss']
 })
-export class UserProfileUpdateFormComponent implements OnInit {
+export class UserUpdateFormComponent implements OnInit {
+
     @ViewChild('user_picture') user_picture: any;
 
+    @Input() user_id;
     user: any = {};
     update_form: FormGroup;
     environment = environment;
@@ -35,7 +37,7 @@ export class UserProfileUpdateFormComponent implements OnInit {
         public authorizations: AuthorizationsService,
         public actionSheetCtrl: ActionSheetController,
         private camera: Camera,
-        private webview: WebView
+        private webview: WebView,
     ) {
     }
 
@@ -47,7 +49,7 @@ export class UserProfileUpdateFormComponent implements OnInit {
     }
 
     getUser() {
-        this.userService.user_getMe(this.toolsService.payloads.user.id).subscribe(request => {
+        this.userService.user_getUser(this.user_id).subscribe(request => {
             this.user = request.data.user;
             this.buildForm();
         });
@@ -59,6 +61,7 @@ export class UserProfileUpdateFormComponent implements OnInit {
             firstname: [this.user.firstname, [requiredValidator, regexValidator('^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð \'-]+$', 'veuillez vérifier ce champs')]],
             lastname: [this.user.lastname, [requiredValidator, regexValidator('^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð \'-]+$', 'veuillez vérifier ce champs')]],
             email: [this.user.email, [emailValidator]],
+            death: [(this.user.death ? moment(this.user.death).format('YYYY-MM-DD') : null), [dateValidator]],
             birth: [(this.user.birth ? moment(this.user.birth).format('YYYY-MM-DD') : null), [dateValidator]],
             cellphone_prefix: [this.user.cellphone_prefix],
             cellphone: [this.user.cellphone, [regexValidator('^(?:(?:\\+|00)33|0)\\s*[1-9](?:[\\s.-]*\\d{2}){4}$', 'veuillez vérifier ce champs')]],
@@ -77,7 +80,7 @@ export class UserProfileUpdateFormComponent implements OnInit {
             const loading = await this.loadingCtrl.create({message: 'enregistrement...'});
             await loading.present();
 
-            const request = await <any>this.userService.user_setUpdateForm(this.user.id, this.update_form.value);
+            const request = await <any>this.userService.administrator_setUpdateForm(this.user.id, this.update_form.value);
 
             await loading.dismiss();
 
@@ -219,7 +222,7 @@ export class UserProfileUpdateFormComponent implements OnInit {
         const loading = await this.loadingCtrl.create({message: 'enregistrement de la photo...'});
         await loading.present();
 
-        const request = await <any>this.userService.user_uploadUserPicture(picture_uri);
+        const request = await <any>this.userService.administrator_uploadUserPicture(this.user.id, picture_uri);
 
         await loading.dismiss();
 
@@ -227,5 +230,4 @@ export class UserProfileUpdateFormComponent implements OnInit {
             await this.modalCtrl.dismiss();
         }
     }
-
 }

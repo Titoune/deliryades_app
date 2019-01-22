@@ -31,12 +31,16 @@ export class UsersService {
     }
 
     administrator_setCreateForm(data) {
-        return this.httpService.post('admin/users/set-create-form', data);
+        return this.httpService.post('user/users/admin-set-create-form', data);
     }
 
 
     administrator_setUpdateForm(user_id, data) {
-        return this.httpService.patch('admin/users/set-update-form/' + user_id, data);
+        return this.httpService.patch('user/users/admin-set-update-form/' + user_id, data);
+    }
+
+    administrator_uploadUserPicture(user_id, file) {
+        return this.httpService.file('user/users/admin-upload-user-picture/' + user_id, file);
     }
 
 

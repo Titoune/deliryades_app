@@ -1,5 +1,11 @@
 <ion-header>
     <ion-toolbar>
+
+        <ion-buttons *ngIf="this.toolsService.payloads.user.admin === true" slot="start">
+            <ion-button color="black" (click)="showUserUpdateFormModal()">
+                <ion-icon  color="light" name="hammer"></ion-icon>
+            </ion-button>
+        </ion-buttons>
         <ion-buttons slot="end">
             <span class="modal-close-button" (click)="modalCtrl.dismiss()">Retour</span>
         </ion-buttons>

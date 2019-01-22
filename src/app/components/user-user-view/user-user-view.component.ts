@@ -6,6 +6,7 @@ import {EmailComposer} from '@ionic-native/email-composer/ngx';
 import {UserSmsCreateFormComponent} from '../forms/user-sms-create-form/user-sms-create-form.component';
 import {CallNumber} from '@ionic-native/call-number/ngx';
 import {LaunchNavigator, LaunchNavigatorOptions} from '@ionic-native/launch-navigator/ngx';
+import {UserUpdateFormComponent} from '../forms/user-update-form/user-update-form.component';
 
 @Component({
     selector: 'app-user-user-view',
@@ -31,6 +32,17 @@ export class UserUserViewComponent implements OnInit {
 
     ngOnInit() {
     }
+
+
+    async showUserUpdateFormModal() {
+        const modal = await this.modalCtrl.create({
+            component: UserUpdateFormComponent,
+            componentProps: {user_id: this.user.id},
+            backdropDismiss: false
+        });
+        return await modal.present();
+    }
+
 
     async showSmsCreateFormModal() {
         const modal = await this.modalCtrl.create({

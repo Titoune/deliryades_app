@@ -1,5 +1,10 @@
 <ion-header>
     <ion-toolbar>
+        <ion-buttons *ngIf="this.toolsService.payloads.user.admin === true" slot="start">
+            <ion-button (click)="showUserCreateFormModal()">
+                <ion-icon color="light" name="person-add"></ion-icon>
+            </ion-button>
+        </ion-buttons>
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
             <ion-back-button></ion-back-button>
