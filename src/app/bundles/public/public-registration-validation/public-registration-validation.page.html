@@ -9,6 +9,6 @@
 <ion-content padding>
   <p *ngIf="is_email_validated == true">Votre email est bien validé.</p>
   <p *ngIf="is_email_validated == false">Une erreur est survenue lors de la validation de votre email</p>
-  <ion-button href="/connexion" routerDirection="root">Retour connexion</ion-button>
+  <ion-button expand="full" color="purple" (click)="navCtrl.navigateRoot('/connexion')">Retour connexion</ion-button>
 
 </ion-content>
