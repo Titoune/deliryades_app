@@ -32,7 +32,7 @@ export class SharedPasswordUpdateFormComponent implements OnInit {
 
     buildForm() {
         this.update_form = this.formBuilder.group({
-            password1: [null, [requiredValidator, regexValidator('^(?=.*[A-z])(?=.*[A-Z])(?=.*[0-9])\\S{8,30}$', 'Votre mot de passe doit comporter au moins 1 majuscule, 1 minucule et 1 chiffre'), lengthBetweenValidator(8, 30)]],
+            password1: [null, [requiredValidator, lengthBetweenValidator(4, 40)]],
             password2: [null, [requiredValidator, matchValidator('password1', 'mot de passe')]]
         }, {updateOn: 'submit'});
     }
