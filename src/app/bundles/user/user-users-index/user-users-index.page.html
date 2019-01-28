@@ -21,7 +21,7 @@
     <ion-searchbar #searchbar showCancelButton="true" cancelButtonText="annuler" [debounce]="400"
                    (ionChange)="getUserByName($event)" placeholder="Rechercher une personne"></ion-searchbar>
 
-    <ion-button expand="full" color="dark" (click)="showRegistrationCodeModal()">Envoyer un code d'invitation
+    <ion-button *ngIf="open_registration === true" expand="full" color="dark" (click)="showRegistrationCodeModal()">Envoyer un code d'invitation
     </ion-button>
     <ion-list>
         <ion-item (click)="showUserViewModal(user)" *ngFor="let user of users">

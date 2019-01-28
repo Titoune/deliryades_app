@@ -21,7 +21,7 @@ export class UserUsersIndexPage implements OnInit {
     @ViewChild(IonRefresher) refresher: IonRefresher;
     @ViewChild('searchbar') searchbar: IonSearchbar;
     public users: any = [];
-    open_registration = 0;
+    open_registration = false;
     environment = environment;
     moment = moment;
 
