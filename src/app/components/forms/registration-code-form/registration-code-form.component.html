@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <span class="modal-close-button" (click)="cancelForm()">Annuler</span>
+    </ion-buttons>
+    <ion-title>Envoyer un code de validation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <form [formGroup]="create_form" #ngForm="ngForm"
+        (ngSubmit)="submit()">
+
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input formControlName="email" placeholder=""></ion-input>
+      <p *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
+              'email')}}
+      </p>
+    </ion-item>
+
+    <ion-button type="submit" expand="full" color="purple">Envoyer</ion-button>
+  </form>
+</ion-content>

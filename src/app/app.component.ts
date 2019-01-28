@@ -123,6 +123,8 @@ export class AppComponent {
                     this.navCtrl.navigateRoot('/nouveau-mot-de-passe/' + query_params.email + '/' + query_params.token);
                 } else if (res.deepLink.indexOf('/auth/email-validation') !== -1) {
                     this.navCtrl.navigateRoot('/validation/' + query_params.email + '/' + query_params.token);
+                } else if (res.deepLink.indexOf('/auth/registration') !== -1) {
+                    this.navCtrl.navigateRoot('/inscription');
                 }
             }, (error: any) => {
                 console.log(error);

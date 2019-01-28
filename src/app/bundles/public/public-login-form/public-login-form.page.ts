@@ -1,12 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {emailValidator, regexValidator, requiredValidator} from '../../../custom-validators';
-import {AlertController, LoadingController, NavController} from '@ionic/angular';
+import {requiredValidator} from '../../../custom-validators';
+import {AlertController, LoadingController, ModalController, NavController} from '@ionic/angular';
 import {ToolsService} from '../../../services/tools.service';
 import {environment} from '../../../../environments/environment';
 import {AuthorizationsService} from '../../../services/authorizations.service';
 import {DevicesService} from '../../../services/devices.service';
+import {UserRegistrationFormComponent} from '../../../components/forms/user-registration-form/user-registration-form.component';
+import {ConfigurationsService} from '../../../services/configurations.service';
 
 @Component({
     selector: 'app-public-login-form',
@@ -17,20 +19,24 @@ export class PublicLoginFormPage implements OnInit {
 
     create_form: FormGroup;
     environment = environment;
+    open_registration = false;
 
     constructor(
         public authService: AuthService,
+        public configurationsService: ConfigurationsService,
         public toolsService: ToolsService,
         public formBuilder: FormBuilder,
         public loadingCtrl: LoadingController,
         public navCtrl: NavController,
         public authorizationsService: AuthorizationsService,
         public alertCtrl: AlertController,
-        public devicesService: DevicesService
+        public devicesService: DevicesService,
+        public modalCtrl: ModalController
     ) {
     }
 
     ngOnInit() {
+        this.getOpenRegistration();
         this.buildForm();
     }
 
@@ -60,7 +66,12 @@ export class PublicLoginFormPage implements OnInit {
                         version: this.toolsService.version,
                         platform: this.toolsService.platform
                     });
-                    await this.navCtrl.navigateRoot('/annuaire');
+
+                    if (!this.toolsService.payloads.user.family_id) {
+                        await this.navCtrl.navigateRoot('/premiere-connexion');
+                    } else {
+                        await this.navCtrl.navigateRoot('/annuaire');
+                    }
                 }).catch(res => {
                     console.log(res);
                 });
@@ -68,6 +79,22 @@ export class PublicLoginFormPage implements OnInit {
                 ToolsService.generateServerValidationErrors(this.create_form, request);
             }
         }
+    }
+
+    getOpenRegistration() {
+        this.configurationsService.public_getOpenRegistration().subscribe(request => {
+            console.log(this.open_registration);
+            this.open_registration = request.data.open_registration;
+        });
+    }
+
+
+    async showRegistrationFormModal() {
+        const modal = await this.modalCtrl.create({
+            component: UserRegistrationFormComponent,
+            backdropDismiss: false
+        });
+        return await modal.present();
     }
 
 }

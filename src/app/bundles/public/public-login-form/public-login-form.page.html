@@ -7,11 +7,13 @@
                 </div>
                 <p text-center>
                     <small>Pour vous connecter, utilisez votre <b>adresse email</b><br>ou votre <b>numéro de téléphone
-                        portable</b> sans indicatif<br>ex : 0607080910</small>
+                        portable</b> sans indicatif<br>ex : 0607080910
+                    </small>
                 </p>
                 <form #ngForm="ngForm" (ngSubmit)="submit()" *ngIf="create_form" [formGroup]="create_form">
                     <ion-item style="margin:0 2px">
-                        <ion-input style="margin:0 7px" formControlName="credential" placeholder="Téléphone portable ou adresse email"
+                        <ion-input style="margin:0 7px" formControlName="credential"
+                                   placeholder="Téléphone portable ou adresse email"
                                    type="text"></ion-input>
                         <p *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
                             'credential')}}
@@ -27,13 +29,16 @@
                     </ion-item>
                     <br>
                     <ion-button type="submit" expand="full" color="light">connexion</ion-button>
-
                 </form>
                 <div text-center>
                     <br>
                     <a style="color:white;" routerDirection="forward" routerLink="/mot-de-passe-perdu">Mot de passe
                         perdu ?</a>
                 </div>
+                <br>
+                <ion-button *ngIf="open_registration === true" expand="full" color="dark"
+                            (click)="showRegistrationFormModal()">Inscription
+                </ion-button>
             </ion-col>
         </ion-row>
     </ion-grid>

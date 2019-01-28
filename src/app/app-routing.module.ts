@@ -45,7 +45,9 @@ const routes: Routes = [
     {path: 'messages/voir/:user_id', loadChildren: './bundles/user/user-discussion-view/user-discussion-view.module#UserDiscussionViewPageModule', canActivate: [UserGuard]},
     {path: 'parametres', loadChildren: './bundles/user/user-parameters-index/user-parameters-index.module#UserParametersIndexPageModule', canActivate: [UserGuard]},
     {path: 'chat', loadChildren: './bundles/user/user-chat-view/user-chat-view.module#UserChatViewPageModule', canActivate: [UserGuard]},
-    {path: 'evenements/voir/:event_id', loadChildren: './bundles/user/user-event-view/user-event-view.module#UserEventViewPageModule', canActivate: [UserGuard]}
+    {path: 'evenements/voir/:event_id', loadChildren: './bundles/user/user-event-view/user-event-view.module#UserEventViewPageModule', canActivate: [UserGuard]},
+    {path: 'validation/:email/:token', loadChildren: './bundles/public/public-registration-validation/public-registration-validation.module#PublicRegistrationValidationPageModule', canActivate: [PublicGuard]},
+    {path: 'premiere-connexion', loadChildren: './bundles/user/user-first-login/user-first-login.module#UserFirstLoginPageModule', canActivate: [UserGuard]}
 ];
 
 @NgModule({

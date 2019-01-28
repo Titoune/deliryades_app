@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <span class="modal-close-button" (click)="cancelForm()">Annuler</span>
+    </ion-buttons>
+    <ion-title>Inscription</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <form [formGroup]="create_form" #ngForm="ngForm"
+        (ngSubmit)="submit()">
+
+    <ion-item>
+      <ion-label position="stacked">Genre</ion-label>
+      <ion-select formControlName="sex" placeholder="">
+        <ion-select-option value="m">Homme</ion-select-option>
+        <ion-select-option value="f">Femme</ion-select-option>
+      </ion-select>
+      <p *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
+              'sex')}}
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Prénom</ion-label>
+      <ion-input formControlName="firstname" placeholder=""></ion-input>
+      <p *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
+              'firstname')}}
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Nom</ion-label>
+      <ion-input formControlName="lastname" placeholder=""></ion-input>
+      <p *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
+              'lastname')}}
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input formControlName="email" placeholder=""></ion-input>
+      <p *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
+              'email')}}
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Mot de passe</ion-label>
+      <ion-input type="password" formControlName="password1" placeholder=""></ion-input>
+      <p *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
+              'password1')}}
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Confirmation du mot de passe</ion-label>
+      <ion-input type="password" formControlName="password2" placeholder=""></ion-input>
+      <p *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
+              'password2')}}
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Code d'invitation (facultatif)</ion-label>
+      <ion-input type="text" formControlName="code" placeholder=""></ion-input>
+      <p *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
+              'code')}}
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>J'accepte les <span style="text-decoration: underline;" (click)="showWebsiteTermsOfUseModal()">conditions d'utilisation du site</span>
+      </ion-label>
+      <ion-toggle formControlName="is_website_terms_of_use_accepted"></ion-toggle>
+      <p *ngIf="ngForm.submitted" class="form-error">{{create_form.getError('error',
+              'is_website_terms_of_use_accepted')}}
+      </p>
+    </ion-item>
+
+    <ion-button type="submit" expand="full" color="purple">Inscription</ion-button>
+  </form>
+</ion-content>

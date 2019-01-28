@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Première connexion</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content padding>
+
+    <div *ngIf="!choice">
+        <ion-button (click)="choice = 1" expand="full" color="purple">Créer une famille</ion-button>
+        <div text-center>OU</div>
+        <ion-button (click)="choice = 2" expand="full" color="purple">Ajouter un code d'invitation</ion-button>
+    </div>
+
+    <div *ngIf="choice == 1">
+        <h1>Créer une famille</h1>
+        <form [formGroup]="create_family_form" #ngForm2="ngForm" (ngSubmit)="submitFamilyCreateForm()">
+            <ion-item>
+                <ion-label position="stacked">Nom de la famille</ion-label>
+                <ion-input type="text" formControlName="name" placeholder=""></ion-input>
+                <p *ngIf="ngForm2.submitted" class="form-error">{{create_family_form.getError('error',
+                    'name')}}
+                </p>
+            </ion-item>
+
+            <ion-button type="submit" expand="full" color="purple">Créer</ion-button>
+        </form>
+    </div>
+
+    <div *ngIf="choice == 2">
+        <h1>Ajouter un code d'invitation</h1>
+        <form [formGroup]="create_code_form" #ngForm1="ngForm" (ngSubmit)="submitCodeForm()">
+            <ion-item>
+                <ion-label position="stacked">Entrez le code</ion-label>
+                <ion-input type="text" formControlName="code" placeholder=""></ion-input>
+                <p *ngIf="ngForm1.submitted" class="form-error">{{create_code_form.getError('error',
+                    'name')}}
+                </p>
+            </ion-item>
+
+            <ion-button type="submit" expand="full" color="purple">Créer</ion-button>
+        </form>
+
+    </div>
+
+
+</ion-content>

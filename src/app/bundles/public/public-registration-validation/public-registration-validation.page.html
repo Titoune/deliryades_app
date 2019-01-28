@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Validation de votre email
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <p *ngIf="is_email_validated == true">Votre email est bien validé.</p>
+  <p *ngIf="is_email_validated == false">Une erreur est survenue lors de la validation de votre email</p>
+  <ion-button href="/connexion" routerDirection="root">Retour connexion</ion-button>
+
+</ion-content>

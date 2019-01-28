@@ -1,11 +1,13 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ActionSheetController, AlertController, IonInfiniteScroll, IonRefresher, IonSearchbar, LoadingController, ModalController, NavController} from '@ionic/angular';
+import {AlertController, IonInfiniteScroll, IonRefresher, IonSearchbar, LoadingController, ModalController, NavController} from '@ionic/angular';
 import {environment} from '../../../../environments/environment';
 import * as moment from 'moment';
 import {ToolsService} from '../../../services/tools.service';
 import {UsersService} from '../../../services/users.service';
 import {UserUserViewComponent} from '../../../components/user-user-view/user-user-view.component';
 import {UserCreateFormComponent} from '../../../components/forms/user-create-form/user-create-form.component';
+import {ConfigurationsService} from '../../../services/configurations.service';
+import {RegistrationCodeFormComponent} from '../../../components/forms/registration-code-form/registration-code-form.component';
 
 @Component({
     selector: 'app-user-users-index',
@@ -19,11 +21,13 @@ export class UserUsersIndexPage implements OnInit {
     @ViewChild(IonRefresher) refresher: IonRefresher;
     @ViewChild('searchbar') searchbar: IonSearchbar;
     public users: any = [];
+    open_registration = 0;
     environment = environment;
     moment = moment;
 
     constructor(
         public usersService: UsersService,
+        public configurationsService: ConfigurationsService,
         public navCtrl: NavController,
         public toolsService: ToolsService,
         public loadingCtrl: LoadingController,
@@ -35,6 +39,7 @@ export class UserUsersIndexPage implements OnInit {
 
     ngOnInit() {
         this.getUsersFromCache();
+        this.getOpenRegistration();
     }
 
     getUsersFromCache() {
@@ -83,6 +88,21 @@ export class UserUsersIndexPage implements OnInit {
     doRefresh() {
         this.users = [];
         this.getUsers();
+    }
+
+    getOpenRegistration() {
+        this.configurationsService.public_getOpenRegistration().subscribe(request => {
+            console.log(this.open_registration);
+            this.open_registration = request.data.open_registration;
+        });
+    }
+
+    async showRegistrationCodeModal() {
+        const modal = await this.modalCtrl.create({
+            component: RegistrationCodeFormComponent,
+            backdropDismiss: false
+        });
+        return await modal.present();
     }
 
 }

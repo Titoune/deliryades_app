@@ -23,6 +23,9 @@ import {UserProfileUpdateFormComponentModule} from './forms/user-profile-update-
 import {UserAddressUpdateFormComponentModule} from './forms/user-address-update-form/user-address-update-form.component.module';
 import {UserUpdateFormComponentModule} from './forms/user-update-form/user-update-form.component.module';
 import {UserCreateFormComponentModule} from './forms/user-create-form/user-create-form.component.module';
+import {UserRegistrationFormComponentModule} from './forms/user-registration-form/user-registration-form.component.module';
+import {PublicWebsiteTermsOfUseComponentModule} from './public-website-terms-of-use/public-website-terms-of-use.component.module';
+import {RegistrationCodeFormComponentModule} from './forms/registration-code-form/registration-code-form.component.module';
 
 @NgModule({
     imports: [
@@ -49,7 +52,10 @@ import {UserCreateFormComponentModule} from './forms/user-create-form/user-creat
         UserProfileUpdateFormComponentModule,
         UserAddressUpdateFormComponentModule,
         UserUpdateFormComponentModule,
-        UserCreateFormComponentModule
+        UserCreateFormComponentModule,
+        UserRegistrationFormComponentModule,
+        PublicWebsiteTermsOfUseComponentModule,
+        RegistrationCodeFormComponentModule
     ]
 })
 export class ComponentsModule {

@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <span class="modal-close-button" (click)="modalCtrl.dismiss()">Fermer</span>
+    </ion-buttons>
+    <ion-title>
+      Conditions générales d'utilisation du site
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div *ngIf="website_terms_of_use != null" [innerHtml]="website_terms_of_use"></div>
+  <ion-button color="purple" expand="full" (click)="modalCtrl.dismiss()">Fermer</ion-button>
+</ion-content>
